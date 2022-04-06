@@ -21,8 +21,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Test & collect coverage
+      run: dotnet test /p:CollectCoverage=true --no-build --verbosity normal
     - name: Code Coverage Report
       uses: romeovs/lcov-reporter-action@v0.2.11
 

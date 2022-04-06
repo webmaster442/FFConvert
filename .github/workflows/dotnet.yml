@@ -22,7 +22,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test & collect coverage
-      run: dotnet test /p:CollectCoverage=true --no-build --verbosity normal
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='./coverage/lcov.info' --no-build --verbosity normal
     - name: Code Coverage Report
       uses: romeovs/lcov-reporter-action@v0.2.11
-

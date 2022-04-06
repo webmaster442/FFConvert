@@ -22,6 +22,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test & collect coverage
-      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput='../coverage/lcov.info' --no-build --verbosity normal
-    - name: Code Coverage Report
-      uses: romeovs/lcov-reporter-action@v0.2.11
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput='../coverage/opencover.xml' --no-build --verbosity normal
+    - name: OpenCover Badge Generator
+      uses: danpetitt/open-cover-badge-generator-action@v1.0.10
+      with:
+         path-to-opencover-xml: './coverage/opencover.xml'
+         minimum-coverage: 48
+         repo-token: ${{ secrets.GITHUB_TOKEN }}

@@ -199,3 +199,145 @@ jobs:
 
 A code coverage értékeket SVG ikonként generálja le a workflow a folyamat végeztével. Ezeket a fájlokat a projekt readme.md leírásában elhelyezve mindig láthatjuk a projekt oldalán, hogy hány százalékos a kód lefedettsége. 
 
+## Preset modellezés
+
+A presetek részletes specifikációja alapján viszonylag könnyen készíthető egy modell a leírása. Az egyes presetek leírásait tárolhatjuk kódban is, vagy valami adatfájlban. A programban tárolás ellen szól, hogy így minden egyes preset módosítás esetén a programot újra kellene fordítanunk, ami nem feltétlen a legjobb megoldás, mivel limitálja a bővíthetőséget a későbbiekben. Adatfájlban tárolás esetén problémát az okoz, hogy az egyes presetek esetén például hogyan írjuk le a paraméterek validálását, vagy mondjuk hogyan valósítjuk meg azt, hogy egyes beállítási lehetőségek opcionálisak lehetnek?
+
+Ennek a kivitelezése kódban triviális, hiszen egy `if-else` elágazással megoldható a probléma, de az adat esetén már nem feltétlen evidens ennek a kivitelezése. Ha a logika leírását is beletesszük a preset definícióba, akkor nagyon könnyen abban a szituációban találhatjuk magunkat, hogy egy domain specifikus nyelvet (DSL) fejlesztünk a megoldandó probléma modellezésére.
+
+A DSL nyelvek lényegében programozási nyelvek, amelyeknek nem feltétlen kell Turing teljesnek lenniük. A probléma általában az, hogy ezek a nyelvek egyszerűnek indulnak, de általában az idő előrehaladtával mindenre is jók lesznek, ami csak problémákat szül. Ezek miatt a problémák miatt az esetek nagyon kis százalékában éri meg saját DSL nyelvet fejleszteni. Ez is egy ilyen szituáció.
+
+Persze adódhat a jogos felvetés, hogy miért nem LUA alapon valósítjuk meg a preseteket? Játékfejlesztők előszeretettel használják objektum leírása és logika megvalósításra. Jelen esetben is használható lenne, de a KISS elv mentén egyenlőre nem látom ennek szükségességét.
+
+Ezért végső soron az XML formátum mellett döntöttem, mivel ez kézzel is szépen formázható, illetve beszédesebb egy picit leírásra, mint egy JSON fájl szerintem, mivel közelebb áll a HTML-hez. Ez alapvetően egy szubjektív döntés.
+
+A modell alapvetően két fő osztályból áll. Egy osztály felelős a paraméterek leírásáért, míg egy másik magáért a központi preset leírásért felelős.
+
+A paraméterek leírására szolgáló osztály:
+
+```csharp
+using System.Xml.Serialization;
+
+namespace FFConvert.Domain;
+
+[Serializable]
+public sealed class PresetParameter
+{
+    [XmlAttribute]
+    public string ParameterName { get; set; }
+
+    [XmlAttribute]
+    public string ParameterDescription { get; set; }
+
+    [XmlIgnore]
+    public string Value { get; set; }
+
+    [XmlAttribute("Validator")]
+    public string? ValidatorName { get; set; }
+
+    [XmlAttribute]
+    public string? ValidatorParameters { get; set; }
+
+    [XmlAttribute("Converter")]
+    public string? ConverterName { get; set; }
+
+    [XmlAttribute]
+    public bool? IsOptional { get; set; }
+
+    [XmlAttribute]
+    public string? OptionalContent { get; set; }
+
+    public PresetParameter()
+    {
+        ParameterName = string.Empty;
+        ParameterDescription = string.Empty;
+        Value = string.Empty;
+    }
+}
+```
+
+A paraméterek esetén a paraméter neve és a leírása csupán a nem opcionális tulajdonság. Ezeket a paramétereket elképzelhető, hogy validálni kell, ezért a `ValidatorName` a bevitt szövegen futtatandó validáló osztály nevét fogja megadni. Ezeknek a validációs osztályoknak elképzelhető, hogy paramétereket is szeretnénk átadni. Erre szolgál a `ValidatorParameters` tulajdonság. A `ConverterName` egy konvertáló osztályt ad meg, ami az ellenőrzés után fog majd lefutni. Ezzel olyan funkciók valósíthatóak majd meg, hogy a megadott időt mindig másodperc formátumra hozzuk. Az `IsOptional` és a `OptionalContent` pedig olyan paraméterek leírására szolgálnak, amelyek csak akkor adandóak majd a generált parancssorhoz, ha nem üres az értékük.
+
+A Preset leírására pedig az alábbi osztály szolgál.
+
+```csharp
+using System.Xml.Serialization;
+
+namespace FFConvert.Domain;
+
+[Serializable]
+public sealed class Preset
+{
+    [XmlAttribute]
+    public string ActivatorName { get; set; }
+    public string Description { get; set; }
+    public string CommandLine { get; set; }
+    
+    [XmlAttribute]
+    public string TargetExtension { get; set; }
+
+    public List<PresetParameter> ParametersToAsk { get; set; }
+
+    public Preset()
+    {
+        ActivatorName = string.Empty;
+        Description = string.Empty;
+        CommandLine = string.Empty;
+        TargetExtension = string.Empty;
+        ParametersToAsk = new List<PresetParameter>();
+    }
+}
+```
+
+Itt Opcionális tulajdonság nincs, mindegyik megadása kötelező. Az `ActivatorName` a Preset neve, amit a parancssorban kell majd megírni. A `Description` mező a leírásra szolgál, ami majd a dinamikus súgó generáláshoz lesz használva. A `CommandLine` és `TargetExtension` pedig a parancssor generáláshoz lesz használva, míg a `ParametersToAsk` a paramétereket írja le.
+
+## Preset validáció
+
+Mivel a preset beállítások egy külső XML fájlból fognak jönni, ezért a programban ellenőrizni kell használat előtt, hogy valóban  rendben vannak-e, ki van-e töltve az összes szükséges tulajdonság megfelelően.
+
+Ehhez szintén a domain services rétegben készítettem egy extension metódust, ami egy pereset kapcsán ellenőrzi, hogy az rendben van-e.
+
+A logika a paraméterek esetén is végez ellenőrzéseket. Például, ha a van megadva `OptionalContent`, akkor az `IsOptional` tulajdonságnak igaznak kell lennie. Hasonló módon ha van validációs paraméter, akkor a validációhoz használt osztály nevét meg kell adni. 
+
+Ez a fajta ellenőrzés egy statikus ellenőrzésnek fogható fel, mivel csak a szintaxist figyeli, de azt már nem, hogy a preset esetén a megadott validációs osztály és konverziós osztály létezik-e egyáltalán.
+
+A későbbiek folyamán majd ez is ellenőrzésre kerül.
+
+```csharp
+using FFConvert.Domain;
+
+namespace FFConvert.DomainServices;
+
+public static class PresetExtensions
+{
+    public static bool IsValid(this Preset preset)
+    {
+        bool baseValid = !string.IsNullOrEmpty(preset.ActivatorName)
+            && !string.IsNullOrEmpty(preset.Description)
+            && !string.IsNullOrEmpty(preset.CommandLine)
+            && !string.IsNullOrEmpty(preset.TargetExtension);
+
+        if (preset.ParametersToAsk.Count == 0)
+            return baseValid;
+
+        return baseValid
+            && preset.ParametersToAsk.All(x => x.IsValid());
+
+    }
+
+    public static bool IsValid(this PresetParameter parameter)
+    {
+        bool baseValid = !string.IsNullOrEmpty(parameter.ParameterName)
+            && !string.IsNullOrEmpty(parameter.ParameterDescription);
+
+        if (!string.IsNullOrEmpty(parameter.OptionalContent))
+            return baseValid && parameter.IsOptional == true;
+
+        if (!string.IsNullOrEmpty(parameter.ValidatorParameters))
+            return baseValid && !string.IsNullOrEmpty(parameter.ValidatorName);
+
+        return baseValid;
+
+    }
+}
+```

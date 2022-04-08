@@ -40,7 +40,7 @@ internal class ProgramConsoleTests
     public void EnsureThat_WriteLine_Works()
     {
         _sut.WriteLine("test");
-        Assert.AreEqual("test\r\n", _output.ToString());
+        Assert.AreEqual("test"+Environment.NewLine, _output.ToString());
     }
 
     [Test]
@@ -55,6 +55,6 @@ internal class ProgramConsoleTests
     public void EnsureThat_Error_Works()
     {
         _sut.Error("one", "two");
-        Assert.AreEqual("one\r\ntwo\r\n", _output.ToString());
+        Assert.AreEqual($"one{Environment.NewLine}two{Environment.NewLine}", _output.ToString());
     }
 }

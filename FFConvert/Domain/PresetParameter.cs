@@ -24,13 +24,14 @@ public sealed class PresetParameter
     public string? ConverterName { get; set; }
 
     [XmlAttribute]
-    public bool? IsOptional { get; set; }
+    public bool IsOptional { get; set; }
 
     [XmlAttribute]
     public string? OptionalContent { get; set; }
 
     public PresetParameter()
     {
+        IsOptional = false;
         ParameterName = string.Empty;
         ParameterDescription = string.Empty;
         Value = string.Empty;

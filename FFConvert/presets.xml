@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Presets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--Audio formats-->
+  <Preset ActivatorName="flac" TargetExtension=".flac">
+    <Description>Convert a file to FLAC audio</Description>
+    <CommandLine>-i %input% -vn -c:a flac -compression_level %compression% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%compression%"
+        ParameterDescription="Compression level (Lower is faster) (min=1, max=8)"
+        Validator="IntValidator"
+        ValidatorParameters="min=1;max=8"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="wavpack" TargetExtension=".wv">
+    <Description>Convert a file to WavPack audio</Description>
+    <CommandLine>-i %input% -vn -c:a wavpack -compression_level %compression% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%compression%"
+        ParameterDescription="Compression level (Lower is faster) (min=1, max=8)"
+        Validator="IntValidator"
+        ValidatorParameters="min=1;max=5"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="alac" TargetExtension=".flac">
+    <Description>Convert a file to Apple losless audio</Description>
+    <CommandLine>-i %input% -vn -c:a alac %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="mp3" TargetExtension=".mp3">
+    <Description>Convert a file to mp3 audio</Description>
+    <CommandLine>-i %input% -vn -c:a mp3 -b:a %bitrate% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%bitrate%"
+        ParameterDescription="Audio bitrate in kbps:"
+        Validator="ListValidator"
+        ConverterName="KbpsConverter"
+        ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="m4a" TargetExtension=".m4a">
+    <Description>Convert a file to mp4 audio</Description>
+    <CommandLine>-i %input% -vn -c:a aac -b:a %bitrate% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%bitrate%"
+        ParameterDescription="Audio bitrate in kbps:"
+        Validator="ListValidator"
+        ConverterName="KbpsConverter"
+        ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
+    </ParametersToAsk>
+  </Preset>
+  <!--Video formats-->
+  <Preset ActivatorName="mkvremux" TargetExtension=".mkv">
+    <Description>Remux video to mkv format</Description>
+    <CommandLine>-i %input% -c:v copy -c:a copy %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="dvd-pal" TargetExtension=".mpeg">
+    <Description>Convert video to DVD compatible (PAL) format</Description>
+    <CommandLine>-i %input% -target pal-dvd %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="dvd-ntsc" TargetExtension=".mpeg">
+    <Description>Convert video to DVD compatible (NTSC) format</Description>
+    <CommandLine>-i %input% -target pal-dvd %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+</Presets>

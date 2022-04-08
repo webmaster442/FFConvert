@@ -10,8 +10,6 @@ public class PresetManager
     private readonly XmlSerializer _serializer;
     private readonly string _file;
 
-    public string PresetFile => _file;
-
     public PresetManager()
     {
         _serializer = new XmlSerializer(typeof(Preset[]), new XmlRootAttribute("Presets"));
@@ -20,9 +18,9 @@ public class PresetManager
 
     public bool TryLoadPresets(out Preset[] presets)
     {
-        using var stream = File.OpenRead(_file);
         try
         {
+            using var stream = File.OpenRead(_file);
             if (_serializer.Deserialize(stream) is Preset[] deserialized)
             {
                 presets = deserialized;

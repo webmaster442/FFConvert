@@ -1,7 +1,5 @@
 ﻿using FFConvert.Infrastructure;
 using NUnit.Framework;
-using System;
-using System.IO;
 
 namespace FFConvert.Tests;
 

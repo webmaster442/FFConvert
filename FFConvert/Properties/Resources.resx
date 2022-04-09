@@ -160,4 +160,7 @@ This is a preset issue.</value>
   <data name="ErrorUnknownConverter" xml:space="preserve">
     <value>Unknown converter: {0}</value>
   </data>
+  <data name="ErrorUnknownValidator" xml:space="preserve">
+    <value>Unknown validator: {0}</value>
+  </data>
 </root>

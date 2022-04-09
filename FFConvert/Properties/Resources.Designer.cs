@@ -186,5 +186,14 @@ namespace FFConvert.Properties {
                 return ResourceManager.GetString("ErrorUnknownConverter", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown validator: {0}.
+        /// </summary>
+        internal static string ErrorUnknownValidator {
+            get {
+                return ResourceManager.GetString("ErrorUnknownValidator", resourceCulture);
+            }
+        }
     }
 }

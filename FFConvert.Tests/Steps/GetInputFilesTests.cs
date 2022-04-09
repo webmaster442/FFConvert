@@ -19,7 +19,7 @@ internal class CollectInputFilesTests : StepTestBase<CollectInputFiles>
 
 
     [Test]
-    public void TestNoFiles()
+    public void EnsureThat_NoFiles_ResultsFalse()
     {
         var state = CreateState("*.asd");
         bool result = Sut.TryExecute(state);
@@ -29,7 +29,7 @@ internal class CollectInputFilesTests : StepTestBase<CollectInputFiles>
     }
 
     [Test]
-    public void TestNoFile()
+    public void EnsureThat_NoFile_ResultsFalse()
     {
         var state = CreateState("foo.bar");
         bool result = Sut.TryExecute(state);
@@ -43,7 +43,7 @@ internal class CollectInputFilesTests : StepTestBase<CollectInputFiles>
     [TestCase("*.m?4")]
     [TestCase("*.m4?")]
     [TestCase("foo.*")]
-    public void TestWildcard(string input)
+    public void EnsureThat_WildcardFiles_ResultsTrue(string input)
     {
         var state = CreateState(input);
         var result = Sut.TryExecute(state);
@@ -54,7 +54,7 @@ internal class CollectInputFilesTests : StepTestBase<CollectInputFiles>
 
     [TestCase("foo.mp4")]
     [TestCase("bar.wma")]
-    public void TestSingleFile(string input)
+    public void EnsureThat_SingleFile_ResultsTrue(string input)
     {
         var state = CreateState(input);
         var result = Sut.TryExecute(state);

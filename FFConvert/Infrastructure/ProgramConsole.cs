@@ -3,7 +3,7 @@ using FFConvert.Interfaces;
 
 namespace FFConvert.Infrastructure;
 
-public class ProgramConsole : IConsole
+internal class ProgramConsole : IConsole
 {
     public ProgramConsole()
     {

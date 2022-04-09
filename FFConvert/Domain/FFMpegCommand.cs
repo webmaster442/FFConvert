@@ -1,6 +1,6 @@
 ﻿namespace FFConvert.Domain;
 
-public class FFMpegCommand
+internal sealed class FFMpegCommand
 {
     public string CommandLine { get; init; }
     public string OutputFile { get; init; }

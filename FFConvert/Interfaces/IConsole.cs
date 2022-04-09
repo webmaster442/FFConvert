@@ -1,6 +1,6 @@
 ﻿namespace FFConvert.Interfaces;
 
-public interface IConsole
+internal interface IConsole
 {
     string ReadLine();
 

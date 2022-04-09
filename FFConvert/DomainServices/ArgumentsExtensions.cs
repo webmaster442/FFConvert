@@ -2,7 +2,7 @@
 
 namespace FFConvert.DomainServices;
 
-public static class ArgumentsExtensions
+internal static class ArgumentsExtensions
 {
     public static bool IsSyntaxValid(this Arguments arguments)
     {

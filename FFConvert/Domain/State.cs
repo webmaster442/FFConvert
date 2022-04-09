@@ -1,6 +1,6 @@
 ﻿namespace FFConvert.Domain;
 
-public sealed class State
+internal sealed class State
 {
     public Preset[] Presets { get; }
     public IList<string> InputFiles { get; }

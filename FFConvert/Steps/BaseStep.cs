@@ -3,7 +3,7 @@ using FFConvert.Interfaces;
 
 namespace FFConvert.Steps;
 
-public abstract class BaseStep : IStep
+internal abstract class BaseStep : IStep
 {
     private readonly List<string> _issues;
 

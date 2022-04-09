@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace FFConvert.DomainServices;
 
-public static class FileSystem
+internal static class FileSystem
 {
     private static bool IsWindows() =>
         RuntimeInformation.IsOSPlatform(OSPlatform.Windows);

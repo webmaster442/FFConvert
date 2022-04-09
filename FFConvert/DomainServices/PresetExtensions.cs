@@ -2,7 +2,7 @@
 
 namespace FFConvert.DomainServices;
 
-public static class PresetExtensions
+internal static class PresetExtensions
 {
     public static bool IsValid(this Preset preset)
     {

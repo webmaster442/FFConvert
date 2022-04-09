@@ -1,6 +1,6 @@
 ﻿namespace FFConvert.Domain;
 
-public class Arguments
+internal sealed class Arguments
 {
     private readonly string[] _arguments;
 

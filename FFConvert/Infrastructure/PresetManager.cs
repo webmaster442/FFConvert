@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace FFConvert.Infrastructure;
 
-public class PresetManager
+internal class PresetManager
 {
     private readonly XmlSerializer _serializer;
     private readonly string _file;

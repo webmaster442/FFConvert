@@ -24,5 +24,5 @@ internal abstract class BaseStep : IStep
         return _issues.Count == 0;
     }
 
-    public abstract bool TryExecute(State currentState);
+    public abstract bool TryExecute(State state);
 }

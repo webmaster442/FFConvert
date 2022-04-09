@@ -87,5 +87,15 @@ internal abstract class StepTestBase<T> where T : IStep
         },
         new Arguments(new string[] { input, preset, Directory }));
     }
+
+    protected void AssertHasNoIssues()
+    {
+        Assert.IsFalse(Sut.Issues.Any());
+    }
+
+    protected void AssertHasIssues()
+    {
+        Assert.IsTrue(Sut.Issues.Any());
+    }
 }
 

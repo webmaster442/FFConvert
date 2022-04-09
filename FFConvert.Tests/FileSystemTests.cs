@@ -1,5 +1,6 @@
 ﻿using FFConvert.DomainServices;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using System;
 using System.IO;
 using System.Linq;
@@ -38,6 +39,7 @@ public class FileSystemTests
     }
 
 
+    [Platform("Windows10")]
     [TestCase(@"c:\*.mp3", @"c:\")]
     [TestCase(@"c:\foo\test.mp3", @"c:\foo")]
     public void EnsureThat_GetWorkingDirectoryFromInputFile_Returns_Correct(string input, string expected)
@@ -46,6 +48,17 @@ public class FileSystemTests
         Assert.AreEqual(expected, result);
     }
 
+    [Platform("Linux")]
+    [TestCase(@"/*.mp3", @"/")]
+    [TestCase(@"/foo/test.mp3", @"/foo")]
+    public void EnsureThat_GetWorkingDirectoryFromInputFile_Returns_Correct_Linux(string input, string expected)
+    {
+        string result = FileSystem.GetWorkingDirectoryFromInputFile(input);
+        Assert.AreEqual(expected, result);
+    }
+
+
+    [Platform("Windows10")]
     [TestCase(@"\foo\bar.mp3")]
     [TestCase(@"..\foo\bar.mp3")]
     public void EnsureThat_GetWorkingDirectoryFromInputFile_Returns_RelativeGood(string input)
@@ -56,10 +69,21 @@ public class FileSystemTests
     }
 
     [Test]
-    public void EnsureThat_CreateOutputFile()
+    [Platform("Windows10")]
+    public void EnsureThat_CreateOutputFile_Windows()
     {
         const string expected = @"d:\test\foo.mkv";
         string result = FileSystem.CreateOutputFile(@"c:\input\foo.mp4", ".mkv", @"d:\test");
+        Assert.AreEqual(expected, result);
+    }
+
+
+    [Test]
+    [Platform("Linux")]
+    public void EnsureThat_CreateOutputFile_Linux()
+    {
+        const string expected = @"/test/foo.mkv";
+        string result = FileSystem.CreateOutputFile(@"/input/foo.mp4", ".mkv", @"/test");
         Assert.AreEqual(expected, result);
     }
 

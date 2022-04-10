@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace FFConvert.Tests;
 
 [TestFixture]
-internal class PresetTests
+internal class PresetExtensionsTests
 {
     private Preset Sut;
     private Preset ParameterSut;
@@ -103,5 +103,56 @@ internal class PresetTests
     {
         ParameterSut.ParametersToAsk[0].ValidatorParameters = "foqg";
         Assert.False(ParameterSut.IsValid());
+    }
+
+    [TestCase("key=value")]
+    public void EnsureThat_TryGetValidatorParamDictionary_WorksSimple(string input)
+    {
+        PresetParameter sut = new PresetParameter
+        {
+            ValidatorParameters = input
+        };
+
+        bool result = sut.TryGetValidatorParamDictionary(out IDictionary<string, string> results);
+
+        Assert.IsTrue(result);
+        Assert.IsTrue(results.ContainsKey("key"));
+        Assert.AreEqual("value", results["key"]);
+
+    }
+
+    [TestCase("key=value;key2=value2")]
+    public void EnsureThat_TryGetValidatorParamDictionary_WoksComplex(string input)
+    {
+        PresetParameter sut = new PresetParameter
+        {
+            ValidatorParameters = input
+        };
+
+        bool result = sut.TryGetValidatorParamDictionary(out IDictionary<string, string> results);
+
+        Assert.IsTrue(result);
+        Assert.IsTrue(results.ContainsKey("key"));
+        Assert.AreEqual("value", results["key"]);
+        Assert.IsTrue(results.ContainsKey("key2"));
+        Assert.AreEqual("value2", results["key2"]);
+    }
+
+    [TestCase("foo")]
+    [TestCase("foo;")]
+    [TestCase(";foo")]
+    [TestCase("foo;bar")]
+    [TestCase("foo=")]
+    [TestCase("=bar")]
+    public void EnsureThat_TryGetValidatorParamDictionary_ReturnsFalse_Invalid(string input)
+    {
+        PresetParameter sut = new PresetParameter
+        {
+            ValidatorParameters = input
+        };
+
+        bool result = sut.TryGetValidatorParamDictionary(out IDictionary<string, string> results);
+
+        Assert.IsFalse(result);
     }
 }

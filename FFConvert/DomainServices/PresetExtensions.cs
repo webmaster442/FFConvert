@@ -33,4 +33,38 @@ internal static class PresetExtensions
         return baseValid;
 
     }
+
+    public static bool TryGetValidatorParamDictionary(this PresetParameter parameter, out IDictionary<string, string> parameters)
+    {
+        try
+        {
+            parameters = new Dictionary<string, string>();
+
+            if (string.IsNullOrEmpty(parameter.ValidatorParameters))
+            {
+                return false;
+            }
+
+            string[] argumentPairs = parameter.ValidatorParameters.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            foreach (string argumentPair in argumentPairs)
+            {
+                string[] keyValue = argumentPair.Split('=', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                if (keyValue.Length == 2)
+                {
+                    parameters.Add(keyValue[0], keyValue[1]);
+                }
+                else
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+            return true;
+        }
+        catch (Exception)
+        {
+            parameters = new Dictionary<string, string>();
+            return false;
+        }
+
+    }
 }

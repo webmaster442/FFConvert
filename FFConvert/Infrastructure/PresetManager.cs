@@ -1,4 +1,5 @@
 ﻿using FFConvert.Domain;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -16,21 +17,14 @@ internal class PresetManager
         _file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "presets.xml");
     }
 
-    public bool TryLoadPresets(out Preset[] presets)
+    public bool TryLoadPresets([NotNullWhen(true)] out Preset[]? presets)
     {
         try
         {
             using var stream = File.OpenRead(_file);
-            if (_serializer.Deserialize(stream) is Preset[] deserialized)
-            {
-                presets = deserialized;
-                return true;
-            }
-            else
-            {
-                presets = Array.Empty<Preset>();
-                return false;
-            }
+
+            presets = (Preset[]?)_serializer.Deserialize(stream);
+            return presets != null;
         }
         catch (Exception)
         {
@@ -65,13 +59,15 @@ internal class PresetManager
         }
         };
 
-        string sampleName = Path.ChangeExtension(_file, ".sample.xml");
 
-        using XmlTextWriter writer = new(sampleName, encoding: Encoding.UTF8);
-        writer.Formatting = Formatting.Indented;
-        writer.Indentation = 4;
         try
         {
+            string sampleName = Path.ChangeExtension(_file, ".sample.xml");
+
+            using XmlTextWriter writer = new(sampleName, encoding: Encoding.UTF8);
+            writer.Formatting = Formatting.Indented;
+            writer.Indentation = 4;
+
             _serializer.Serialize(writer, new Preset[] { sample });
             return true;
         }

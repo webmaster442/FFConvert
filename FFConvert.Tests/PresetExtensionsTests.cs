@@ -1,8 +1,4 @@
-﻿using FFConvert.Domain;
-using FFConvert.DomainServices;
-using NUnit.Framework;
-
-namespace FFConvert.Tests;
+﻿namespace FFConvert.Tests;
 
 [TestFixture]
 internal class PresetExtensionsTests

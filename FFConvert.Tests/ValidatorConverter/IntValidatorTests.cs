@@ -1,9 +1,4 @@
-﻿using FFConvert.Domain;
-using FFConvert.DomainServices;
-using FFConvert.Infrastructure.Validators;
-using NUnit.Framework;
-
-namespace FFConvert.Tests.ValidatorConverter;
+﻿namespace FFConvert.Tests.ValidatorConverter;
 
 [TestFixture]
 internal class IntValidatorTests

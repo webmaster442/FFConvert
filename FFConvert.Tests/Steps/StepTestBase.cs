@@ -1,8 +1,4 @@
-﻿using FFConvert.Domain;
-using FFConvert.Interfaces;
-using NUnit.Framework;
-
-namespace FFConvert.Tests.Steps;
+﻿namespace FFConvert.Tests.Steps;
 
 internal abstract class StepTestBase<T> where T : IStep
 {

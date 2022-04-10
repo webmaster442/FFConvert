@@ -1,7 +1,4 @@
-﻿using FFConvert.Steps;
-using NUnit.Framework;
-
-namespace FFConvert.Tests.Steps;
+﻿namespace FFConvert.Tests.Steps;
 
 [TestFixture]
 internal class CollectInputFilesTests : StepTestBase<CollectInputFiles>

@@ -1,7 +1,4 @@
-﻿using FFConvert.Infrastructure;
-using NUnit.Framework;
-
-namespace FFConvert.Tests;
+﻿namespace FFConvert.Tests;
 
 [TestFixture]
 internal class ProgramConsoleTests

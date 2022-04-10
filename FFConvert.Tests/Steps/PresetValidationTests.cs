@@ -1,10 +1,4 @@
-﻿using FFConvert.Domain;
-using FFConvert.Interfaces;
-using FFConvert.Steps;
-using Moq;
-using NUnit.Framework;
-
-namespace FFConvert.Tests.Steps;
+﻿namespace FFConvert.Tests.Steps;
 
 [TestFixture]
 internal class PresetValidationTests : StepTestBase<PresetValidation>

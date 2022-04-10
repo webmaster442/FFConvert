@@ -6,3 +6,4 @@ global using FFConvert.Interfaces;
 global using FFConvert.Steps;
 global using Moq;
 global using NUnit.Framework;
+global using FFConvert.Infrastructure.Converters;

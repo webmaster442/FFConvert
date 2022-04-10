@@ -40,7 +40,7 @@ internal static class PresetExtensions
         {
             parameters = new Dictionary<string, string>();
 
-            if (string.IsNullOrEmpty(parameter.ValidatorParameters))
+            if (parameter.ValidatorParameters == null)
             {
                 return false;
             }

@@ -24,6 +24,8 @@ internal sealed class ImplementationsOf<T> : IImplementationsOf<T> where T: clas
         }
     }
 
+    public int Count => _implementations.Count;
+
     public bool Contains(string name)
     {
         return _implementations.ContainsKey(name);

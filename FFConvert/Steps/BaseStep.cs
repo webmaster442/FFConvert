@@ -14,12 +14,12 @@ internal abstract class BaseStep : IStep
 
     public IEnumerable<string> Issues => _issues;
 
-    public void AddIssue(string format, params object[] parameters)
+    protected void AddIssue(string format, params object[] parameters)
     {
         _issues.Add(string.Format(format, parameters));
     }
 
-    public bool AreNoIssues()
+    protected bool AreNoIssues()
     {
         return _issues.Count == 0;
     }

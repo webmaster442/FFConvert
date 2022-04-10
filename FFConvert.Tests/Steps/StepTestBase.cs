@@ -81,6 +81,7 @@ internal abstract class StepTestBase<T> where T : IStep
                 TargetExtension = "%sourceext%",
             }
         },
+        new ProgramConfiguration(),
         new Arguments(new string[] { input, preset, Directory }));
     }
 

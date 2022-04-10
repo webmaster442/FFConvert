@@ -2,5 +2,5 @@
 
 internal interface IConverter
 {
-    (bool result, string converted, string issue) Convert(string input);
+    string Convert(string input);
 }

@@ -4,13 +4,12 @@ namespace FFConvert.Infrastructure.Converters;
 
 internal class KbpsConverter : IConverter
 {
-    public (bool result, string converted, string issue) Convert(string input)
+    public string Convert(string input)
     {
         if (!input.EndsWith("k"))
         {
-            return (true, $"{input}k", string.Empty);
+            return $"{input}k";
         }
-        return (true, input, string.Empty);
+        return input;
     }
-
 }

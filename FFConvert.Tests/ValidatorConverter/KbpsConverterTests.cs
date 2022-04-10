@@ -15,10 +15,8 @@ internal class KbpsConverterTests
     [TestCase("12k", "12k")]
     public void EnsureThat_Convert_Works(string input, string expected)
     {
-        (bool result, string converted, string issue) result = _sut.Convert(input);
+        string result = _sut.Convert(input);
 
-        Assert.IsTrue(result.result);
-        Assert.AreEqual(expected, result.converted);
-        Assert.IsEmpty(result.issue);
+        Assert.AreEqual(expected, result);
     }
 }

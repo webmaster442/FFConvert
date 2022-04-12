@@ -2,7 +2,7 @@
 
 namespace FFConvert.Domain;
 
-internal sealed record class FFProbeTags
+internal sealed  class FFProbeTags
 {
     [JsonPropertyName("encoder")]
     public string Encoder { get; set; }

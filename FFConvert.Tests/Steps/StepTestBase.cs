@@ -47,12 +47,14 @@ internal abstract class StepTestBase<T> where T : IStep
     [OneTimeTearDown]
     protected virtual void OneTearDown()
     {
-        foreach (var file in Files)
+        if (Files != null)
         {
-            if (File.Exists(file))
-                File.Delete(file);
+            foreach (var file in Files)
+            {
+                if (File.Exists(file))
+                    File.Delete(file);
+            }
         }
-        Files.Clear();
     }
 
     protected virtual State CreateState(string input, string preset = "test")

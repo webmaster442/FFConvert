@@ -56,7 +56,7 @@ internal class FFMpegRunner : IFFMpegRunner
             RedirectStandardError = true,
             CreateNoWindow = true,
             FileName = _ffmpegExe,
-            Arguments = $"-progress - -v warning -hide_banner {command.CommandLine}"
+            Arguments = $"-progress - -v fatal -hide_banner {command.CommandLine}"
         };
         process.EnableRaisingEvents = true;
         process.OutputDataReceived += OnOutputDataRecieved;

@@ -8,4 +8,16 @@
     <OutDir>../../bin/tests/$(configuration)/</OutDir>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="response.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\FFMock.cs" Link="FFMock.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="response.json" />
+  </ItemGroup>
+
 </Project>

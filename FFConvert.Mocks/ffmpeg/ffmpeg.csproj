@@ -8,4 +8,8 @@
     <OutDir>../../bin/tests/$(configuration)/</OutDir>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\FFMock.cs" Link="FFMock.cs" />
+  </ItemGroup>
+
 </Project>

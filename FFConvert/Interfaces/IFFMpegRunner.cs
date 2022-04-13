@@ -4,8 +4,7 @@ namespace FFConvert.Interfaces;
 
 internal interface IFFMpegRunner
 {
-
-    Action<FFMpegOutput>? Reporter { get; set; }
+    event EventHandler<FFMpegOutput>? ProgressReporter;
     Task<FFProbeResult> Probe(FFMpegCommand command, CancellationToken cancellationToken);
     Task Run(FFMpegCommand command, CancellationToken cancellationToken);
 }

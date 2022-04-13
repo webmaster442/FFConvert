@@ -6,11 +6,6 @@ internal abstract class StepTestBase<T> where T : IStep
 
     protected List<string> Files { get; private set; }
 
-    public string CurrentDir
-    {
-        get { return Environment.CurrentDirectory; }
-    }
-
     protected T Sut { get; private set; }
 
     [OneTimeSetUp]

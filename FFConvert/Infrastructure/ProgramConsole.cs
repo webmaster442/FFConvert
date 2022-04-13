@@ -5,6 +5,10 @@ namespace FFConvert.Infrastructure;
 
 internal class ProgramConsole : IConsole
 {
+    public int WindowHeight => Console.WindowHeight;
+
+    public int WindowWidth => Console.WindowWidth;
+
     public ProgramConsole()
     {
         Console.CancelKeyPress += Console_CancelKeyPress;
@@ -44,4 +48,8 @@ internal class ProgramConsole : IConsole
         Console.ForegroundColor = old;
     }
 
+    public void SetCursorPosition(int left, int top)
+    {
+        Console.SetCursorPosition(left, top);
+    }
 }

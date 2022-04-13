@@ -238,5 +238,14 @@ namespace FFConvert.Properties {
                 return ResourceManager.GetString("PresetHelpParameterTemplate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed: {0}x, Remaining time: {1}.
+        /// </summary>
+        internal static string StatusReportTemplate {
+            get {
+                return ResourceManager.GetString("StatusReportTemplate", resourceCulture);
+            }
+        }
     }
 }

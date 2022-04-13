@@ -1,4 +1,6 @@
-﻿namespace FFConvert.Domain;
+﻿using FFConvert.Properties;
+
+namespace FFConvert.Domain;
 
 internal sealed class ConvertProgress
 {
@@ -16,7 +18,7 @@ internal sealed class ConvertProgress
         {
             time = TimeSpan.FromSeconds(remain).ToString();
         }
-        StatusMsg = $"Speed: {fFMpegOutput.Speed}x, Remain: {time}";
+        StatusMsg = string.Format(Resources.StatusReportTemplate, fFMpegOutput.Speed, time); 
     }
 
 }

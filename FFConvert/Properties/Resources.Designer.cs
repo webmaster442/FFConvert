@@ -195,5 +195,48 @@ namespace FFConvert.Properties {
                 return ResourceManager.GetString("ErrorUnknownValidator", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FFConvert - an FfMpeg command line converter
+        ///
+        ///  Usage: ffconvert [inputfiles] [preset] [outdir]
+        ///  Available presets: {0}.
+        /// </summary>
+        internal static string GenericHelp {
+            get {
+                return ResourceManager.GetString("GenericHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preset Name:       {0}
+        ///Result extension:  {1}
+        ///Description:       {2}.
+        /// </summary>
+        internal static string PresetHelpHeader {
+            get {
+                return ResourceManager.GetString("PresetHelpHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters:.
+        /// </summary>
+        internal static string PresetHelpParameters {
+            get {
+                return ResourceManager.GetString("PresetHelpParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:         {0}
+        ///Description:  {1}
+        ///Optional?:    {2}.
+        /// </summary>
+        internal static string PresetHelpParameterTemplate {
+            get {
+                return ResourceManager.GetString("PresetHelpParameterTemplate", resourceCulture);
+            }
+        }
     }
 }

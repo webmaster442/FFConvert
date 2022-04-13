@@ -163,4 +163,23 @@ This is a preset issue.</value>
   <data name="ErrorUnknownValidator" xml:space="preserve">
     <value>Unknown validator: {0}</value>
   </data>
+  <data name="GenericHelp" xml:space="preserve">
+    <value>FFConvert - an FfMpeg command line converter
+
+  Usage: ffconvert [inputfiles] [preset] [outdir]
+  Available presets: {0}</value>
+  </data>
+  <data name="PresetHelpHeader" xml:space="preserve">
+    <value>Preset Name:       {0}
+Result extension:  {1}
+Description:       {2}</value>
+  </data>
+  <data name="PresetHelpParameters" xml:space="preserve">
+    <value>Parameters:</value>
+  </data>
+  <data name="PresetHelpParameterTemplate" xml:space="preserve">
+    <value>Name:         {0}
+Description:  {1}
+Optional?:    {2}</value>
+  </data>
 </root>

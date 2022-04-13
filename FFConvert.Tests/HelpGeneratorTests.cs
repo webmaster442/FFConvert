@@ -47,20 +47,18 @@ internal class HelpGeneratorTests
     [Test]
     public void EnsureThat_TryGetHelp_Prints_GenericHelp_NonExistingPreset()
     {
-        bool result = _sut.TryGetHelp("asd", out string help);
+        string result = _sut.GetHelp("asd");
 
         string expected = $"Preset not found: asd{lb}{lb}"
                         + genericHelp;
 
-        Assert.AreEqual(expected, help);
-        Assert.IsFalse(result);
-
+        Assert.AreEqual(expected, result);
     }
 
     [Test]
     public void EnsureThat_TryGetHelp_Prints_ExpectedHelp()
     {
-        bool result = _sut.TryGetHelp("Test", out string help);
+        string result = _sut.GetHelp("Test");
 
         string expected = $"Preset Name:       Test{lb}"
             + $"Result extension:  .foo{lb}"
@@ -72,7 +70,6 @@ internal class HelpGeneratorTests
             + $"Description:  Test description{lb}"
             + $"Optional?:    False{lb}";
 
-        Assert.AreEqual(expected, help);
-        Assert.IsTrue(result);
+        Assert.AreEqual(expected, result);
     }
 }

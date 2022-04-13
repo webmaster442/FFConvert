@@ -22,7 +22,7 @@ internal sealed class HelpGenerator
     }
 
 
-    public bool TryGetHelp(string presetName, out string help)
+    public string GetHelp(string presetName)
     {
         StringBuilder buffer = new StringBuilder();
         var preset = _presets.FirstOrDefault(x => x.ActivatorName == presetName);
@@ -32,8 +32,7 @@ internal sealed class HelpGenerator
             buffer.AppendLine();
             buffer.AppendLine();
             buffer.Append(GetGenericHelp());
-            help = buffer.ToString();
-            return false;
+            return buffer.ToString();
         }
 
         buffer.AppendFormat(Resources.PresetHelpHeader,
@@ -57,7 +56,6 @@ internal sealed class HelpGenerator
             }
         }
 
-        help = buffer.ToString();
-        return true;
+        return buffer.ToString();
     }
 }

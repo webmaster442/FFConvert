@@ -1,0 +1,12 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// ----------------------------------------------------------------------------
+// (c) 2022 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+// ----------------------------------------------------------------------------
+
+extensions:  .xml .config .xsd
+<!--
+(c) 2022 Ruzsinszki Gábor
+This code is licensed under MIT license (see LICENSE for details)
+-->

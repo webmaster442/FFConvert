@@ -1,4 +1,9 @@
-﻿using FFConvert;
+﻿// ----------------------------------------------------------------------------
+// (c) 2022 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+// ----------------------------------------------------------------------------
+
+using FFConvert;
 using FFConvert.Domain;
 using FFConvert.DomainServices;
 using FFConvert.Infrastructure;

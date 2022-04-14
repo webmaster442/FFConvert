@@ -1,4 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿// ----------------------------------------------------------------------------
+// (c) 2022 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+// ----------------------------------------------------------------------------
+
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace FFConvert.DomainServices;

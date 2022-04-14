@@ -21,6 +21,13 @@ internal abstract class StepTestBase<T> where T : IStep
         Sut = CreateSut();
     }
 
+    [TearDown]
+    public virtual void Teardown()
+    {
+        if (Sut is IDisposable disposable)
+            disposable.Dispose();
+    }
+
     public abstract T CreateSut();
 
     protected void CreateInputFiles()

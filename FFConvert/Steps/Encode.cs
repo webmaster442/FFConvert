@@ -19,8 +19,14 @@ internal sealed class Encode : BaseStep, IDisposable
         _console = console;
         _progressReport = progressReport;
         _fFMpegRunner.ProgressReporter += OnReportProgress;
+        _console.CancelEvent += OnCancel;
         _currentFile = string.Empty;
         _tokenSource = new();
+    }
+
+    private void OnCancel(object? sender, EventArgs e)
+    {
+        _tokenSource?.Cancel();
     }
 
     private void OnReportProgress(object? sender, FFMpegOutput e)
@@ -39,8 +45,6 @@ internal sealed class Encode : BaseStep, IDisposable
     {
         try
         {
-
-
             foreach (var commandLine in commands)
             {
                 if (File.Exists(commandLine.OutputFile))
@@ -57,7 +61,7 @@ internal sealed class Encode : BaseStep, IDisposable
                 var result = await _fFMpegRunner.Probe(commandLine, _tokenSource.Token);
                 _currentFileTime = result.Format.Duration - result.Format.StartTime;
 
-                if (_tokenSource?.IsCancellationRequested == true)
+                if (_tokenSource.IsCancellationRequested)
                 {
                     AddIssue(Resources.ErrorAborted);
                     return false;
@@ -73,12 +77,11 @@ internal sealed class Encode : BaseStep, IDisposable
                 await _fFMpegRunner.Run(commandLine, _tokenSource.Token);
                 _progressReport.Hide();
 
-                if (_tokenSource?.IsCancellationRequested == true)
+                if (_tokenSource.IsCancellationRequested)
                 {
                     AddIssue(Resources.ErrorAborted);
                     return false;
                 }
-
             }
             return true;
         }
@@ -97,6 +100,7 @@ internal sealed class Encode : BaseStep, IDisposable
             _tokenSource.Dispose();
             _tokenSource = null;
         }
+        _console.CancelEvent -= OnCancel;
         _fFMpegRunner.ProgressReporter -= OnReportProgress;
     }
 }

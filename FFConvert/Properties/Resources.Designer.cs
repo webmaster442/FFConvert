@@ -61,6 +61,15 @@ namespace FFConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created config.xml. Set folder of ffmpeg and ffprobe before using. Now exiting..
+        /// </summary>
+        internal static string ConfigCreated {
+            get {
+                return ResourceManager.GetString("ConfigCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conversion aborted.
         /// </summary>
         internal static string ErrorAborted {

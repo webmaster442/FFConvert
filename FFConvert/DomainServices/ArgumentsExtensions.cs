@@ -29,7 +29,8 @@ internal static class ArgumentsExtensions
 
     public static bool IsGenericHelpRequested(this Arguments arguments)
     {
-        return arguments.FileName == "help"
+        return (string.IsNullOrEmpty(arguments.FileName)
+            || arguments.FileName == "help")
             && string.IsNullOrEmpty(arguments.PresetName);
     }
 

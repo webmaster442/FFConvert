@@ -12,22 +12,25 @@ internal class FFMpegRunner : IFFMpegRunner
     private readonly List<string> _currentCapture;
     private readonly string _ffmpegExe;
     private readonly string _ffprobeExe;
+    private readonly bool _ffmpegInstallOk;
 
     public FFMpegRunner(ProgramConfiguration configuration)
     {
         _currentCapture = new List<string>(15);
 
-        bool success = configuration.TryGetFFmpeg(out _ffmpegExe);
-        if (!success)
-            throw new InvalidOperationException();
-
-        success = configuration.TryGetFFProbe(out _ffprobeExe);
-        if (!success)
-            throw new InvalidOperationException();
+#pragma warning disable RCS1233
+        // Intentionally not &&, because both sides needs to be evaluated
+        // To not complain abut possible null for _ffprobeExe
+        _ffmpegInstallOk = configuration.TryGetFFmpeg(out _ffmpegExe)
+                        & configuration.TryGetFFProbe(out _ffprobeExe);
+#pragma warning restore RCS1233
     }
 
     public async Task<FFProbeResult> Probe(FFMpegCommand command, CancellationToken cancellationToken)
     {
+        if (!_ffmpegInstallOk)
+            throw new InvalidOperationException("Invalid config");
+
         using Process process = new();
         process.StartInfo = new ProcessStartInfo
         {
@@ -48,6 +51,9 @@ internal class FFMpegRunner : IFFMpegRunner
 
     public async Task Run(FFMpegCommand command, CancellationToken cancellationToken)
     {
+        if (!_ffmpegInstallOk)
+            throw new InvalidOperationException("Invalid config");
+
         using Process process = new();
         process.StartInfo = new ProcessStartInfo
         {

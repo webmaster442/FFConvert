@@ -17,6 +17,7 @@
 
             var sut = new DependencyProvider();
             FileAssert.Exists(_configFile);
+            Assert.IsTrue(sut.ConfigHasBeenCreated);
         }
 
         [Test]
@@ -25,10 +26,8 @@
         {
             _configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
             FileAssert.Exists(_configFile);
-            Assert.DoesNotThrow(() =>
-            {
-                var sut = new DependencyProvider();
-            });
+            var sut = new DependencyProvider();
+            Assert.IsFalse(sut.ConfigHasBeenCreated);
         }
 
         [Test]

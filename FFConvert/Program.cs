@@ -13,6 +13,12 @@ try
 
     var console = dependencies.Console;
 
+    if (dependencies.ConfigHasBeenCreated)
+    {
+        console.WriteLine(Resources.ConfigCreated);
+        return;
+    }
+
     if (!presetManager.PresetsExits)
     {
         presetManager.CreateSamplePreset();
@@ -57,4 +63,7 @@ catch (Exception ex)
 {
     Console.WriteLine("Fatal error");
     Console.WriteLine(ex.Message);
+#if DEBUG
+    System.Diagnostics.Debugger.Break();
+#endif
 }

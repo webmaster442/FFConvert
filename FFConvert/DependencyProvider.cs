@@ -17,7 +17,9 @@ internal sealed class DependencyProvider
 
     public ProgramConfiguration Configuration { get; }
 
-    private static ProgramConfiguration GetConfiguration()
+    public bool ConfigHasBeenCreated { get; private set; }
+
+    private ProgramConfiguration GetConfiguration()
     {
         string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
         XmlSerializer serializer = new XmlSerializer(typeof(ProgramConfiguration));
@@ -27,6 +29,7 @@ internal sealed class DependencyProvider
             writer.Formatting = Formatting.Indented;
             writer.Indentation = 4;
             serializer.Serialize(writer, new ProgramConfiguration());
+            ConfigHasBeenCreated = true;
             return new ProgramConfiguration();
         }
 

@@ -27,12 +27,15 @@ internal class AgumentExtensionsTests
         Assert.AreEqual(expected, result);
     }
 
-    [Test]
-    public void EnsureThat_Is_GenericHelpRequested_ReturnsExpected()
+    [TestCase("", true)]
+    [TestCase("help", true)]
+    [TestCase(null, true)]
+    [TestCase("asfd", false)]
+    public void EnsureThat_Is_GenericHelpRequested_ReturnsExpected(string input, bool expected)
     {
-        Arguments sut = CreateSut("help");
+        Arguments sut = CreateSut(input);
         var result = sut.IsGenericHelpRequested();
-        Assert.IsTrue(result);
+        Assert.AreEqual(expected, result);
     }
 
     [Test]

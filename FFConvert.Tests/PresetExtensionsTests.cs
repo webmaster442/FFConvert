@@ -102,6 +102,7 @@ internal class PresetExtensionsTests
     }
 
     [TestCase("key=value")]
+    [TestCase(null)]
     public void EnsureThat_TryGetValidatorParamDictionary_WorksSimple(string input)
     {
         PresetParameter sut = new PresetParameter
@@ -112,8 +113,6 @@ internal class PresetExtensionsTests
         bool result = sut.TryGetValidatorParamDictionary(out IDictionary<string, string> results);
 
         Assert.IsTrue(result);
-        Assert.IsTrue(results.ContainsKey("key"));
-        Assert.AreEqual("value", results["key"]);
 
     }
 
@@ -140,7 +139,6 @@ internal class PresetExtensionsTests
     [TestCase("foo;bar")]
     [TestCase("foo=")]
     [TestCase("=bar")]
-    [TestCase(null)]
     public void EnsureThat_TryGetValidatorParamDictionary_ReturnsFalse_Invalid(string input)
     {
         PresetParameter sut = new PresetParameter

@@ -15,7 +15,7 @@ internal sealed class ImplementationsOf<T> : IImplementationsOf<T> where T: clas
     {
         var items = typeof(ImplementationsOf<T>)
             .Assembly.DefinedTypes
-            .Where(x => x.ImplementedInterfaces.Contains(typeof(T)))
+            .Where(x => x.ImplementedInterfaces.Contains(typeof(T)) && !x.IsAbstract)
             .Select(x => Activator.CreateInstance(x) as T);
 
         _implementations = new Dictionary<string, T>();

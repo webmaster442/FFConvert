@@ -47,7 +47,7 @@ internal static class PresetExtensions
 
             if (parameter.ValidatorParameters == null)
             {
-                return false;
+                return true;
             }
 
             string[] argumentPairs = parameter.ValidatorParameters.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);

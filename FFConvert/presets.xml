@@ -40,7 +40,7 @@ This code is licensed under MIT license (see LICENSE for details)
         ParameterName="%bitrate%"
         ParameterDescription="Audio bitrate in kbps:"
         Validator="ListValidator"
-        ConverterName="KbpsConverter"
+        Converter="KbpsConverter"
         ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
     </ParametersToAsk>
   </Preset>
@@ -52,7 +52,7 @@ This code is licensed under MIT license (see LICENSE for details)
         ParameterName="%bitrate%"
         ParameterDescription="Audio bitrate in kbps:"
         Validator="ListValidator"
-        ConverterName="KbpsConverter"
+        Converter="KbpsConverter"
         ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
     </ParametersToAsk>
   </Preset>
@@ -71,5 +71,23 @@ This code is licensed under MIT license (see LICENSE for details)
     <Description>Convert video to DVD compatible (NTSC) format</Description>
     <CommandLine>-i %input% -target pal-dvd %output%</CommandLine>
     <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="cut" TargetExtension="%sourceext%">
+    <Description>Cut out a part of the source media without recode</Description>
+    <CommandLine>-i -ss %starttime% %input% %endtime% -c:a copy -c:v copy %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%starttime%"
+        ParameterDescription="Start time (empty means 0):"
+        Validator="TimeValidator"
+        Converter="StartTimeConverter"/>
+      <PresetParameter
+        ParameterName="%endtime%"
+        ParameterDescription="End time (empty means till the end of file):"
+        Validator="TimeValidator"
+        Converter="EndTimeConverter"
+        IsOptional="true"
+        OptionalContent="-t %endtime%"/>
+    </ParametersToAsk>
   </Preset>
 </Presets>

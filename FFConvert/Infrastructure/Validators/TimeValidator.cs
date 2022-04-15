@@ -12,7 +12,11 @@ internal class TimeValidator : IValidator
 
         try
         {
-            TimeSpan.TryParse(input, out _);
+            var parsed = TimeSpan.Parse(input);
+
+            if (parsed.TotalSeconds < 0)
+                throw new FormatException("Value can't be negative");
+
             return (true, string.Empty);
         }
         catch (FormatException ex)

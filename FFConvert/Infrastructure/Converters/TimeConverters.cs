@@ -13,14 +13,34 @@ internal abstract class TimeConverter : IConverter
         _defaultValue = defaultValue;
     }
 
+    private static int Convert(string[] array, int index)
+    {
+        return int.Parse(array[index]);
+    }
+
     public string Convert(string input)
     {
         if (string.IsNullOrEmpty(input))
             return _defaultValue;
 
-        TimeSpan time = TimeSpan.Parse(input);
+        TimeSpan parsed;
+        string[] parts = input.Split(':');
+        switch (parts.Length)
+        {
+            case 1:
+                parsed = TimeSpan.FromSeconds(Convert(parts, 0));
+                break;
+            case 2:
+                int minutes = Convert(parts, 0);
+                int seconds = Convert(parts, 1);
+                parsed = TimeSpan.FromSeconds((minutes * 60) + seconds);
+                break;
+            default:
+                parsed = TimeSpan.Parse(input);
+                break;
+        }
 
-        return time.TotalSeconds.ToString(CultureInfo.InvariantCulture);
+        return parsed.TotalSeconds.ToString(CultureInfo.InvariantCulture);
     }
 }
 

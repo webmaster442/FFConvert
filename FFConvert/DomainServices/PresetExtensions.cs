@@ -70,6 +70,5 @@ internal static class PresetExtensions
             parameters = new Dictionary<string, string>();
             return false;
         }
-
     }
 }

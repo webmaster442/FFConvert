@@ -83,7 +83,7 @@ Ez az osztály a DomainObjects rétegben kapott helyett. Ez a réteg lesz felel�
 ```csharp
 namespace FFConvert.Domain;
 
-public class Arguments
+internal sealed class Arguments
 {
     private readonly string[] _arguments;
 
@@ -110,14 +110,14 @@ using FFConvert.Domain;
 
 namespace FFConvert.DomainServices;
 
-public static class ArgumentsExtensions
+internal static class ArgumentsExtensions
 {
     public static bool IsSyntaxValid(this Arguments arguments)
     {
         return arguments.Count == 3
-                && !string.IsNullOrEmpty(arguments.FileName)
-                && !string.IsNullOrEmpty(arguments.PresetName)
-                && !string.IsNullOrEmpty(arguments.OutputDirectory);
+            && !string.IsNullOrEmpty(arguments.FileName)
+            && !string.IsNullOrEmpty(arguments.PresetName)
+            && !string.IsNullOrEmpty(arguments.OutputDirectory);
     }
 
     public static bool InputFileContainsWildCard(this Arguments arguments)
@@ -137,8 +137,15 @@ public static class ArgumentsExtensions
 
     public static bool IsGenericHelpRequested(this Arguments arguments)
     {
-        return arguments.FileName == "help"
+        return (string.IsNullOrEmpty(arguments.FileName)
+            || arguments.FileName == "help")
             && string.IsNullOrEmpty(arguments.PresetName);
+    }
+
+    public static bool IsSpecificHelpRequested(this Arguments arguments)
+    {
+        return arguments.FileName == "help"
+            && !string.IsNullOrEmpty(arguments.PresetName);
     }
 }
 ```
@@ -147,7 +154,7 @@ public static class ArgumentsExtensions
 
 Az első logikáink elkészülte után készíthetünk egységteszteket, amivel megbizonyosodunk arról, hogy az eddig alkotott logika helyes. Ez az eddigi kódrészletek alapján akár teszt nélkül is bizonyítható, de hasznos, ha vannak tesztjeink, mert legalább be tudjuk valamivel állítani a CI/CD pipeline működését. A CI/CD önmagában egy baromi nagy témakör, számos megoldással, nem véletlen egy külön szakterület az informatikán belül. Ezért itt csak a fejlesztői szempontból fontos részekkel foglalkozok.
 
-Mivel a projekt forráskódja a Github-on elérhető (https://github.com/webmaster442/FFConvert),ezért bűn lenne más CI/CD megoldást használni, mint amit a Github biztosít.
+Mivel a projekt forráskódja a Github-on elérhető (https://github.com/webmaster442/FFConvert), ezért "bűn" lenne más CI/CD megoldást használni, mint amit a Github biztosít.
 
 Ez a rendszer egy YAML fájl segítségével írja le a build folyamatot. Ezt a YAML fájlt nem kell nekünk nulláról megírni, mivel az Actions fülre kattintva lehetőségünk van sablonok alapján létrehozni egy környezetet.
 
@@ -198,6 +205,10 @@ jobs:
 ```
 
 A code coverage értékeket SVG ikonként generálja le a workflow a folyamat végeztével. Ezeket a fájlokat a projekt readme.md leírásában elhelyezve mindig láthatjuk a projekt oldalán, hogy hány százalékos a kód lefedettsége. 
+
+Ahhoz, hogy a Coverage generálás működjön, a unit teszt projektbe a `coverlet.collector` csomag mellé még fel kell vennünk a `coverlet.msbuild` csomagot is. Lényegében ez teszi lehetővé, hogy a teszt futtatás közben a coverage is mérésre kerüljön.
+
+A coverage figyelésnek akkor van értelme, ha egy minőségi határvonalat is megszabunk vele. Jelen esetben ez 48%-ra lett beállítva, mivel 50-60% lefedettséget különösebb erőfeszítés nélkül simán el lehet érni.
 
 ## Preset modellezés
 
@@ -309,7 +320,7 @@ using FFConvert.Domain;
 
 namespace FFConvert.DomainServices;
 
-public static class PresetExtensions
+internal static class PresetExtensions
 {
     public static bool IsValid(this Preset preset)
     {
@@ -340,5 +351,239 @@ public static class PresetExtensions
         return baseValid;
 
     }
+}
+```
+
+Mivel XML fájlban tároljuk a preseteket, ezért a validációt megvalósíthatnánk egy XSD fájl segítségével. Az XSD az XML Schema Document rövdítése. Ennek setgítségével leírhatóak olyan felírhatók olyan szabályrendszerek, melynek meg kell feleljen egy XML dokumentum ahhoz, hogy "érvényes" legyen az adott sémában. Ezt minden XML olvasónak támogatnia kell.
+
+C# és .NET 6.0 alatt azonban van egy pici bökkenő az eszköz támogatottságban, mégpedig az, hogy az XSD.exe eszköz még mindig nem került átírásra. Ez gyakorlatban azt jelenti számunkra, hogy a C# osztályainkból nem tudunk generálni XSD fájlt.
+
+Éppen ezért a fejlesztésnek ezen pontján úgy voltam, hogy azt a minimális szabályrendszert inkább kódban valósítom meg. Ennek a megoldásnak a további előnye, hogy később akár JSON-re vagy YAML-re is átültethető a preset leírás anélkül, hogy a validációs logika törne. 
+
+Később persze egyszerűbb szerkeszthetőség miatt az XML dokumentum alapján generáltattam egy XSD sémát. Ehhez a https://www.liquid-technologies.com/online-xml-to-xsd-converter eszközt használtam.
+
+Ha egy XML dokumentumhoz van egy beállított XSD fájlunk, akkor az XML szerkesztése közben a Visual Studio tud számunkra InteliSense segítséget ajánlani, ami nagymértékben megkönnyítette a preset fájlok fejlesztését.
+
+## Preset betöltés
+
+A preset definíciónk alapján elkészíthetjük a hozzá kapcsolódó deszerializáló kódot. Ezért a `PresetManager` osztály lesz felelős, ami az `Infrastructure` rétegben kapott helyet. A `TryLoadPresets` metódus felel a betöltésért. Ez igaz értéket ad vissza, ha sikeres volt a betöltés, hamisat pedig akkor ha nem. A betöltött presetek a `presets` kimeneti argumentumban kerülnek visszaadásra.
+
+```csharp
+using FFConvert.Domain;
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+
+namespace FFConvert.Infrastructure;
+
+internal class PresetManager
+{
+    private readonly XmlSerializer _serializer;
+    private readonly string _file;
+
+    public PresetManager()
+    {
+        _serializer = new XmlSerializer(typeof(Preset[]), new XmlRootAttribute("Presets"));
+        _file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "presets.xml");
+    }
+
+    public bool TryLoadPresets([NotNullWhen(true)] out Preset[]? presets)
+    {
+        try
+        {
+            using var stream = File.OpenRead(_file);
+
+            presets = (Preset[]?)_serializer.Deserialize(stream);
+            return presets != null;
+        }
+        catch (Exception)
+        {
+            presets = Array.Empty<Preset>();
+            return false;
+        }
+    }
+
+    public bool PresetsExits
+    {
+        get
+        {
+            return File.Exists(_file);
+        }
+    }
+
+    public bool CreateSamplePreset()
+    {
+        Preset sample = new Preset
+        {
+            Description = "Preset description",
+            ActivatorName = "preset activator",
+            CommandLine = "command line string",
+            TargetExtension = ".mp4",
+            ParametersToAsk = new List<PresetParameter>
+        {
+            new PresetParameter
+            {
+                ParameterDescription = "Description",
+                ParameterName = "name",
+            }
+        }
+        };
+
+
+        try
+        {
+            string sampleName = Path.ChangeExtension(_file, ".sample.xml");
+
+            using XmlTextWriter writer = new(sampleName, encoding: Encoding.UTF8);
+            writer.Formatting = Formatting.Indented;
+            writer.Indentation = 4;
+
+            _serializer.Serialize(writer, new Preset[] { sample });
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+}
+```
+
+Emellett az osztály rendelkezik egy `PresetsExits` tulajdonsággal, aminek a segítségével lekérdezhető, hogy egyáltalán létezik-e a `presets.xml` fájl. Ennek segítségével majd a főprogramban logikát tudunk megvalósítani, hogy ha nem létezne, akkor létrehozunk egy minta fájlt.
+
+A minta fájl létrehozásáért a `CreateSamplePreset` metódus felel. Ez egy `presets.sample.xml` fájlban létrehoz egy minimális preset fájlt. Ideális esetben erre sosem lesz szükség, de előfordulhat, hogy a felhasználó majd törli a programmal szállított fájlt és sajátot akar majd létrehozni.
+
+Ezen metódus által létrehozott mintafájl alapján készült el egyébként a programmal szállított `presets.xml` fájl tartalma is.
+
+## Konverterek és validáció
+
+Mivel a program menet közben a felhasználótól értékeket fog bekérni elkerülhetetlen, hogy ezeket ellenőrizzük és esetlegesen konvertáljuk. Mivel a programban N darab konvertálóra és validálóra lesz szükségünk, ezért célszerű ezeket egy interfész segítségével leírni. A konverziós interfészünk nem meglelpő módon az `Iconverter` nevet kapa. Ez egy bemeneti szöveget alakít át egy másik szöveggé.
+
+```csharp
+namespace FFConvert.Interfaces;
+
+internal interface IConverter
+{
+    string Convert(string input);
+}
+```
+
+A validációért az `Ivalidator` interfész lesz felelős. Ez már egy picit bonyolultabb. Az általa definiált `Validate` metódusnnak az egyik paramétere maga a szöveg amit ellenőrzünk, a másdik paramétere pedig egy `Idictionary` ami az általa használt paramétereket tárolja kulcs/érték párokban.
+
+```csharp
+namespace FFConvert.Interfaces;
+
+internal interface IValidator
+{
+    (bool status, string errorMessage) Validate(string input, IDictionary<string, string> parameters);
+}
+```
+
+A visszatérési értéke egy tuple, ami tartalmazza, hogy sikeres volt-e a validáció vagy sem, illetve egy hibaüzenetet, amit majd ki tudunk írni a felhasználónak.
+
+Kérdés már csak az, hogy a `ValidatorParameters` tulajdonság szövegéből hogyan is lesznek kulcs/érték párok a konverternek? A paraméterek szintaxisára a következőt találtam ki: `param1=ertek1;param2=ertek2`. Ez alapján az egyes értékpárok között pontosvessző az elválasztó, míg kulcs és érték között az egyenlőségjel. A szabályrendszer alapján készíthetünk egy extension metódust erre a célra:
+
+```csharp
+using FFConvert.Domain;
+
+namespace FFConvert.DomainServices;
+
+internal static class PresetExtensions
+{
+    public static bool TryGetValidatorParamDictionary(this PresetParameter parameter, out IDictionary<string, string> parameters)
+    {
+        try
+        {
+            parameters = new Dictionary<string, string>();
+
+            if (parameter.ValidatorParameters == null)
+            {
+                return true;
+            }
+
+            string[] argumentPairs = parameter.ValidatorParameters.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            foreach (string argumentPair in argumentPairs)
+            {
+                string[] keyValue = argumentPair.Split('=', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                if (keyValue.Length == 2)
+                {
+                    parameters.Add(keyValue[0], keyValue[1]);
+                }
+                else
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+            return true;
+        }
+        catch (Exception)
+        {
+            parameters = new Dictionary<string, string>();
+            return false;
+        }
+    }
+}
+```
+
+## Konverterek és validálók betöltése
+
+A konvertáló és validáló osztályainkat manuálisan is példányosíthatnánk, de ez nem a legjobb ötlet. Mégpedig azért, mert akkor valahol ezeket nekünk karban kellene tartanunk és egy újabb konverter vagy validáló hozzáadásakor nem csak az interfészt implementáló osztályt kellene megírnunk, hanem egy központi helyre is fel kellene vennünk nyilvántartásba. Ez értelem szerűen nem túl kényelmes. Éppen ezért készítettem egy `ImplementationsOf<T>` generikus osztályt.
+
+```csharp
+using FFConvert.Interfaces;
+
+namespace FFConvert.Infrastructure;
+
+internal sealed class ImplementationsOf<T> : IImplementationsOf<T> where T: class
+{
+    private readonly Dictionary<string, T> _implementations;
+
+    public ImplementationsOf()
+    {
+        var items = typeof(ImplementationsOf<T>)
+            .Assembly.DefinedTypes
+            .Where(x => x.ImplementedInterfaces.Contains(typeof(T)) && !x.IsAbstract)
+            .Select(x => Activator.CreateInstance(x) as T);
+
+        _implementations = new Dictionary<string, T>();
+
+        foreach (var item in items)
+        {
+            if (item != null)
+            {
+                _implementations.Add(item.GetType().Name, item);
+            }
+        }
+    }
+
+    public int Count => _implementations.Count;
+
+    public bool Contains(string name)
+    {
+        return _implementations.ContainsKey(name);
+    }
+
+    public T Get(string name)
+    {
+        return _implementations[name];
+    }
+}
+```
+
+Ez az osztály lekérdezi a jelenlegi szerelvényben tárolt összes típust és ezek közül megnézi, hogy melyik típus implementálja a `T` paraméternek megfelelő interfészt. Ha a típus implementálja ezt, akkor egy belső tárban elhelyezésre kerül belőle egy példány.
+
+Ezt a példányt majd név alapján tudjuk lekérdezni, illetve tudjuk ellenőrizni azt is, hogy egyáltalán a megadott nevű osztály betöltésre került-e. Ez majd a konverterek és a validálók ellenőrzésénél lesz használva egy későbbi lépésben.
+
+Az osztály rendelkezik egy `IimplementationsOf<T>` felülettel is, ami leginkább absztrakciós célokat szolgál majd a későbbiek során.
+
+```csharp
+namespace FFConvert.Interfaces;
+
+internal interface IImplementationsOf<T> where T : class
+{
+    bool Contains(string name);
+    T Get(string name);
+    int Count { get; }
 }
 ```

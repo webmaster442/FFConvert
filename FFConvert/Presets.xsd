@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="my://presets" 
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+  <xsd:element name="Presets">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" name="Preset">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Description" type="xsd:string" />
+              <xsd:element name="CommandLine" type="xsd:string" />
+              <xsd:element name="ParametersToAsk">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element maxOccurs="unbounded" name="PresetParameter">
+                      <xsd:complexType>
+                        <xsd:attribute name="ParameterName" type="xsd:string" use="required" />
+                        <xsd:attribute name="ParameterDescription" type="xsd:string" use="required" />
+                        <xsd:attribute name="Validator" type="xsd:string" use="optional" />
+                        <xsd:attribute name="ValidatorParameters" type="xsd:string" use="optional" />
+                        <xsd:attribute name="Converter" type="xsd:string" use="optional" />
+                        <xsd:attribute name="IsOptional" type="xsd:boolean" use="optional" />
+                        <xsd:attribute name="OptionalContent" type="xsd:string" use="optional" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="ActivatorName" type="xsd:string" use="required" />
+            <xsd:attribute name="TargetExtension" type="xsd:string" use="required" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xs:schema>

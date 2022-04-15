@@ -3,7 +3,10 @@
 (c) 2022 Ruzsinszki Gábor
 This code is licensed under MIT license (see LICENSE for details)
 -->
-<Presets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Presets
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="my://presets">
   <!--Audio formats-->
   <Preset ActivatorName="flac" TargetExtension=".flac">
     <Description>Convert a file to FLAC audio</Description>

@@ -92,6 +92,27 @@ internal class GetPresetArgumentsTests : StepTestBase<GetPresetArguments>
     }
 
     [Test, Timeout(1000)]
+    public void EnsureThat_SimpleParamInput_OptionalParam_WithValidator_EmptyInput_ReturnsTrue()
+    {
+        var state = CreateState("");
+        state.Presets[0].ParametersToAsk.Add(new PresetParameter
+        {
+            ParameterDescription = "test",
+            ParameterName = "testparam",
+            IsOptional = true,
+            ValidatorName = nameof(IntValidator)
+        });
+        state.CurrentPreset = state.Presets[0];
+        _consoleMock.Setup(x => x.ReadLine()).Returns("");
+
+        var result = Sut.TryExecute(state);
+
+        _consoleMock.Verify(x => x.ReadLine(), Times.Once);
+        Assert.IsTrue(result);
+        AssertHasNoIssues();
+    }
+
+    [Test, Timeout(1000)]
     public void EnsureThat_SimpleParamInput__WithIncorrectCorrectInput_AsksInputAgain()
     {
         var state = CreateState("");

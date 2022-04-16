@@ -9,16 +9,11 @@ internal interface IConsole
 {
     int WindowHeight { get; }
     int WindowWidth { get; }
+    void SetCursorPosition(int left, int top);
 
     string ReadLine();
-
     void WriteLine(string line);
-
     void Write(string line);
-
     void Error(params string[] errors);
-
     event EventHandler? CancelEvent;
-
-    void SetCursorPosition(int left, int top);
 }

@@ -948,6 +948,10 @@ namespace FFConvert.DomainServices
 
 ## Preset validáció
 
+A Preset validáció az első lépésünk, ahol külső függőségek jelennek meg, méghozzá az `IimplementationsOf<T>` típusok formájában. Ebből kettőt is vár ez a lépés. Egy a konvertereket, egy pedig a validitátorokat tartalmazza.
+
+Ez a lépés valójában két dolgot csinál. Megkeresi a presetek közül azt, ami a paraméterként megadott névben van és a `state` változóban beállítja azt jelenleg használtnak. Ezen felül ellenőrzi a beállított presetet. Ezt a korábban bemutatott extension metódusok segítségével végzi el. 
+
 ```csharp
 using FFConvert.Domain;
 using FFConvert.DomainServices;
@@ -1022,3 +1026,290 @@ namespace FFConvert.Steps
     }
 }
 ```
+
+Az ellenőrzés nem csak ennyiben merül ki. A kiválasztott preset esetén a paramétereknél ellenőrzésre kerül, hogy a megadott nevű konverter és validáló létezik-e a szoftverben. Ez az ellenőrzés azért kell, hogy a következő lépésben, mikor bekérjük az adatokat ezzel már ne kelljen foglalkozni.
+
+Ha szó szerint veszem a Single Responsilbility elvet, akkor valószínűleg ez a lépés implementáció sérti az elvet, mivel saját elmondásom szerint is két dolgot csinál. Valószínűleg jobb karbantarthatóság és egyszerűbb tesztelés miatt érdemes lenne ketté vágni, még az elején. Ezt fejlesztés közben azért nem tettem meg, mert egy nagyjából 5 sornyi logikának nem akartam külön osztályt létrehozni.
+
+## A választott preset által meghatározott bemenetek begyűjtése
+
+Ez a lépés felelős a kiválasztott preset paramétereinek a feltöltéséért, ami azt jelenti, hogy az információkat a felhasználótól kell bekérnünk. A bemenet forrása a konzol lesz. Azonban a `Console` osztály direktben használata helyett ezt egy absztrakción keresztül tesszük meg, mégpedig azért, hogy ez a lépés is jól tesztelhető legyen. 
+
+Ugyan a `Console` osztály rendelkezik lehetőséggel arra, hogy a bemenetet és kimenetét átirányítsuk, de ez nem lesz elegendő a megfelelő teszteléshez. Éppen ezért a konzol absztrakciójáért az `Iconsole` interfész felel.
+
+```csharp
+namespace FFConvert.Interfaces;
+
+internal interface IConsole
+{
+    int WindowHeight { get; }
+    int WindowWidth { get; }
+    void SetCursorPosition(int left, int top);
+
+    string ReadLine();
+    void WriteLine(string line);
+    void Write(string line);
+    void Error(params string[] errors);
+    event EventHandler? CancelEvent;
+}
+```
+
+Ez az interfész nem hoz sok újdonságot, csupán a rendszer konzol absztrakciójáért felelős. Az `Error` metódusával hibaüzeneteket tudunk kiírni. A `WindowHeight`, `WindowWidth` tulajdonságok  és a `SetCursorPosition()` metódus pedig pozícionálásért felelősek. Ezt majd egy másik komponens használja. A `CancelEvent` pedig akkor lesz ellőve, ha a felhasználó a CTRL+C kombinációt adja be a program futása közben. Ez ugye megszakítja az éppen aktuálisan futó folyamatot, de nekünk két folyamatunk lesz: Egy frontendünk és egy háttértben futó FFMpeg példány. Ha éppen fut az FFMpeg és a felhasználó a folyamat megszakítását kéri, akkor erre nekünk reagálnunk kell, méghozzá úgy, hogy a háttérben futó FFMpeg futást is megszakítjuk, de erről majd részletesebben a futtatásnál lesz szó.
+
+A lépés forráskódja:
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Interfaces;
+using FFConvert.Properties;
+
+namespace FFConvert.Steps;
+
+internal class GetPresetArguments : BaseStep
+{
+    private readonly IImplementationsOf<IConverter> _converters;
+    private readonly IImplementationsOf<IValidator> _validators;
+    private readonly IConsole _console;
+
+    public GetPresetArguments(IImplementationsOf<IConverter> converters,
+                              IImplementationsOf<IValidator> validators,
+                              IConsole console)
+    {
+        _converters = converters;
+        _validators = validators;
+        _console = console;
+    }
+
+    public override bool TryExecute(State state)
+    {
+        if (!state.CurrentPreset.ParametersToAsk.Any())
+            return true;
+
+        foreach (var parameter in state.CurrentPreset.ParametersToAsk)
+        {
+            string input;
+            if (!string.IsNullOrEmpty(parameter.ValidatorName))
+            {
+                input = ReadPresetValueWithValidator(parameter);
+            }
+            else
+            { 
+                input = ReadPresetValue(parameter); 
+            }
+            parameter.Value = ConvertValue(input, parameter);
+        }
+
+        return AreNoIssues();
+    }
+
+    private string ConvertValue(string input, PresetParameter parameter)
+    {
+        if (string.IsNullOrEmpty(parameter.ConverterName))
+            return input;
+
+        IConverter converter = _converters.Get(parameter.ConverterName);
+
+        return converter.Convert(input);
+    }
+
+    private string ReadPresetValueWithValidator(PresetParameter parameter)
+    {
+        IDictionary<string, string> paramDictionary = new Dictionary<string, string>();
+
+        if (parameter.ValidatorParameters != null
+            && !parameter.TryGetValidatorParamDictionary(out paramDictionary))
+        {
+            AddIssue(Resources.ErrorPresetParamTokens);
+            return string.Empty;
+        }
+
+        bool valid = false;
+        string input;
+        do
+        {
+            _console.Write(parameter.ParameterDescription);
+            _console.Write(" : ");
+            input = _console.ReadLine();
+
+            if (parameter.IsOptional && string.IsNullOrEmpty(input))
+            {
+                break;
+            }
+            else if (!parameter.IsOptional && string.IsNullOrEmpty(input))
+            {
+                continue;
+            }
+
+            var validator = _validators.Get(parameter.ValidatorName!);
+
+            var (status, errorMessage) = validator.Validate(input, paramDictionary);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                _console.Error(errorMessage);
+            }
+            valid = status;
+        }
+        while (!valid && !parameter.IsOptional);
+
+        return input;
+
+    }
+
+
+    private string ReadPresetValue(PresetParameter parameter)
+    {
+        string input;
+        do
+        {
+            _console.Write(parameter.ParameterDescription);
+            _console.Write(" : ");
+            input = _console.ReadLine();
+        }
+        while (string.IsNullOrEmpty(input) && !parameter.IsOptional);
+        return input;
+    }
+}
+```
+
+A paraméterek beolvasása esetén két útvonal áll előttünk: Ha a paraméter nem rendelkezik validálóval, akkor szimplán addig ismételjük a beolvasást, amíg a felhasználó üres szöveget adott meg. Abban az esetben, ha ez egy opcionális paraméter, akkor elfogadjuk az üres bemenetet is. Ezt valósítja meg a `ReadPresetValue` metódus.
+
+A másik útvonal az, ha a beolvasandó paraméter rendelkezik validálóval. Ebben az esetben ugyan azt csináljuk, mint a nem validált paramétereknél, kiegészítve azzal, hogy ha a validáció hibás, akkor is újra bekérjük az értéket. Ezért felelős a `ReadPresetValueWithValidator` metódus.
+
+A beolvasás után a `ConvertValue` metódussal futtatjuk a paraméterhez rendelt konvertálót, ha ez beállításra került.
+
+## Parancssor generálás
+
+A parancssor generálás viszonylag összetett, de lényegében arról van szó, hogy a preset parancssorába behelyettesítjük a felhasználó által megadott paramétereket. A paraméterek kapcsán azt a megközelítést alkalmaztam, hogy ezeknek a % szimbólummal kell kezdődniük és végződniük.
+
+A rendszer három darab kitüntetett paramétert különböztet meg. Az első ilyen az `%input%` nevű. Ez a bemeneti fájl útvonalát határozza meg. A második a `%output%`, ami a kimeneti fájlt határozza meg. A harmadik pedig a %sourceext%, ami csak a kimeneti fájl kiterjesztéseként szerepelhet.
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Properties;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace FFConvert.Steps;
+
+internal class CreateCommandLines : BaseStep
+{
+    private const string InputKey = "%input%";
+    private const string OutputKey = "%output%";
+    private const string SourceExtKey = "%sourceext%";
+
+    private readonly Regex _paramRegex = new(@"\%(\w+)\%", RegexOptions.Compiled);
+
+    private static Dictionary<ParameterKey, string> CreateParamDictionary(State currentState)
+    {
+        Dictionary<ParameterKey, string> parameters = new()
+        {
+            {  new ParameterKey(InputKey, false), "" },
+            {  new ParameterKey(OutputKey, false), "" },
+        };
+        foreach (var parameter in currentState.CurrentPreset.ParametersToAsk)
+        {
+            if (!parameter.IsOptional 
+                || (parameter.IsOptional && !string.IsNullOrEmpty(parameter.Value)))
+            {
+                parameters.Add(new ParameterKey(parameter), parameter.Value);
+            }
+        }
+        return parameters;
+    }
+
+    public override bool TryExecute(State state)
+    {
+        Dictionary<ParameterKey, string> parameters = CreateParamDictionary(state);
+
+        if (!CheckIfParameterCountMatches(state.CurrentPreset, parameters))
+        {
+            AddIssue(Resources.ErrorParamCountMissmatch);
+            return false;
+        }
+
+        foreach (string inputfile in state.InputFiles)
+        {
+            parameters[new ParameterKey(InputKey, false)] = inputfile;
+
+            string extension = state.CurrentPreset.TargetExtension;
+            if (extension == SourceExtKey)
+            {
+                extension = Path.GetExtension(inputfile);
+            }
+
+            string outFile = FileSystem.CreateOutputFile(inputfile, extension, state.Arguments.OutputDirectory);
+
+            parameters[new ParameterKey(OutputKey, false)] = outFile;
+
+            if (state.CurrentPreset.TargetExtension == SourceExtKey)
+            {
+                outFile = Path.ChangeExtension(outFile, extension);
+            }
+
+            state.CreatedCommandLines.Add(new FFMpegCommand
+            {
+                CommandLine = FillParameters(state.CurrentPreset, parameters),
+                OutputFile = outFile,
+                InputFile = inputfile,
+            });
+        }
+
+        return AreNoIssues();
+    }
+
+
+    private static string EscapePathIfNeeded(string path)
+    {
+        return !path.Contains(' ') ? path : $"\"{path}\"";
+    }
+
+    private static string FillParameters(Preset preset, Dictionary<ParameterKey, string> parameters)
+    {
+        StringBuilder sb = new(preset.CommandLine);
+        foreach (var parameter in parameters)
+        {
+            if (!parameter.Key.IsOptional)
+            {
+                sb.Replace(parameter.Key.Name, EscapePathIfNeeded(parameter.Value));
+            }
+            else
+            {
+                var optionalContent = preset.ParametersToAsk
+                    .Where(p => p.ParameterName == parameter.Key.Name)
+                    .Select(p => p.OptionalContent)
+                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(optionalContent))
+                {
+                    string value = optionalContent.Replace(parameter.Key.Name, parameter.Value);
+                    sb.Replace(parameter.Key.Name, value);
+                }
+            }
+            
+        }
+        return sb.ToString();
+    }
+
+    private bool CheckIfParameterCountMatches(Preset currentPreset, Dictionary<ParameterKey, string> parameters)
+    {
+        MatchCollection matches = _paramRegex.Matches(currentPreset.CommandLine);
+        int count = 0;
+        foreach (Match match in matches)
+        {
+            if (parameters.Keys.Any(x => x.Name == match.Value))
+                ++count;
+            else
+                --count;
+        }
+
+        return count == parameters.Count;
+
+    }
+}
+```
+
+A `CreateParamDictionary` metódus első körben a speciális paramétereinket (`%input%` és `%output%`), illetve a preset paramétereinek nevét és értékét összerendeli egy asszociatív tömbbe.
+
+Itt feltűnhet, hogy a Dictionary kulcs típusa egy `ParameterKey` osztály, ami a paraméter nevét és a paraméter opcionalitását tárolja.

@@ -76,7 +76,11 @@ internal class GetPresetArguments : BaseStep
             _console.Write(" : ");
             input = _console.ReadLine();
 
-            if (parameter.IsOptional == false && string.IsNullOrEmpty(input))
+            if (parameter.IsOptional && string.IsNullOrEmpty(input))
+            {
+                break;
+            }
+            else if (!parameter.IsOptional && string.IsNullOrEmpty(input))
             {
                 continue;
             }

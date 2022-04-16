@@ -69,7 +69,7 @@ namespace FFConvert.Steps
 
             foreach (var converterName in converterNames)
             {
-                if (!_validators.Contains(converterName))
+                if (!_converters.Contains(converterName))
                     AddIssue(Resources.ErrorUnknownConverter, converterName);
             }
         }

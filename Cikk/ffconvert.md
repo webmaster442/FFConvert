@@ -158,7 +158,7 @@ Mivel a projekt forráskódja a Github-on elérhető (https://github.com/webmast
 
 Ez a rendszer egy YAML fájl segítségével írja le a build folyamatot. Ezt a YAML fájlt nem kell nekünk nulláról megírni, mivel az Actions fülre kattintva lehetőségünk van sablonok alapján létrehozni egy környezetet.
 
-A Github a cikk írásának pillanatában .NET és .NET Desktop sablon környezeteket biztosít. A fő különbség a kettő között az, hogy a .NET sablon Linux alapú Docker konténerben fut, míg a Desktop változat Windows alapú konténerben. Ha lehetőségünk van rá, akkor a .NET alapú sablont alkalmazzuk, mivel a Windows alapú konténerek sokkal lassabbak. Jelen program esetén fog gondot okozni, hogy Linuxon fusson, ezért ezt a Template-et választottam.
+A Github a cikk írásának pillanatában .NET és .NET Desktop sablon környezeteket biztosít. A fő különbség a kettő között az, hogy a .NET sablon Linux alapú Docker konténerben fut, míg a Desktop változat Windows alapú konténerben. Ha lehetőségünk van rá, akkor a .NET alapú sablont alkalmazzuk, mivel a Windows alapú konténerek sokkal lassabbak. Jelen program esetén nem fog gondot okozni, hogy Linuxon fusson, ezért ezt a Template-et választottam.
 
 Az alap template a legtöbb esetben tökéletes lesz egyszerű feladatokra, maximum a .NET verziót kell átírnunk. Az alap YAML konfiguráció a következő lépéseket végzi el:
 
@@ -585,5 +585,440 @@ internal interface IImplementationsOf<T> where T : class
     bool Contains(string name);
     T Get(string name);
     int Count { get; }
+}
+```
+## Oszd meg és uralkodj
+
+Az FFMpeg megfelelő argumentumokkal való elindítását megvalósíthatnánk egy gigantikus monolit osztályként számos metódussal, de már az előző mondat megfogalmazásából sejthető, hogy ez nem a legjobb ötlet. Nem a legjobb, mert a monolitokkal csak a baj van: nehezen tesztelhetőek, mivel rengeteg belső kapcsolattal rendelkeznek.
+
+Éppen ezért érdemes a komplex feladatot kisebb, egyszerűbb lépésekre osztani. Ilyen osztás megvalósítására kiválóan alkalmas jelen program esetén a chain of responsibility, vagy magyarul felelősséglánc tervezési minta.
+
+A programban nem teljesen a nagykönyvben megírt mintát használtam, hanem helyesen fogalmazva egy „rá hasonlítót”. Ennek az oka az, hogy a klasszikus felelősségláncban az egyes láncszemek tudnak a következő és opcionálisan az azt megelőző lépésről, mint egy láncolt listában. Ezt viszont nem szerettem volna, ezért jelen program esetén a lépések nem tudnak egymásról. Ezek végrehajtásárért majd egy másik komponens fog felelni.
+
+Az egyes lépéseket az alábbi interfész fogja leírni:
+
+```csharp
+using FFConvert.Domain;
+
+namespace FFConvert.Interfaces;
+
+internal interface IStep
+{
+    IEnumerable<string> Issues { get; }
+    bool TryExecute(State state);
+}
+```
+
+Az `Issues` a lépés futtatása közben keletkezett hibák gyűjteményét fogja tárolni. Maga a `TryExecute`  metódus lesz az, amelyik leírja a lépés fő logikáját. Ha ez igaz értékkel tér vissza, akkor a lépés futtatása sikeres volt. Ez egy jelzés lesz a központi futtató felé, hogy hívja meg a következő lépés `TryExecute` metódusát. Ha azonban hamis visszatérési értéket kaptunk, akkor valami probléma történt. Ebben az esetben majd az  `Issues` által tárolt hibák gyűjteménye fog kiíródni a képernyőre.
+
+Feltűnhet, hogy a  `TryExecute`  rendelkezik egy `State` típusőú bemenő paraméterrel. Ez felelős a globális állapot tárolásáért. Ennek a definíciója a következő:
+
+```csharp
+namespace FFConvert.Domain;
+
+internal sealed class State
+{
+    public Preset[] Presets { get; }
+    public IList<string> InputFiles { get; }
+    public Preset CurrentPreset { get; set; }
+
+    public ProgramConfiguration Configuration { get; }
+
+    public Arguments Arguments { get; }
+
+    public IList<FFMpegCommand> CreatedCommandLines { get; }
+
+    public State(Preset[] presets, ProgramConfiguration configuration, Arguments arguments)
+    {
+        Presets = presets;
+        Arguments = arguments;
+        Configuration = configuration;
+        CreatedCommandLines = new List<FFMpegCommand>();
+        InputFiles = new List<string>();
+        CurrentPreset = new Preset();
+    }
+}
+```
+
+A központi állapot tárolja az összes beolvasott preset-et (`Presets`), amiből majd egyet kiválasztunk (`CurrentPreset`) az argumentumok (`Arguments`) alapján. A `CreatedCommandLines` lista pedig tárolja a létrehozott FFMpeg parancsokat. Ennek leírásához egy külön osztályt készítettem, ami a `FFMpegCommand` nevet viseli. Ez a parancssor mellett tartalmazza a bemeneti fájlt és kimeneti fájlt is.
+
+```csharp
+internal sealed class FFMpegCommand
+{
+    public string CommandLine { get; init; }
+    public string OutputFile { get; init; }
+    public string InputFile { get; init; }
+
+    public FFMpegCommand()
+    {
+        InputFile = string.Empty;
+        CommandLine = string.Empty;
+        OutputFile = string.Empty;
+    }
+}
+```
+
+Erre azért volt szükség, hogy a későbbiekben, Például egy adott lépés előtt tudjuk ellenőrizni, hogy egyáltalán létezik-e még a bemeneti fájl, illetve ha már létezik a kimenet által meghatározott fájl, akkor erre is reagálni tudjunk anélkül, hogy a generált parancsorrból próbálnánk kihámozni ezeket az információkat.
+
+Ezen felül az állapot tartalmaz még egy `ProgramConfiguration` típusú osztályt is. Ez a program globális beállításait írja le. Jelen esetben ebből csak egy darab van még, ez pedig az FFMpeg és FFProbe parancsok mappáját határozza meg. Alapértelmezetten ezeket ugyan abban a mappában keressük, mint ahol a mi programunk lesz, de elképzelhető, hogy ez a végfelhasználó gépén teljesen máshol lesz.
+
+```csharp
+public sealed class ProgramConfiguration
+{
+    public string FFMpegDir { get; set; }
+
+    public ProgramConfiguration()
+    {
+        FFMpegDir = AppDomain.CurrentDomain.BaseDirectory;
+    }
+}
+```
+Az egyes lépések könnyebb implementálása értekében készítettem egy `BaseStep` ősosztályt, amiből az összes lépésünk fog származni.
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.Interfaces;
+
+namespace FFConvert.Steps;
+
+internal abstract class BaseStep : IStep
+{
+    private readonly List<string> _issues;
+
+    protected BaseStep()
+    {
+        _issues = new List<string>();
+    }
+
+    public IEnumerable<string> Issues => _issues;
+
+    protected void AddIssue(string format, params object[] parameters)
+    {
+        _issues.Add(string.Format(format, parameters));
+    }
+
+    protected bool AreNoIssues()
+    {
+        return _issues.Count == 0;
+    }
+
+    public abstract bool TryExecute(State state);
+}
+```
+
+Ez az ősosztály, mint látható főként a lépés futtatása közben keletkező hibaüzenetek kezelését egyszerűsíti le majd.
+
+# A lépések
+
+Ezek után már „csak” az egyes lépések lekódolása maradt hátra. Az első jó kérdés azonban, hogy milyen lépéseink is legyenek? A lépéseket a programtól elvárt viselkedés alapján határoztam meg. Ez alapján a következő, jól elkülöníthető lépésekre biztos szükségünk lesz:
+
+* Bemeneti fájlok meghatározása – Errre azért lesz szükségünk, mert a *.mp3 elfogadott fájlnév, de ez minden mp3 kiterjesztésű fájlt jelent az adott mappában
+* Presethez tartozó paraméterek begyűjtése – Egy preset rendelkezhet ugyebár tetszőleges számú, a felhasználótól begyűjthető argumentummal, ami befolyásolja majd generálandó parancsokat.
+* Futtatandó parancsok legenerálása
+* Parancsok futtatása
+
+Ez a lista azonban nem teljes, mivel nem funkcionális lépéseket nem tartalmaz és ezekre is szükségünk lesz. Például a futtatás előtt nem ártana ellenőriznünk, hogy egyáltalán a beállított mappában megtalálható-e az ffmpeg és ffprobe, de ugyan ilyen nem funkcionális lépés például a preset ellenőrzése.
+
+Mivel a preset fájlokat a felhasználói is szerkesztheti, ezért mielőtt egyáltalán használatba vesszük érdemes ellenőrizni, hogy megfelel-e bizonyos követelményeknek, hiszen ennek az elmulasztása a későbbiek során biztos, hogy visszaköszönne nem kezelt kivételek formájában.
+
+Ezek alapján az alábbi sorrend alakult ki az elvégzendő lépésekben:
+
+1. FFMpeg telepítés ellenőrzése
+2. Bemeneti fájlok meghatározása
+3. A kiválasztott preset validációja
+4. A választott preset által meghatározott bemenetek begyűjtése
+5. Futtatandó parancsok generálása
+6. Konvertálás futtatása
+
+A listában talán meglepő, hogy az FFMpeg ellenőrzés került az első helyre, holott csak a 6. lépésben fogjuk egyáltalán használni. Ennek felhasználói élmény szempontjából van jelentősége. Képzeljük el, hogy a preset, amit használni akarunk 5 beállítással rendelkezik. Elég hülyén venné ki magát, hogy minden lépést végigcsináltat velünk a program, majd az utolsó lépés előtt közli, hogy amúgy nem tudom a műveletsort végrehajtani, mert hiányoznak fájlok.
+
+
+## FFMpeg telepítés ellenőrzése
+
+Az első lépés nem bonyolult, lényegében megnézzük, hogy a megadott nevű fájlok léteznek-e a megadott mappában.
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Properties;
+
+namespace FFConvert.Steps;
+
+internal class CheckFFmpegInstallation : BaseStep
+{
+    public override bool TryExecute(State state)
+    {
+        if (!state.Configuration.TryGetFFmpeg(out string _))
+            AddIssue(Resources.ErrorFFmpegNotFound, state.Configuration.FFMpegDir);
+
+        if (!state.Configuration.TryGetFFProbe(out string _))
+            AddIssue(Resources.ErrorFFprobeNotFound, state.Configuration.FFMpegDir);
+
+        return AreNoIssues();
+    }
+}
+```
+
+Az első dolog, ami feltűnhet, hogy a hibaüzenetek nincsenek beégetve az egyes lépésekbe, mivel ez sosem egy jó ötlet. Helyette egy Resource fájlban vannak, ami azzal az előnnyel jár, hogy egy helyen tudjuk kezelni az összes üzenetet, valamint későbbiek során akár le is fordíthatjuk ezeket más nyelvekre. Azonban nem ez az egyetlen „trükk” ebben a lépésben. 
+
+A „trükk” azonban az, hogy az ellenőrzés és lekérdezés két DomainServices rétegbeli metódusba van elrejtve, mivel a tényleges FFMpeg használat előtt is ellenőrizni kell a fájlok meglétét. Ennek az oka az, hogy a tényleges ellenőrzés és a használat között van egy időrés, ami alatt akár ki is törölheti a fájlokat a felhasználó. Feltételezzük azonban, hogy ilyenre nem vetemedne, de elképzelhető, hogy egy túlbuzgó vírusirtó teszi meg ezt helyette.
+
+Lényeg az, hogy mivel két lépésben is kelleni fog ez, ezért legyen egy közös helyük:
+
+```csharp
+using FFConvert.Domain;
+using System.Runtime.InteropServices;
+
+namespace FFConvert.DomainServices;
+
+internal static class ProgramConfigurationExtensions
+{
+    private static bool IsWindows() =>
+        RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+    public static bool TryGetFFmpeg(this ProgramConfiguration configuration, out string ffmpegPath)
+    {
+        string ffmpegName = IsWindows() ? "ffmpeg.exe" : "ffmpeg";
+        ffmpegPath = Path.Combine(configuration.FFMpegDir, ffmpegName);
+        return File.Exists(ffmpegPath);
+    }
+
+    public static bool TryGetFFProbe(this ProgramConfiguration configuration, out string ffprobePath)
+    {
+        string ffprobeName = IsWindows() ? "ffprobe.exe" : "ffprobe";
+        ffprobePath = Path.Combine(configuration.FFMpegDir, ffprobeName);
+        return File.Exists(ffprobePath);
+    }
+}
+```
+
+A név meghatározásánál fontos, hogy platform függő módon történjen. Windows esetén a futtatandó fájloknak kötelező, hogy exe kiterjesztéssel rendelkezzenek. Ez azonban nem kötelező unix alapú rendszerek esetén. Ugyan nem volt követelmény, hogy a program működjön Linux alatt is, de erre mégis szükségünk van, mégpedig azért, mert a CI/CD megoldásunk Linux alapú docker image-ben fut.
+
+
+## Bemeneti fájlok meghatározása
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Properties;
+
+namespace FFConvert.Steps
+{
+    internal class CollectInputFiles : BaseStep
+    {
+        public override bool TryExecute(State state)
+        {
+            if (state.Arguments.InputFileContainsWildCard())
+            {
+                string directory = FileSystem.GetWorkingDirectoryFromInputFile(state.Arguments.FileName);
+                var files = FileSystem.GetFilesMatchingWildCard(directory, Path.GetFileName(state.Arguments.FileName));
+
+                state.AddFiles(files);
+
+                if (!state.HasInputFiles())
+                {
+                    AddIssue(Resources.ErrorFilesNotFound);
+                }
+            }
+            else
+            {
+                var singleFile = Path.GetFullPath(state.Arguments.FileName);
+
+                if (File.Exists(singleFile))
+                {
+                    state.InputFiles.Add(singleFile);
+                }
+                else
+                {
+                    AddIssue(Resources.ErrorFileNotExists);
+                }
+            }
+
+            return AreNoIssues();
+        }
+    }
+}
+```
+
+A bemeneti fájlok meghatározásánál a fő rendező elv, hogy a több fájlról beszélünk vagy csupán egyről. Ez a program argumentumokhoz tartozó `InputFileContainsWildCard()` extension metódussal könnyen meghatározható. 
+
+Az egyes fájlok és mappa meghatározásának logikája a `FileSystem` osztályban kapott helyet sok egyéb mással együtt:
+
+```csharp
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+
+namespace FFConvert.DomainServices;
+
+internal static class FileSystem
+{
+    private static bool IsWindows() =>
+        RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+    private static bool ContainsPathSeperator(string input)
+    {
+        if (IsWindows())
+            return input.Contains('\\');
+        else
+            return input.Contains('/');
+    }
+
+    private static bool HasRootDir(string input)
+    {
+        if (IsWindows())
+            return input.Contains(":\\");
+        else
+            return input.Contains('/');
+    }
+
+    private static string WildcardToRegex(string pattern)
+    {
+        return "^" + Regex.Escape(pattern).
+        Replace("\\*", ".*").
+        Replace("\\?", ".") + "$";
+    }
+
+    public static string GetWorkingDirectoryFromInputFile(string inputfile)
+    {
+        if (!ContainsPathSeperator(inputfile))
+        {
+            //it's in current dir
+            return Environment.CurrentDirectory;
+        }
+        else if (HasRootDir(inputfile))
+        {
+            //full path
+            return Path.GetDirectoryName(inputfile) ?? string.Empty;
+        }
+        else
+        {
+            //relatvie paths
+            string relative = Path.GetFullPath(inputfile);
+            return Path.GetDirectoryName(relative) ?? string.Empty;
+        }
+    }
+
+    public static IEnumerable<string> GetFilesMatchingWildCard(string directory, string filter)
+    {
+        Regex r = new(WildcardToRegex(filter), RegexOptions.Compiled);
+        string[] filters = Directory.GetFiles(directory);
+        foreach (string file in filters)
+        {
+            string fileName = Path.GetFileName(file);
+            if (r.IsMatch(fileName))
+            {
+                yield return file;
+            }
+        }
+    }
+
+    public static string CreateOutputFile(string inputfile, string targetExtension, string outputDirectory)
+    {
+        string fileName = Path.GetFileName(inputfile);
+        string targetName = Path.ChangeExtension(fileName, targetExtension);
+        return Path.Combine(outputDirectory, targetName);
+    }
+}
+```
+
+Ez a lépés a `State` osztályhoz tartozó extension metódusokat is használ. Ezek definíciója a következő:
+
+```csharp
+using FFConvert.Domain;
+
+namespace FFConvert.DomainServices
+{
+    internal static class StateExtensions
+    {
+        public static void AddFiles(this State state, IEnumerable<string> items)
+        {
+            if (state.InputFiles is List<string> list)
+            {
+                list.AddRange(items);
+            }
+        }
+
+        public static bool HasInputFiles(this State state)
+        {
+            return state.InputFiles.Count > 0;
+        }
+    }
+}
+```
+
+## Preset validáció
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Interfaces;
+using FFConvert.Properties;
+
+namespace FFConvert.Steps
+{
+    internal class PresetValidation : BaseStep
+    {
+        private readonly IImplementationsOf<IConverter> _converters;
+        private readonly IImplementationsOf<IValidator> _validators;
+
+        public PresetValidation(IImplementationsOf<IConverter> converters,
+                                IImplementationsOf<IValidator> validators)
+        {
+            _converters = converters;
+            _validators = validators;
+        }
+
+        public override bool TryExecute(State state)
+        {
+            var presetToUse = state.Presets.FirstOrDefault(x => x.ActivatorName == state.Arguments.PresetName);
+            if (presetToUse == null)
+            {
+                AddIssue(Resources.ErrorPresetNotFound, state.Arguments.PresetName);
+            }
+            else
+            {
+                state.CurrentPreset = presetToUse;
+            }
+
+            if (!state.CurrentPreset.IsValid())
+            {
+                AddIssue(Resources.ErrorInvalidPreset);
+            }
+            else
+            {
+                CheckConvertersNames(state.CurrentPreset);
+                CheckValidatorNames(state.CurrentPreset);
+            }
+
+            return AreNoIssues();
+        }
+
+        private void CheckValidatorNames(Preset currentPreset)
+        {
+            var validatorNames = currentPreset.ParametersToAsk
+                .Where(x => !string.IsNullOrEmpty(x.ValidatorName))
+                .Select(x => x.ValidatorName!);
+
+            foreach (var validatorName in validatorNames)
+            {
+                if (!_validators.Contains(validatorName))
+                    AddIssue(Resources.ErrorUnknownValidator, validatorName);
+            }
+
+        }
+
+        private void CheckConvertersNames(Preset currentPreset)
+        {
+            var converterNames = currentPreset.ParametersToAsk
+                .Where(x => !string.IsNullOrEmpty(x.ConverterName))
+                .Select(x => x.ConverterName!);
+
+            foreach (var converterName in converterNames)
+            {
+                if (!_converters.Contains(converterName))
+                    AddIssue(Resources.ErrorUnknownConverter, converterName);
+            }
+        }
+    }
 }
 ```

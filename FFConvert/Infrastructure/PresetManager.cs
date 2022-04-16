@@ -18,7 +18,9 @@ internal class PresetManager
 
     public PresetManager()
     {
-        _serializer = new XmlSerializer(typeof(Preset[]), new XmlRootAttribute("Presets"));
+        var root = new XmlRootAttribute("Presets");
+        root.Namespace = "my://presets";
+        _serializer = new XmlSerializer(typeof(Preset[]), root);
         _file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "presets.xml");
     }
 
@@ -27,7 +29,6 @@ internal class PresetManager
         try
         {
             using var stream = File.OpenRead(_file);
-
             presets = (Preset[]?)_serializer.Deserialize(stream);
             return presets != null;
         }

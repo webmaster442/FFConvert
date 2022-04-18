@@ -1453,4 +1453,191 @@ Ha minden rendben volt, akkor a paraméterek neveit az általuk tárolt értékr
 
 ## Kódolás
 
-Elérkeztünk az utolsó és legfontosabb lépéshez, a kódolás futtatásához. 
+Elérkeztünk az utolsó és legfontosabb lépéshez, a kódolás futtatásához. Elérkeztünk az utolsó és legfontosabb lépéshez, a kódolás futtatásához. A kódolás minden fájl esetén két program futtatását fogja jelenteni. Először az `ffprobe` segítségével lekérdezzük a fájl hosszát, majd ezután az ffmpeg-et futtatjuk. Az `ffmpeg` futtatása közben a kapott információkból és a fájl hosszából meg tudjuk állapítani, hogy hány %-nál jár a kódolás és, hogy mennyi idő van még hátra az adott fájl feldolgozásából.
+
+A programok futtatásához készítettem egy külön komponenst, ami az `FFMpegRunner` nevet kapta. Ezt szintén leválasztottam egy interfésszel, hogy a lépés amiben használva lesz könnyen tesztelhető legyen. Az interfész definíciója:
+
+```csharp
+using FFConvert.Domain;
+
+namespace FFConvert.Interfaces;
+
+internal interface IFFMpegRunner
+{
+    event EventHandler<FFMpegOutput>? ProgressReporter;
+    Task<FFProbeResult> Probe(FFMpegCommand command, CancellationToken cancellationToken);
+    Task Run(FFMpegCommand command, CancellationToken cancellationToken);
+}
+```
+
+Az interfész két `Task`-ot definiál. A `Probe` futtatja az `ffprobe` programot, míg a `Run` magát az `ffmpeg`-et. A `Probe` visszatérési értéke egy `FFProbeResult` osztály. Ez egy JSON dokumentumot ír le. Szerencsére az `ffprobe` utasítható, hogy az adatokat JSON formátumban írja ki. Az osztály definícióját lényegében úgy kaptam meg, hogy futtattam egy média fájlra a programot, majd a kapott JSON kimenetből Visual Studio segítségével (Edit menü → Paste Special → Paste JSON as classes) generáltattam ki. Mivel ez egy igen nagy osztály több altípussal együtt, és mi csak az időt használjuk belőle, ezért ennek a forráskódját nem szerepeltetem itt.
+
+A `ProgressReporter` eseményben használt `FFMpegOutput` osztály viszont már érdekesebb. Ez az osztály saját gyártmány, az FFMpeg futása közbeni generált kimenet fontosabb adatait tartalmazza. A definíciója:
+
+```csharp
+namespace FFConvert.Domain;
+
+internal sealed class FFMpegOutput
+{
+    public float Bitrate { get; set; }
+    public long FileSize { get; set; }
+    public TimeSpan Time { get; set; }
+    public float Speed { get; set; }
+}
+```
+
+Az FFMpeg futás közben nem tud sajna JSON kimenetet produkálni. A legfeldolgozhatóbb kimenet formátum a `-progress -` kapcsolók megadásával érhető el. Ha ez meg van adva, akkor kulcs=érték formátumú sorokban periodikusan visszaad információkat. Egy adatcsomag mindig a `progress` kulccsal végződik.  Nézzünk egy részletet példaként:
+
+```bash
+bitrate=170.42kbits/s
+total_size=709965
+out_time_us=35456479
+out_time_ms=35456479
+out_time=00:00:35.456479
+dup_frames=0
+drop_frames=0
+speed=54.8x
+progess=continue
+```
+
+Feltűnhet, hogy az `out_time_us` és az `out_time_ms` értéke azonos. Ez valószínűleg egy hiba, mivel az `us` végződésű helyes mikroszekundumban értelmezve. A `total_size` pedig a fájl méretét adja meg byte-ban kifejezve.
+
+Ez viszonylag ez egyszerű adatszerkezet, ezért ha a kimenet sorai megvannak, akkor könnyen fel tudjuk dolgozni. Erre a célra készítettem egy külön komponenst, ami az `FFMpegOutputParser` nevet kapta:
+
+```csharp
+using FFConvert.Domain;
+using System.Globalization;
+
+namespace FFConvert.DomainServices;
+
+internal static class FFMpegOutputParser
+{
+    private const string Bitrate = "bitrate=";
+    private const string Size = "total_size=";
+    private const string Time = "out_time_us=";
+    private const string Speed = "speed=";
+
+    private static bool TryGet(string line, string key, out string value)
+    {
+        if (line.StartsWith(key))
+        {
+            value = line[key.Length..];
+            return true;
+        }
+        value = string.Empty;
+        return false;
+    }
+
+    public static FFMpegOutput Parse(IEnumerable<string> packet)
+    {
+        FFMpegOutput result = new();
+        foreach (string? line in packet)
+        {
+            if (TryGet(line, Bitrate, out string rate) && rate != "N/A")
+                result.Bitrate = float.Parse(rate.Replace("kbits/s", ""), CultureInfo.InvariantCulture);
+
+            if (TryGet(line, Size, out string size))
+                result.FileSize = long.Parse(size, CultureInfo.InvariantCulture);
+
+            if (TryGet(line, Time, out string time))
+                result.Time = TimeSpan.FromMilliseconds(double.Parse(time, CultureInfo.InvariantCulture) / 1000);
+
+            if (TryGet(line, Speed, out string speed) && speed != "N/A")
+                result.Speed = float.Parse(speed.Replace("x", ""), CultureInfo.InvariantCulture);
+
+        }
+        return result;
+    }
+}
+```
+
+```csharp
+using FFConvert.Domain;
+using FFConvert.DomainServices;
+using FFConvert.Interfaces;
+using System.Diagnostics;
+using System.Text.Json;
+
+namespace FFConvert.Infrastructure;
+
+internal class FFMpegRunner : IFFMpegRunner
+{
+    public event EventHandler<FFMpegOutput>? ProgressReporter;
+    private readonly List<string> _currentCapture;
+    private readonly string _ffmpegExe;
+    private readonly string _ffprobeExe;
+    private readonly bool _ffmpegInstallOk;
+
+    public FFMpegRunner(ProgramConfiguration configuration)
+    {
+        _currentCapture = new List<string>(15);
+
+#pragma warning disable RCS1233
+        // Intentionally not &&, because both sides needs to be evaluated
+        // To not complain abut possible null for _ffprobeExe
+        _ffmpegInstallOk = configuration.TryGetFFmpeg(out _ffmpegExe)
+                        & configuration.TryGetFFProbe(out _ffprobeExe);
+#pragma warning restore RCS1233
+    }
+
+    public async Task<FFProbeResult> Probe(FFMpegCommand command, CancellationToken cancellationToken)
+    {
+        if (!_ffmpegInstallOk)
+            throw new InvalidOperationException("Invalid config");
+
+        using Process process = new();
+        process.StartInfo = new ProcessStartInfo
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+            FileName = _ffprobeExe,
+            Arguments = $"-v quiet -print_format json -show_format {command.InputFile}"
+        };
+        process.Start();
+        string json = await process.StandardOutput.ReadToEndAsync();
+        await process.WaitForExitAsync(cancellationToken);
+
+        return JsonSerializer.Deserialize<FFProbeResult>(json) ?? new FFProbeResult();
+
+    }
+
+    public async Task Run(FFMpegCommand command, CancellationToken cancellationToken)
+    {
+        if (!_ffmpegInstallOk)
+            throw new InvalidOperationException("Invalid config");
+
+        using Process process = new();
+        process.StartInfo = new ProcessStartInfo
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true,
+            FileName = _ffmpegExe,
+            Arguments = $"-progress - -v fatal -hide_banner {command.CommandLine}"
+        };
+        process.EnableRaisingEvents = true;
+        process.OutputDataReceived += OnOutputDataRecieved;
+        _currentCapture.Clear();
+        process.Start();
+        process.BeginOutputReadLine();
+        await process.WaitForExitAsync(cancellationToken);
+    }
+
+    private void OnOutputDataRecieved(object sender, DataReceivedEventArgs e)
+    {
+        if (!string.IsNullOrEmpty(e.Data) && !e.Data.StartsWith("progress="))
+        {
+            _currentCapture.Add(e.Data);
+        }
+        else
+        {
+            FFMpegOutput output = FFMpegOutputParser.Parse(_currentCapture);
+            ProgressReporter?.Invoke(this, output);
+            _currentCapture.Clear();
+        }
+    }
+}
+```

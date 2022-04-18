@@ -16,6 +16,76 @@ Az FFMpeg univerzalitását és népszerűségét szerintem jól leírja, hogy a
 
 Ez a gyakorlatban azt jelenti, hogy ha van mondjuk egy GTX960-nál újabb videó kártyánk, akkor HD (h264) és UHD (h265) kódolást minimális (1-5%) CPU használat mellett el tudunk végezni.
 
+## FFMpeg gyorstalpaló
+
+Az FFMpeg, mint említettem leginkább egy kodek, amit más programokba, videólejátszókba lehet építeni. Többek között ez van beépítve a VLC-be, az Mplayer-be és az MPV lejátszóba is. Ezen felül azonban használható önálló parancssori programként is. Ezentúl, ha az FFMpeg szó szerepel a cikkben, akkor a parancssori program értendő alatta.
+
+Eltérően a hagyományos programoktól FFMpeg esetén nem jó, ha az ember valamelyik „stabil” kiadást használja. Ennek az az oka, hogy a program fejlesztése viszonylag gyorsan pörög és a stabil kiadás Debian szint szerinti stabil. Ebből adódóan nem sűrűn van ilyen kiadás. Legutóbb 2016-ban jött ki a 3.0-ás verzió.
+
+Éppen ezért mindig a legfrissebb változat használata célszerű. Ez azonban nem azt jelenti, hogy egy olyan programot kell használnunk, ami az esetek nagy részében a feladat elvégzése helyett összeomlik. A közvetlen a Git tárolóból beszerezett és fordított programok is ugyan olyan stabilak, mint a tényleges kiadások. Ritkán fogunk összeomlással találkozni.
+
+Ez alapján felmerülhet a kérdés, hogy akkor miért nincs sűrűbben stabil kiadás? Ennek az oka talán abban kereshető, hogy az FFMpeg rengeteg egzotikus formátumot támogat. Ezek támogatása sok esetben specifikáció hiányában reverse engineeringgel történik, ami azt jelenti, hogy a kodek eredeti binárisa alapján vagy rosszabb esetben a kódolt médiafájl alapján próbálják a fejlesztők kitalálni, megérteni, hogy hogyan is működik a kódolás és hogyan lehet reprodukálni azt. Ez egy időigényes folyamat és amíg egy kodek, ami a támogatott listában van nem véglegesedik, addig nem jelölik stabilnak a verziót.
+
+Mivel a kodekek nagy része reverse engineeringgel fejlesztett és a világ másik részén létezik szoftver szabadalom, ezért az FFMpeg-et alapvetően forráskódban terjesztik. Ebből bináris, futtatható programot a felhasználónak kellene fordítania. Azért csak kellene, mert léteznek emberek, akik fordítanak binárist, de hivatalos FFMpeg által kiadott bináris nem létezik. Windows esetén, ha magunk akarunk fordítani binárist, akkor a https://github.com/m-ab-s/media-autobuild_suite bach szkript egész jól automatizálva, interaktívan végigvezet bennünket a folyamaton, hogy ne kelljen bajlódnunk a függőségek és a megfelelő fordítók, segédprogramok beszerzésével.
+
+Ha ezt a módszert választjuk, akkor az előnye az, hogy egy testre szabott FFMpeg binárist kapunk, ami valóban azt tudja amit szeretnénk. De ennek az az ára, hogy nagyjából ~30GiB szabad helyre és processzor típustól függően legalább 3-4 óra szabad időre lesz szükségünk az első alkalommal.
+
+Egy másik módszer, hogy binárishoz jussunk az az, hogy más által fordított binárist használjunk. Ennek a hátránya, hogy a bináris tudását nem mi választjuk meg, de csak szimplán le kell töltenünk és már használható is. Ilyen letöltési lehetőségeket a  projekt hivatalos oldala (https://www.ffmpeg.org/download.html) is kínál. Én a https://www.gyan.dev/ffmpeg/builds/ oldalról szoktam binárist beszerezni, mivel ezek a binárisok tartalmazzák az Nvidia kártyák használatba vételéhez szükséges kódokat is.
+
+Hátránya ezeknek a binárisoknak, hogy ezek úgynevezett statikus build-ek. Ez azt jelenti, hogy osztott komponensek nélkül, önállóan is használható EXE fájlokat tartalmaznak. Ez papíron jól hangzik, de mint mindennek, ennek is meg van az ára.
+
+Ez az ár pedig a tárhely. Egy ilyen ffmpeg.exe méretete simán 80-100MiB körüli, mivel minden benne van az egy darab EXE fájlban. A probléma csupán az, hogy szükségünk van az ffprobe.exe-re is.
+
+Az ffprobe egy média típus felismerő program, ami információkat tud szolgáltatni a médiafájlról. Például olyanokat, hogy milyen hosszú az adott média, mivel és mikor lett kódolva, stb…
+
+Média konvertálás esetén nem feltétlen van erre szükségünk, de sajnos egy funkció miatt mégis szüksége lesz rá a frondendünknek. Ez pedig a hossz lekérdezése. Sajnos az FFMpeg segítségével nem kérdezhető le egy médiafájl hossza. Erre az információra lényegében azért van szükségünk, hogy majd szép folyamatjelzőt tudjunk rajzolni a jelenlegi állapotról.
+
+Szóval egy statikus ffmpeg build (ffmpeg.exe és ffprobe.exe) páros mérete simán elérheti a 200MiB méretet, míg ez dinamikusan betölthető és megosztható komponensek (DLL fájlok) használatával jóval kevesebb lenne, de valamit valamiért.
+
+## Az FFMpeg használata és betekintés a problémakörbe
+
+A program alapvető használata nem bonyolult, de hamar el lehet veszni a különböző beállításokban.  A két legfontosabb argumentum amit mindenképpen meg kell határoznunk az a bemeneti fájl és a kimeneti fájl.
+
+A bemeneti fájl a `-i` kapcsoló segítségével adható meg, a kimenet pedig az első fájl lesz, ami kapcsolók nélkül szerepel. Ez a gyakorlatban így néz ki:
+
+```bash
+ffmpeg -i be.wav ki.mp3
+```
+
+A fenti parancssor már működőképes, mivel az mp3 egy olyan konténer formátum, ami csak mp3 kódolt hanganyagot tartalmazhat, ezért nem kell meghatároznunk a kodeket.
+
+Ha olyan konténer formátumot használnánk, ami többféle kódolást is támogat, akkor a `-c:a` kapcsoló segítségével meg kellene határoznunk a használni kívánt kódolót. Például ha a `be.wav`˙fájlunkat Apple losless formátumba szeretnénk alakítani, akkor a következő parancsot kellene beírnunk:
+
+```bash
+ffmpeg -i be.wav -c:a alac ki.m4a
+```
+
+Egyes formátumok esetén szükségünk lesz meghatározni a bitrátát is. Erre a `-b:a` és `-b:v` opció alkalmazható audió és videó esetén. Videó kódolót ezen logika mentén a `-c:v` opcióval tudunk meghatározni.
+
+Egy speciális konverzió, az úgynevezett muxolás. Ez azért speciális, mert nem kódoljuk újra a fájlt, csupán konténer formátumot váltunk alatta. Például ha van egy AVI fájlunk, amit át szeretnénk alakítani MKV-be, akkor az alábbi parancsot adhatjuk ki:
+
+```bash
+ffmpeg -i be.avi -c:a copy -c:v copy ki.mkv
+```
+
+A `copy` kodek név jelzi az ffmpeg számára, hogy másolni szeretnénk. Itt megjegyzem, hogy az AVI és az MKV a két olyan joker konténer, ami bármit is tartalmazhat, míg mondjuk az MP4 esetén limitálva vannak a lehetőségek.
+
+Ha lehetőségünk van rá, akkor kerüljük az AVI fájlok használatát, mivel ezen formátum képtelen 2GiB méret fölött működni. 
+
+Egyes formátumok esetén például rögzítve van a videó kodek és a használható hang kodek is. Ilyen például a WMV, de például a DVD formátum is. A DVD esetén van némi mozgástér, de nem sok. Éppen ezért, ha DVD lejásztó kompatibilis Mpeg2 fájlt szeretnénk kódolni, akkor erre egy külön kapcsolót biztosít az FFMpeg:
+
+```bash
+ffmpeg -i be.mkv -target pal-dvd ki.mpeg
+```
+Ez a hangot AC3 kódolással tárolja, valamint a videót olyan felbontással és kódolással, hogy egy PAL szabványos DVD lejátszó gond nélkül boldoguljon vele. Ez a kódolás változó bitrátát fog alkalmazni úgy, hogy 2 óra videó és hang ráférjen egy egyrétegű DVD lemezre.
+
+Ez csak egy volt az FFMpeg egzotikus képességeiből, de nézzünk egy másik, hasznos gyakorlati példát: A telefonunk által rögzített HD videót szeretnénk kisebb méretűvé konvertálni (h.265 formátumba) hardver gyorsítással, úgy hogy csak a képet tömörítjük újra. Ebben az esetben, ha Nvidia kártyánk van, akkor valami hasonló parancsot adhatnánk meg:
+
+```bash
+ffmpeg -hwaccel nvdec -i telefon.mp4 c:v hevc_nvenc -preset slow -c:a copy ki.mp4
+```
+Mint látható, itt már bonyolódik a parancssor és még csak a felszínt kapargatjuk. A programunk abban fog segíteni, hogy ezt a rengeteg opciót, ami rendelkezésünkre áll egyszerűsíti előre definiált beállításokkal (preset), hogy ne kelljen ezt a rengeteg kapcsolót és mindent megjegyeznünk és fejben tartanunk.
+
 ## Mi az a frontend?
 
 Jelen kontextusban a frontend egy olyan programot jelent, ami program használatát könnyíti meg. Az FFMpeg alapvetően egy parancssoros program. Attól függően, hogy miből mibe hogy szeretnénk konvertálni, különböző argumentumokkal kell felhívni. Ezeknek az argumentumoknak a száma és komplexitása formátumonként igen eltérő tud lenni. A program jól van dokumentálva a https://ffmpeg.org/documentation.html címen, de ez több száz oldal nagyságrendet is jelenthet. Éppen ezért ha ritkán használja az ember, akkor inkább kínszenvedés a boldogulás vele, mert minden esetben a kézikönyv olvasása szükséges.
@@ -1312,4 +1382,75 @@ internal class CreateCommandLines : BaseStep
 
 A `CreateParamDictionary` metódus első körben a speciális paramétereinket (`%input%` és `%output%`), illetve a preset paramétereinek nevét és értékét összerendeli egy asszociatív tömbbe.
 
-Itt feltűnhet, hogy a Dictionary kulcs típusa egy `ParameterKey` osztály, ami a paraméter nevét és a paraméter opcionalitását tárolja.
+Itt feltűnhet, hogy a Dictionary kulcs típusa egy `ParameterKey` osztály, ami a paraméter nevén kívül információt tárol arról, hogy opcionális volt-e vagy sem. 
+
+Utóbbira azért van szükségünk, mivel az opcionális paraméterek esetén, ha üresen van hagyva, akkor nem kell megjelennie a generált parancssorban az értéknek.
+
+Ilyenre lehet példa, ha a hang mintavételezési frekvenciáját szeretnénk opcionálisan módosítani. Ezt a `-ar [szám]` FFMpeg argumentummal tudjuk megtenni, ahol a szám a frekvenciát jelöli Hz-ben. Ha ezt nem adjuk meg, akkor az eredeti mintavételezési frekvencia lesz használva.
+
+Felmerülhet ezen a ponton a kérdés, hogy ha két tulajdonságból álló osztályt készítünk, akkor nem-e megérné egy value tuple-t alkalmazni osztály helyett?
+
+A válasz jelen esetben az, hogy nem. Value tuple esetén mind a két tulajdonság figyelembe vételével történne az egyenlőség vizsgálata, ami nem lenne jó, mivel kétszer is szenelhetne a tömbben ugyan az a paraméternév eltérő opcionalitással. Egy megoldás az lehetne, hogy az értéket tároljuk value tuple-ben az opcionalitást leíró `bool` értékkel, de ebben nem sok kihívás van, illetve nem sokat tanulnánk belőle. Éppen ezért azt az irányt választottam, hogy készítek egy saját osztályt, a `ParameterKey`-t aminek az Equals és GetHashCode metódusa úgy van felülírva, hogy csak a nevet veszi figyelembe.
+
+Az osztály létrehozása nem igényelt különösebben logikát. A megfelelő adattagok és konstruktorok definiálása után az osztály nevén a CTRL+. előhozható menüből a Generate Equals and GetHashCode opcióval legeneráltattam a nekem megfelelő implementációt. Így a végleges implementáció így nézett ki:
+
+```csharp
+// ----------------------------------------------------------------------------
+// (c) 2022 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+// ----------------------------------------------------------------------------
+
+namespace FFConvert.Domain;
+
+internal sealed class ParameterKey : IEquatable<ParameterKey?>
+{
+    public string Name { get; init; }
+    public bool IsOptional { get; init; }
+
+    public ParameterKey(string name, bool isOptional)
+    {
+        Name = name;
+        IsOptional = isOptional;
+    }
+
+    public ParameterKey(PresetParameter parameter)
+    {
+        Name = parameter.ParameterName;
+        IsOptional = parameter.IsOptional;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as ParameterKey);
+    }
+
+    public bool Equals(ParameterKey? other)
+    {
+        return other != null &&
+               Name == other.Name;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Name);
+    }
+
+    public static bool operator ==(ParameterKey? left, ParameterKey? right)
+    {
+        return EqualityComparer<ParameterKey>.Default.Equals(left, right);
+    }
+
+    public static bool operator !=(ParameterKey? left, ParameterKey? right)
+    {
+        return !(left == right);
+    }
+}
+```
+
+Az egyes pataméterek számának ellenőrzését reguláris kifejezések használatával állapítom meg. Ezzel azt ellenőrzöm, hogy a `CommandLine` tulajdonságban megadott paraméterek és a behelyettesíthető paraméterek száma megegyezik-e. Ha nem, akkor azt azt jelenti, hogy valami félre ment és a generálandó parancssor biztos, hogy nem lesz futtatható.
+
+Ha minden rendben volt, akkor a paraméterek neveit az általuk tárolt értékre cseréljük, illetve külön eltároljuk a bemeneti fájl nevét és a kimeneti nevet is.
+
+## Kódolás
+
+Elérkeztünk az utolsó és legfontosabb lépéshez, a kódolás futtatásához. 

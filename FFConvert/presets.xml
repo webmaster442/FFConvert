@@ -72,7 +72,7 @@ This code is licensed under MIT license (see LICENSE for details)
   </Preset>
   <Preset ActivatorName="dvd-ntsc" TargetExtension=".mpeg">
     <Description>Convert video to DVD compatible (NTSC) format</Description>
-    <CommandLine>-i %input% -target pal-dvd %output%</CommandLine>
+    <CommandLine>-i %input% -target ntsc-dvd %output%</CommandLine>
     <ParametersToAsk/>
   </Preset>
   <Preset ActivatorName="cut" TargetExtension="%sourceext%">

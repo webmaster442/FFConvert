@@ -3,11 +3,6 @@
 [TestFixture]
 internal class CreateCommandLinesTests : StepTestBase<CreateCommandLines>
 {
-    /*
-     Missing: 
-        - Test with optional parameter
-     */
-
     public override CreateCommandLines CreateSut()
     {
         return new CreateCommandLines();

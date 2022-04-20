@@ -8,6 +8,31 @@ This code is licensed under MIT license (see LICENSE for details)
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="my://presets">
   <!--Audio formats-->
+  <Preset ActivatorName="cd" TargetExtension=".wav">
+    <Description>Convert a file to CD compatible audio</Description>
+    <CommandLine>-i %input% -vn -ar 44100 -ac 2 -c:a pcm_s16le %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="wav" TargetExtension=".wav">
+    <Description>Convert a file to uncompressed WAV audio</Description>
+    <CommandLine>-i %input% -vn %samplerate% %channels% -c:a pcm_s16le %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter 
+        ParameterName="%samplerate%"
+        ParameterDescription="Sample rate:"
+        IsOptional="true" 
+        OptionalContent="-ar %samplerate%"
+        Validator="IntValidator"
+        ValidatorParameters="min=8000;max=192000"/>
+      <PresetParameter
+        ParameterName="%channels%"
+        ParameterDescription="Number of channels:"
+        IsOptional="true"
+        OptionalContent="-ac %channels%"
+        Validator="IntValidator"
+        ValidatorParameters="min=1;max=8"/>
+    </ParametersToAsk>
+  </Preset>
   <Preset ActivatorName="flac" TargetExtension=".flac">
     <Description>Convert a file to FLAC audio</Description>
     <CommandLine>-i %input% -vn -c:a flac -compression_level %compression% %output%</CommandLine>

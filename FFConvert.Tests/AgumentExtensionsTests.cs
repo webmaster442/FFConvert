@@ -3,7 +3,15 @@
 [TestFixture]
 internal class AgumentExtensionsTests
 {
-    private Arguments CreateSut(params string[] parameters) => new Arguments(parameters);
+    private static Arguments CreateSut(params string[] parameters) => new Arguments(parameters);
+
+    private static Arguments CreateSut(string cmd)
+    {
+        if (cmd == null)
+            return new Arguments(new string[] { });
+
+        return new Arguments(cmd.Split(' ', StringSplitOptions.RemoveEmptyEntries));
+    }
 
     [TestCase("in.mp3", "wav", "d:\\out", true)]
     [TestCase("in.mp3", "wav", "", false)]
@@ -44,6 +52,27 @@ internal class AgumentExtensionsTests
         Arguments sut = CreateSut("help", "foo");
         var result = sut.IsSpecificHelpRequested();
         Assert.IsTrue(result);
+    }
+
+    [TestCase("file preset output --foo", "--foo", true)]
+    [TestCase("file preset output --bar", "--foo", false)]
+    [TestCase("file preset output", "--foo", false)]
+    public void EnsureThat_IsSwitchPresent_ReturnsExpected(string input, string @switch, bool expected)
+    {
+        Arguments sut = CreateSut(input);
+        var result = sut.IsSwitchPresent(@switch);
+        Assert.AreEqual(expected, result);
+    }
+
+    [TestCase("file preset output --foo bar", "--foo", "bar", true)]
+    [TestCase("file preset output --foo --bar", "--foo", "", false)]
+    [TestCase("file preset output", "--foo", "", false)]
+    public void EnsureThat_TryGetSwitchWithValue_ReturnsExpected(string input, string @switch, string expectedValue, bool expected)
+    {
+        Arguments sut = CreateSut(input);
+        var result = sut.TryGetSwitchWithValue(@switch, out var value);
+        Assert.AreEqual(expectedValue, value);
+        Assert.AreEqual(expected, result);
     }
 
 }

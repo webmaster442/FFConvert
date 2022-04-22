@@ -14,6 +14,8 @@ internal sealed class Arguments
     public string PresetName => _arguments.Length >= 2 ? _arguments[1] : string.Empty;
     public string OutputDirectory => _arguments.Length >= 3 ? _arguments[2] : string.Empty;
 
+    public IReadOnlyList<string> OtherOptions => _arguments.Length >= 4 ? _arguments.Skip(3).ToArray() : Array.Empty<string>();
+
     public Arguments(string[] arguments)
     {
         _arguments = arguments;

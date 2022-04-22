@@ -19,6 +19,8 @@ internal abstract class BaseStep : IStep
 
     public IEnumerable<string> Issues => _issues;
 
+    public virtual bool IsSkippable => false;
+
     protected void AddIssue(string format, params object[] parameters)
     {
         _issues.Add(string.Format(format, parameters));

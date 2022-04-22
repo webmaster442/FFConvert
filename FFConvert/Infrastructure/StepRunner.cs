@@ -34,7 +34,11 @@ internal sealed class StepRunner : IDisposable
     {
         foreach (var step in _steps)
         {
+            if (step.IsSkippable)
+                continue;
+
             bool canContinue = step.TryExecute(state);
+            
             if (!canContinue)
             {
                 _console.Error(step.Issues.ToArray());

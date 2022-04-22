@@ -10,5 +10,6 @@ namespace FFConvert.Interfaces;
 internal interface IStep
 {
     IEnumerable<string> Issues { get; }
+    bool IsSkippable { get; }
     bool TryExecute(State state);
 }

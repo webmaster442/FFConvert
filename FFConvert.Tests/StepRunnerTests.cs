@@ -10,9 +10,11 @@
             Issues = issues;
         }
 
-        private bool _returnValue;
+        private readonly bool _returnValue;
 
         public IEnumerable<string> Issues { get; }
+
+        public bool IsSkippable => false;
 
         public void Dispose()
         {
@@ -50,6 +52,20 @@
                 //empty block;
             }
             Assert.IsTrue(disposableStep.DisposeCalled);
+
+        }
+
+        [Test]
+        public void EnsureThat_WhenSkippable_Skips()
+        {
+            Mock<IStep> skipable = new Mock<IStep>(MockBehavior.Strict);
+            skipable.SetupGet(x => x.IsSkippable).Returns(true);
+
+            using (var stepRunner = new StepRunner(_consoleMock.Object, skipable.Object))
+            {
+                //empty block;
+            }
+            skipable.Verify(x => x.TryExecute(It.IsAny<State>()), Times.Never);
 
         }
 

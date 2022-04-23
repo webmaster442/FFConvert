@@ -14,7 +14,6 @@
 
         public IEnumerable<string> Issues { get; }
 
-        public bool IsSkippable => false;
 
         public void Dispose()
         {
@@ -27,6 +26,11 @@
         public bool TryExecute(State state)
         {
             return _returnValue;
+        }
+
+        public bool CanSkip(State state)
+        {
+            return false;
         }
     }
 
@@ -59,7 +63,7 @@
         public void EnsureThat_WhenSkippable_Skips()
         {
             Mock<IStep> skipable = new Mock<IStep>(MockBehavior.Strict);
-            skipable.SetupGet(x => x.IsSkippable).Returns(true);
+            skipable.Setup(x => x.CanSkip(It.IsAny<State>())).Returns(true);
 
             using (var stepRunner = new StepRunner(_consoleMock.Object, skipable.Object))
             {

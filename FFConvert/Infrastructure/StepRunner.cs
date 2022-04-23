@@ -34,7 +34,7 @@ internal sealed class StepRunner : IDisposable
     {
         foreach (var step in _steps)
         {
-            if (step.IsSkippable)
+            if (step.CanSkip(state))
                 continue;
 
             bool canContinue = step.TryExecute(state);

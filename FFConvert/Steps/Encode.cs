@@ -6,6 +6,7 @@
 using FFConvert.Domain;
 using FFConvert.Interfaces;
 using FFConvert.Properties;
+using FFConvert.DomainServices;
 
 namespace FFConvert.Steps;
 
@@ -27,6 +28,14 @@ internal sealed class Encode : BaseStep, IDisposable
         _console.CancelEvent += OnCancel;
         _currentFile = string.Empty;
         _tokenSource = new();
+    }
+
+    public override bool CanSkip(State state)
+    {
+        return
+            state.Arguments.IsSwitchPresent(Constants.SwitchOutputToSh)
+            || state.Arguments.IsSwitchPresent(Constants.SwitchOutputToBat)
+            || state.Arguments.IsSwitchPresent(Constants.SwithOuputToPs);
     }
 
     private void OnCancel(object? sender, EventArgs e)

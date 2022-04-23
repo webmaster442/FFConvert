@@ -18,7 +18,7 @@ internal sealed class StepRunner : IDisposable
     {
         _disposables = new List<int>(steps.Length);
         _steps = new IStep[steps.Length];
-        for (int i=0; i < steps.Length; i++)
+        for (int i = 0; i < steps.Length; i++)
         {
             _steps[i] = steps[i];
             if (_steps[i] is IDisposable)
@@ -38,7 +38,7 @@ internal sealed class StepRunner : IDisposable
                 continue;
 
             bool canContinue = step.TryExecute(state);
-            
+
             if (!canContinue)
             {
                 _console.Error(step.Issues.ToArray());

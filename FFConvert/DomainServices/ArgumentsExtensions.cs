@@ -52,10 +52,10 @@ internal static class ArgumentsExtensions
 
     public static bool TryGetSwitchWithValue(this Arguments arguments, string @switch, out string value)
     {
-        for (int i=0; i<arguments.OtherOptions.Count; i++)
+        for (int i = 0; i < arguments.OtherOptions.Count; i++)
         {
             string next = i + 1 < arguments.OtherOptions.Count ? arguments.OtherOptions[i + 1] : string.Empty;
-            if (!string.IsNullOrEmpty(next) 
+            if (!string.IsNullOrEmpty(next)
                 && !next.StartsWith("-"))
             {
                 value = next;

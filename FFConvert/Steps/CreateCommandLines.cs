@@ -3,11 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
+using System.Text;
+using System.Text.RegularExpressions;
+
 using FFConvert.Domain;
 using FFConvert.DomainServices;
 using FFConvert.Properties;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace FFConvert.Steps;
 
@@ -23,12 +24,12 @@ internal class CreateCommandLines : BaseStep
     {
         Dictionary<ParameterKey, string> parameters = new()
         {
-            {  new ParameterKey(InputKey, false), "" },
-            {  new ParameterKey(OutputKey, false), "" },
+            { new ParameterKey(InputKey, false), "" },
+            { new ParameterKey(OutputKey, false), "" },
         };
         foreach (var parameter in currentState.CurrentPreset.ParametersToAsk)
         {
-            if (!parameter.IsOptional 
+            if (!parameter.IsOptional
                 || (parameter.IsOptional && !string.IsNullOrEmpty(parameter.Value)))
             {
                 parameters.Add(new ParameterKey(parameter), parameter.Value);
@@ -105,7 +106,7 @@ internal class CreateCommandLines : BaseStep
                     sb.Replace(parameter.Key.Name, value);
                 }
             }
-            
+
         }
         return sb.ToString();
     }

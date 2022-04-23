@@ -7,7 +7,7 @@ using FFConvert.Interfaces;
 
 namespace FFConvert.Infrastructure;
 
-internal sealed class ImplementationsOf<T> : IImplementationsOf<T> where T: class
+internal sealed class ImplementationsOf<T> : IImplementationsOf<T> where T : class
 {
     private readonly Dictionary<string, T> _implementations;
 

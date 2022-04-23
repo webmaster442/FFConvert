@@ -23,7 +23,7 @@ internal sealed class ConvertProgress
         {
             time = TimeSpan.FromSeconds(remain).ToString();
         }
-        StatusMsg = string.Format(Resources.StatusReportTemplate, fFMpegOutput.Speed, time); 
+        StatusMsg = string.Format(Resources.StatusReportTemplate, fFMpegOutput.Speed, time);
     }
 
 }

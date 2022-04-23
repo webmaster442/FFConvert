@@ -29,11 +29,7 @@ internal class CreateCommandLines : BaseStep
         };
         foreach (var parameter in currentState.CurrentPreset.ParametersToAsk)
         {
-            if (!parameter.IsOptional
-                || (parameter.IsOptional && !string.IsNullOrEmpty(parameter.Value)))
-            {
-                parameters.Add(new ParameterKey(parameter), parameter.Value);
-            }
+            parameters.Add(new ParameterKey(parameter), parameter.Value);
         }
         return parameters;
     }
@@ -93,7 +89,7 @@ internal class CreateCommandLines : BaseStep
             {
                 sb.Replace(parameter.Key.Name, EscapePathIfNeeded(parameter.Value));
             }
-            else
+            else if (!string.IsNullOrEmpty(parameter.Value))
             {
                 var optionalContent = preset.ParametersToAsk
                     .Where(p => p.ParameterName == parameter.Key.Name)
@@ -106,9 +102,14 @@ internal class CreateCommandLines : BaseStep
                     sb.Replace(parameter.Key.Name, value);
                 }
             }
-
+            else
+            {
+                sb.Replace(parameter.Key.Name, "");
+            }
+            //double space cleanup
+            sb.Replace("  ", "");
         }
-        return sb.ToString();
+        return sb.ToString().Trim();
     }
 
     private bool CheckIfParameterCountMatches(Preset currentPreset, Dictionary<ParameterKey, string> parameters)

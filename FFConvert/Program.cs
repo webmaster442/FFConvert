@@ -58,7 +58,8 @@ try
                                   new PresetValidation(dependencies.Converters, dependencies.Validators),
                                   new GetPresetArguments(dependencies.Converters, dependencies.Validators, dependencies.Console),
                                   new CreateCommandLines(),
-                                  new Encode(dependencies.FFMpegRunner, dependencies.Console, dependencies.ProgressReporter));
+                                  new Encode(dependencies.FFMpegRunner, dependencies.Console, dependencies.ProgressReporter),
+                                  new CommandLineToConsole(dependencies.Console));
 
     State state = new State(presets, dependencies.Configuration, arguments);
 

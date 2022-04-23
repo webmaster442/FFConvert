@@ -50,17 +50,22 @@ internal sealed class Encode : BaseStep, IDisposable
 
     public override bool TryExecute(State state)
     {
-        var t = TryExecuteAsync(state.CreatedCommandLines);
+        if (_tokenSource == null)
+            throw new ObjectDisposedException(nameof(_tokenSource));
+
+        var t = TryExecuteAsync(state.CreatedCommandLines, _tokenSource.Token);
         t.Wait();
         return t.Result;
     }
 
-    private async Task<bool> TryExecuteAsync(IEnumerable<FFMpegCommand> commands)
+    private async Task<bool> TryExecuteAsync(IEnumerable<FFMpegCommand> commands, CancellationToken token)
     {
         try
         {
             foreach (var commandLine in commands)
             {
+                token.ThrowIfCancellationRequested();
+                   
                 if (File.Exists(commandLine.OutputFile))
                 {
                     _console.WriteLine($"Skipping {commandLine.OutputFile}");
@@ -69,35 +74,23 @@ internal sealed class Encode : BaseStep, IDisposable
 
                 _console.WriteLine($"Probing: {commandLine.InputFile}...");
 
-                if (_tokenSource == null)
-                    throw new ObjectDisposedException(nameof(_tokenSource));
-
-                var result = await _fFMpegRunner.Probe(commandLine, _tokenSource.Token);
+                var result = await _fFMpegRunner.Probe(commandLine, token);
                 _currentFileTime = result.Format.Duration - result.Format.StartTime;
-
-                if (_tokenSource.IsCancellationRequested)
-                {
-                    AddIssue(Resources.ErrorAborted);
-                    return false;
-                }
 
                 _console.WriteLine($"Encoding: {commandLine.InputFile}...");
                 _progressReport.Show();
                 _currentFile = commandLine.OutputFile;
 
-                if (_tokenSource == null)
-                    throw new ObjectDisposedException(nameof(_tokenSource));
-
-                await _fFMpegRunner.Run(commandLine, _tokenSource.Token);
+                await _fFMpegRunner.Run(commandLine, token);
                 _progressReport.Hide();
-
-                if (_tokenSource.IsCancellationRequested)
-                {
-                    AddIssue(Resources.ErrorAborted);
-                    return false;
-                }
             }
             return true;
+        }
+        catch (OperationCanceledException)
+        {
+            _progressReport.Hide();
+            AddIssue(Resources.ErrorAborted);
+            return false;
         }
         catch (Exception ex)
         {

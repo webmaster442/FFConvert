@@ -55,6 +55,7 @@ try
     using StepRunner runner = new(dependencies.Console,
                                   new CheckFFmpegInstallation(),
                                   new CollectInputFiles(),
+                                  new CollectInputFilesFromFile(),
                                   new PresetValidation(dependencies.Converters, dependencies.Validators),
                                   new GetPresetArguments(dependencies.Converters, dependencies.Validators, dependencies.Console),
                                   new CreateCommandLines(),

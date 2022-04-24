@@ -19,6 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="7-Zip.CommandLine" Version="18.1.0" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(Pkg7-Zip_CommandLine)\tools\x64\7za.exe" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

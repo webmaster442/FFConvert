@@ -138,6 +138,9 @@
   <data name="ErrorFilesNotFound" xml:space="preserve">
     <value>No input files found that match the given filter</value>
   </data>
+  <data name="ErrorInstallAbort" xml:space="preserve">
+    <value>FFMpeg install aborted</value>
+  </data>
   <data name="ErrorInvalidPreset" xml:space="preserve">
     <value>The selected preset is not usable. It has missing parts in the definition.</value>
   </data>

@@ -124,6 +124,15 @@ namespace FFConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FFMpeg install aborted.
+        /// </summary>
+        internal static string ErrorInstallAbort {
+            get {
+                return ResourceManager.GetString("ErrorInstallAbort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected preset is not usable. It has missing parts in the definition..
         /// </summary>
         internal static string ErrorInvalidPreset {

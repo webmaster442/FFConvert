@@ -24,6 +24,13 @@ try
         return;
     }
 
+    if (arguments.IsInstallCommand())
+    {
+        FFMpegInstaller installer = new FFMpegInstaller(console);
+        installer.StartInstall();
+        return;
+    }
+
     if (!presetManager.PresetsExits)
     {
         presetManager.CreateSamplePreset();

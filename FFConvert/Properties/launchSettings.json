@@ -2,7 +2,7 @@
   "profiles": {
     "FFConvert": {
       "commandName": "Project",
-      "commandLineArgs": " d:\\zenele\\hs\\*.mp3 wav e:\\ --bat"
+      "commandLineArgs": "--install"
     }
   }
 }

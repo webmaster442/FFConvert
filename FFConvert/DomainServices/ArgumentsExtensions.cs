@@ -65,4 +65,11 @@ internal static class ArgumentsExtensions
         value = string.Empty;
         return false;
     }
+
+    public static bool IsInstallCommand(this Arguments arguments)
+    {
+        return arguments.FileName == Constants.SwitchInstall
+            && arguments.PresetName?.Length == 0
+            && arguments.OutputDirectory?.Length == 0;
+    }
 }

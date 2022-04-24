@@ -10,26 +10,31 @@ using FFConvert.Properties;
 
 namespace FFConvert.Infrastructure;
 
-internal class FFMpegInstaller
+internal sealed class FFMpegInstaller : IDisposable
 {
     private readonly IConsole _console;
     private readonly string _updateFile;
+    private readonly CancellationTokenSource _cancellationTokenSource;
 
     public FFMpegInstaller(IConsole console, string file = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z")
     {
         _console = console;
         _updateFile = file;
+        _cancellationTokenSource = new CancellationTokenSource();
     }
     private async Task Install(CancellationToken token)
     {
         var targetFile = Path.Combine(Path.GetTempPath(), "ffmpeg.7z");
         try
         {
+            _console.WriteLine("Downloading...");
             using var client = new HttpClient();
             using var s = await client.GetStreamAsync(_updateFile, token);
             using var fs = File.Create(targetFile);
             await s.CopyToAsync(fs, token);
+            fs.Close();
 
+            _console.WriteLine("Extracting...");
             await Extract(targetFile, AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe", token);
             await Extract(targetFile, AppDomain.CurrentDomain.BaseDirectory, "ffprobe.exe", token);
 
@@ -47,7 +52,9 @@ internal class FFMpegInstaller
 
     public void StartInstall()
     {
-
+        _console.CancelEvent += OnCancel;
+        Install(_cancellationTokenSource.Token).Wait();
+        _console.CancelEvent -= OnCancel;
     }
 
     private static void Cleanup(string ffmpegArchive)
@@ -64,5 +71,16 @@ internal class FFMpegInstaller
         process.StartInfo.CreateNoWindow = true;
         process.Start();
         await process.WaitForExitAsync(token);
+    }
+
+    public void Dispose()
+    {
+        _cancellationTokenSource.Dispose();
+        _console.CancelEvent -= OnCancel;
+    }
+
+    private void OnCancel(object? sender, EventArgs e)
+    {
+        _cancellationTokenSource.Cancel();
     }
 }

@@ -3,9 +3,10 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
+using System.Text;
+
 using FFConvert.Domain;
 using FFConvert.Properties;
-using System.Text;
 
 namespace FFConvert.Infrastructure;
 

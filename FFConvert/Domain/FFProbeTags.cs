@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace FFConvert.Domain;
 
-internal sealed  class FFProbeTags
+internal sealed class FFProbeTags
 {
     [JsonPropertyName("encoder")]
     public string Encoder { get; set; }

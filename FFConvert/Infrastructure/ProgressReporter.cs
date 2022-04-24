@@ -3,8 +3,9 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
-using FFConvert.Domain;
 using System.Text;
+
+using FFConvert.Domain;
 using FFConvert.Interfaces;
 
 namespace FFConvert.Infrastructure

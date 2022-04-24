@@ -8,6 +8,31 @@ This code is licensed under MIT license (see LICENSE for details)
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="my://presets">
   <!--Audio formats-->
+  <Preset ActivatorName="cd" TargetExtension=".wav">
+    <Description>Convert a file to CD compatible audio</Description>
+    <CommandLine>-i %input% -vn -ar 44100 -ac 2 -c:a pcm_s16le %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="wav" TargetExtension=".wav">
+    <Description>Convert a file to uncompressed WAV audio</Description>
+    <CommandLine>-i %input% -vn %samplerate% %channels% -c:a pcm_s16le %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter 
+        ParameterName="%samplerate%"
+        ParameterDescription="Sample rate (empty = no change)"
+        IsOptional="true" 
+        OptionalContent="-ar %samplerate%"
+        Validator="IntValidator"
+        ValidatorParameters="min=8000;max=192000"/>
+      <PresetParameter
+        ParameterName="%channels%"
+        ParameterDescription="Number of channels (empty = no change)"
+        IsOptional="true"
+        OptionalContent="-ac %channels%"
+        Validator="IntValidator"
+        ValidatorParameters="min=1;max=8"/>
+    </ParametersToAsk>
+  </Preset>
   <Preset ActivatorName="flac" TargetExtension=".flac">
     <Description>Convert a file to FLAC audio</Description>
     <CommandLine>-i %input% -vn -c:a flac -compression_level %compression% %output%</CommandLine>
@@ -77,20 +102,50 @@ This code is licensed under MIT license (see LICENSE for details)
   </Preset>
   <Preset ActivatorName="cut" TargetExtension="%sourceext%">
     <Description>Cut out a part of the source media without recode</Description>
-    <CommandLine>-i -ss %starttime% %input% %endtime% -c:a copy -c:v copy %output%</CommandLine>
+    <CommandLine>-i %input% -ss %starttime% %endtime% -c:a copy -c:v copy %output%</CommandLine>
     <ParametersToAsk>
       <PresetParameter
         ParameterName="%starttime%"
-        ParameterDescription="Start time (empty means 0):"
+        ParameterDescription="Start time (empty means 0)"
         Validator="TimeValidator"
         Converter="StartTimeConverter"/>
       <PresetParameter
         ParameterName="%endtime%"
-        ParameterDescription="End time (empty means till the end of file):"
+        ParameterDescription="End time (empty means till the end of file)"
         Validator="TimeValidator"
         Converter="EndTimeConverter"
         IsOptional="true"
         OptionalContent="-t %endtime%"/>
     </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="nv-h264" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v h264_nvenc -preset p5 -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="nv-h264hd" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v h264_nvenc -preset p5 -vf "scale='min(1920,iw)':'min(1080,ih)'" -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="nv-h264hd30" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v h264_nvenc -preset p5 -vf "scale='min(1920,iw)':'min(1080,ih)',fps=fps=30" -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="nv-h265" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v hevc_nvenc -preset slow -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="nv-h265hd" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v hevc_nvenc -preset slow -vf "scale='min(1920,iw)':'min(1080,ih)'" -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="nv-h265hd30" TargetExtension=".mp4">
+    <Description>Convert file to h264 encoded mp4 with Nvidia hardware encoding</Description>
+    <CommandLine>-vsync 0 -hwaccel nvdec -i %input% -c:v hevc_nvenc -preset slow -vf "scale='min(1920,iw)':'min(1080,ih)',fps=fps=30" -c:a aac -q:a 2 %output%</CommandLine>
+    <ParametersToAsk/>
   </Preset>
 </Presets>

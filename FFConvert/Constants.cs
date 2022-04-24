@@ -3,13 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
-using FFConvert.Domain;
+namespace FFConvert;
 
-namespace FFConvert.Interfaces;
-
-internal interface IStep
+internal static class Constants
 {
-    IEnumerable<string> Issues { get; }
-    bool CanSkip(State state);
-    bool TryExecute(State state);
+    public const string SwithOuputToPs = "--ps";
+    public const string SwitchOutputToBat = "--bat";
+    public const string SwitchOutputToSh = "--sh";
+    public const string SwitchInputList = "--list";
 }

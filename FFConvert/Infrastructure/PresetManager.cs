@@ -3,11 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
-using FFConvert.Domain;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+
+using FFConvert.Domain;
 
 namespace FFConvert.Infrastructure;
 

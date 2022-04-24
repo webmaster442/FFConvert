@@ -38,8 +38,8 @@ internal class GetPresetArguments : BaseStep
                 input = ReadPresetValueWithValidator(parameter);
             }
             else
-            { 
-                input = ReadPresetValue(parameter); 
+            {
+                input = ReadPresetValue(parameter);
             }
             parameter.Value = ConvertValue(input, parameter);
         }

@@ -3,11 +3,6 @@
 [TestFixture]
 internal class CreateCommandLinesTests : StepTestBase<CreateCommandLines>
 {
-    /*
-     Missing: 
-        - Test with optional parameter
-     */
-
     public override CreateCommandLines CreateSut()
     {
         return new CreateCommandLines();
@@ -56,6 +51,37 @@ internal class CreateCommandLinesTests : StepTestBase<CreateCommandLines>
         Assert.IsNotEmpty(state.CreatedCommandLines);
 
         string expectedCommandLine = $"-i test.mp4 {Path.Combine(Directory, "test.mkv")} --apend foo";
+
+        Assert.AreEqual(Path.Combine(Directory, "test.mkv"), state.CreatedCommandLines[0].OutputFile);
+        Assert.AreEqual(expectedCommandLine, state.CreatedCommandLines[0].CommandLine);
+    }
+
+    [Test]
+    public void EnsureThat_CreateCommandLine_OptionalParam_NoValueTrue()
+    {
+        var state = CreateState(@"test.mp4");
+        state.CurrentPreset = new Preset
+        {
+            TargetExtension = ".mkv",
+            CommandLine = "-i %input% %output% %optional%",
+            ParametersToAsk = new List<PresetParameter>
+            {
+                new PresetParameter
+                {
+                    ParameterName = "%optional%",
+                    IsOptional = true,
+                    OptionalContent = "--apend %optional%",
+                    Value = ""
+                }
+            }
+        };
+        state.InputFiles.Add(state.Arguments.FileName);
+        bool result = Sut.TryExecute(state);
+
+        Assert.IsTrue(result);
+        Assert.IsNotEmpty(state.CreatedCommandLines);
+
+        string expectedCommandLine = $"-i test.mp4 {Path.Combine(Directory, "test.mkv")}";
 
         Assert.AreEqual(Path.Combine(Directory, "test.mkv"), state.CreatedCommandLines[0].OutputFile);
         Assert.AreEqual(expectedCommandLine, state.CreatedCommandLines[0].CommandLine);

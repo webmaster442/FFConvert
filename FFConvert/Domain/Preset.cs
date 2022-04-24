@@ -14,7 +14,7 @@ public sealed class Preset
     public string ActivatorName { get; set; }
     public string Description { get; set; }
     public string CommandLine { get; set; }
-    
+
     [XmlAttribute]
     public string TargetExtension { get; set; }
 

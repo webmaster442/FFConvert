@@ -59,7 +59,12 @@ internal abstract class StepTestBase<T> where T : IStep
         }
     }
 
-    protected virtual State CreateState(string input, string preset = "test")
+    protected State CreateState(string input, string preset = "test")
+    {
+        return CreateState(new Arguments(new string[] { input, preset, Directory }));
+    }
+
+    protected State CreateState(Arguments input)
     {
         return new State(new Preset[]
         {
@@ -86,7 +91,7 @@ internal abstract class StepTestBase<T> where T : IStep
             }
         },
         new ProgramConfiguration(),
-        new Arguments(new string[] { input, preset, Directory }));
+        input);
     }
 
     protected void AssertHasNoIssues()

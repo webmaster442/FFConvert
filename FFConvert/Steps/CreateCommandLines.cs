@@ -3,11 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
+using System.Text;
+using System.Text.RegularExpressions;
+
 using FFConvert.Domain;
 using FFConvert.DomainServices;
 using FFConvert.Properties;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace FFConvert.Steps;
 
@@ -23,16 +24,12 @@ internal class CreateCommandLines : BaseStep
     {
         Dictionary<ParameterKey, string> parameters = new()
         {
-            {  new ParameterKey(InputKey, false), "" },
-            {  new ParameterKey(OutputKey, false), "" },
+            { new ParameterKey(InputKey, false), "" },
+            { new ParameterKey(OutputKey, false), "" },
         };
         foreach (var parameter in currentState.CurrentPreset.ParametersToAsk)
         {
-            if (!parameter.IsOptional 
-                || (parameter.IsOptional && !string.IsNullOrEmpty(parameter.Value)))
-            {
-                parameters.Add(new ParameterKey(parameter), parameter.Value);
-            }
+            parameters.Add(new ParameterKey(parameter), parameter.Value);
         }
         return parameters;
     }
@@ -92,7 +89,7 @@ internal class CreateCommandLines : BaseStep
             {
                 sb.Replace(parameter.Key.Name, EscapePathIfNeeded(parameter.Value));
             }
-            else
+            else if (!string.IsNullOrEmpty(parameter.Value))
             {
                 var optionalContent = preset.ParametersToAsk
                     .Where(p => p.ParameterName == parameter.Key.Name)
@@ -105,9 +102,14 @@ internal class CreateCommandLines : BaseStep
                     sb.Replace(parameter.Key.Name, value);
                 }
             }
-            
+            else
+            {
+                sb.Replace(parameter.Key.Name, "");
+            }
+            //double space cleanup
+            sb.Replace("  ", "");
         }
-        return sb.ToString();
+        return sb.ToString().Trim();
     }
 
     private bool CheckIfParameterCountMatches(Preset currentPreset, Dictionary<ParameterKey, string> parameters)

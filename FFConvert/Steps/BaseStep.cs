@@ -30,4 +30,9 @@ internal abstract class BaseStep : IStep
     }
 
     public abstract bool TryExecute(State state);
+
+    public virtual bool CanSkip(State state)
+    {
+        return false;
+    }
 }

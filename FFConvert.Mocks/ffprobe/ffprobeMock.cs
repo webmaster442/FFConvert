@@ -1,3 +1,3 @@
 ﻿using FFMock;
 
-Console.WriteLine(MockResponse.GetFromResource("response.json"));
+Console.WriteLine(MockResponse.GetFromResource("response.xml"));

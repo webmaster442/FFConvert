@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ffprobe:ffprobe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ffprobe="http://www.ffmpeg.org/schema/ffprobe" xsi:schemaLocation="http://www.ffmpeg.org/schema/ffprobe ffprobe.xsd">
+  <format filename="test.wav" nb_streams="1" nb_programs="0" format_name="wav" format_long_name="WAV / WAVE (Waveform Audio)" duration="200.000000" size="88244" bit_rate="705952" probe_score="99"/>
+</ffprobe:ffprobe>

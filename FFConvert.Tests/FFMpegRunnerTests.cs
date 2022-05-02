@@ -27,16 +27,16 @@ internal class FFMpegRunnerTests
     }
 
     [Test, Timeout(5000)]
-    public void EnsureThat_Probe_ParsesJson()
+    public void EnsureThat_Probe_ParsesXml()
     {
         var task = _sut.Probe(new FFMpegCommand(), CancellationToken.None);
         task.Wait();
         var result = task.Result;
 
         Assert.IsNotNull(result);
-        Assert.IsTrue(result.IsValid());
         Assert.AreEqual("test.wav", result.Format.Filename);
-        Assert.AreEqual(200.0, result.Format.Duration, 1E-6);
+        Assert.IsTrue(result.Format.Duration.HasValue);
+        Assert.AreEqual(200.0, result.Format.Duration.Value, 1E-6);
     }
 
     [Test, Timeout(5000)]

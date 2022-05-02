@@ -8,6 +8,7 @@ using System.Text.Json;
 
 using FFConvert.Domain;
 using FFConvert.DomainServices;
+using FFConvert.FFProbe;
 using FFConvert.Interfaces;
 
 namespace FFConvert.Infrastructure;
@@ -32,7 +33,7 @@ internal class FFMpegRunner : IFFMpegRunner
 #pragma warning restore RCS1233
     }
 
-    public async Task<FFProbeResult> Probe(FFMpegCommand command, CancellationToken cancellationToken)
+    public async Task<FfprobeType> Probe(FFMpegCommand command, CancellationToken cancellationToken)
     {
         if (!_ffmpegInstallOk)
             throw new InvalidOperationException("Invalid config");
@@ -45,13 +46,15 @@ internal class FFMpegRunner : IFFMpegRunner
             RedirectStandardError = true,
             CreateNoWindow = true,
             FileName = _ffprobeExe,
-            Arguments = $"-v quiet -print_format json -show_format {command.InputFile}"
+            Arguments = $"-v quiet -show_format -print_format xml=fully_qualified=1 {command.InputFile}"
         };
         process.Start();
-        string json = await process.StandardOutput.ReadToEndAsync();
+        string xml = await process.StandardOutput.ReadToEndAsync();
         await process.WaitForExitAsync(cancellationToken);
 
-        return JsonSerializer.Deserialize<FFProbeResult>(json) ?? new FFProbeResult();
+        return FFProbeParser.Parse(xml);
+
+        //return JsonSerializer.Deserialize<FFProbeResult>(json) ?? new FFProbeResult();
 
     }
 

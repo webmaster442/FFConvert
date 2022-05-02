@@ -5,6 +5,7 @@
 
 using FFConvert.Domain;
 using FFConvert.DomainServices;
+using FFConvert.FFProbe;
 using FFConvert.Interfaces;
 using FFConvert.Properties;
 
@@ -74,8 +75,8 @@ internal sealed class Encode : BaseStep, IDisposable
 
                 _console.WriteLine($"Probing: {commandLine.InputFile}...");
 
-                var result = await _fFMpegRunner.Probe(commandLine, token);
-                _currentFileTime = result.Format.Duration - result.Format.StartTime;
+                var probe  = await _fFMpegRunner.Probe(commandLine, token);
+                _currentFileTime = FFProbeParser.GetDuration(probe);
 
                 _console.WriteLine($"Encoding: {commandLine.InputFile}...");
                 _progressReport.Show();

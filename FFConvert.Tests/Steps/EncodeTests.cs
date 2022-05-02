@@ -1,4 +1,6 @@
-﻿namespace FFConvert.Tests.Steps;
+﻿using FFConvert.FFProbe;
+
+namespace FFConvert.Tests.Steps;
 
 [TestFixture]
 internal class EncodeTests : StepTestBase<Encode>
@@ -20,7 +22,7 @@ internal class EncodeTests : StepTestBase<Encode>
         _progressReportMock.Setup(x => x.Show());
         _progressReportMock.Setup(x => x.Report(It.IsAny<ConvertProgress>()));
 
-        _ffmpegRunnerMock.Setup(x => x.Probe(It.IsAny<FFMpegCommand>(), It.IsAny<CancellationToken>())).Returns(Task.FromResult(new FFProbeResult()));
+        _ffmpegRunnerMock.Setup(x => x.Probe(It.IsAny<FFMpegCommand>(), It.IsAny<CancellationToken>())).Returns(Task.FromResult(new FfprobeType()));
         _ffmpegRunnerMock.Setup(x => x.Run(It.IsAny<FFMpegCommand>(), It.IsAny<CancellationToken>())).Returns(Task.Delay(1));
 
         return new Encode(_ffmpegRunnerMock.Object, _consoleMock.Object, _progressReportMock.Object);

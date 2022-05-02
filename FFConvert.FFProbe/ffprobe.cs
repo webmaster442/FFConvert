@@ -37,8 +37,8 @@ namespace FFConvert.FFProbe
         private ErrorType errorField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ProgramVersionType program_version
+        [System.Xml.Serialization.XmlElementAttribute("program_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ProgramVersionType Program_version
         {
             get
             {
@@ -53,7 +53,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("library_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public LibraryVersionType[] library_versions
+        public LibraryVersionType[] Library_versions
         {
             get
             {
@@ -68,7 +68,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("pixel_format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public PixelFormatType[] pixel_formats
+        public PixelFormatType[] Pixel_formats
         {
             get
             {
@@ -83,7 +83,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("packet", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public PacketType[] packets
+        public PacketType[] Packets
         {
             get
             {
@@ -99,7 +99,7 @@ namespace FFConvert.FFProbe
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
         [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public object[] frames
+        public object[] Frames
         {
             get
             {
@@ -116,7 +116,7 @@ namespace FFConvert.FFProbe
         [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
         [System.Xml.Serialization.XmlArrayItemAttribute("packet", typeof(PacketType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
         [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public object[] packets_and_frames
+        public object[] Packets_and_frames
         {
             get
             {
@@ -131,7 +131,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("program", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public ProgramType[] programs
+        public ProgramType[] Programs
         {
             get
             {
@@ -146,7 +146,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public StreamType[] streams
+        public StreamType[] Streams
         {
             get
             {
@@ -161,7 +161,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("chapter", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public ChapterType[] chapters
+        public ChapterType[] Chapters
         {
             get
             {
@@ -174,8 +174,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public FormatType format
+        [System.Xml.Serialization.XmlElementAttribute("format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public FormatType Format
         {
             get
             {
@@ -188,8 +188,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ErrorType error
+        [System.Xml.Serialization.XmlElementAttribute("error", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ErrorType Error
         {
             get
             {
@@ -224,8 +224,8 @@ namespace FFConvert.FFProbe
         private string configurationField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string version
+        [System.Xml.Serialization.XmlAttributeAttribute("version")]
+        public string Version
         {
             get
             {
@@ -238,8 +238,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string copyright
+        [System.Xml.Serialization.XmlAttributeAttribute("copyright")]
+        public string Copyright
         {
             get
             {
@@ -252,8 +252,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string build_date
+        [System.Xml.Serialization.XmlAttributeAttribute("build_date")]
+        public string Build_date
         {
             get
             {
@@ -266,8 +266,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string build_time
+        [System.Xml.Serialization.XmlAttributeAttribute("build_time")]
+        public string Build_time
         {
             get
             {
@@ -280,8 +280,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string compiler_ident
+        [System.Xml.Serialization.XmlAttributeAttribute("compiler_ident")]
+        public string Compiler_ident
         {
             get
             {
@@ -294,8 +294,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string configuration
+        [System.Xml.Serialization.XmlAttributeAttribute("configuration")]
+        public string Configuration
         {
             get
             {
@@ -330,8 +330,8 @@ namespace FFConvert.FFProbe
         private string identField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string name
+        [System.Xml.Serialization.XmlAttributeAttribute("name")]
+        public string Name
         {
             get
             {
@@ -344,8 +344,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int major
+        [System.Xml.Serialization.XmlAttributeAttribute("major")]
+        public int Major
         {
             get
             {
@@ -358,8 +358,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int minor
+        [System.Xml.Serialization.XmlAttributeAttribute("minor")]
+        public int Minor
         {
             get
             {
@@ -372,8 +372,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int micro
+        [System.Xml.Serialization.XmlAttributeAttribute("micro")]
+        public int Micro
         {
             get
             {
@@ -386,8 +386,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int version
+        [System.Xml.Serialization.XmlAttributeAttribute("version")]
+        public int Version
         {
             get
             {
@@ -400,8 +400,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ident
+        [System.Xml.Serialization.XmlAttributeAttribute("ident")]
+        public string Ident
         {
             get
             {
@@ -444,8 +444,8 @@ namespace FFConvert.FFProbe
         private bool bits_per_pixelFieldSpecified;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PixelFormatFlagsType flags
+        [System.Xml.Serialization.XmlElementAttribute("flags", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PixelFormatFlagsType Flags
         {
             get
             {
@@ -460,7 +460,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("component", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public PixelFormatComponentType[] components
+        public PixelFormatComponentType[] Components
         {
             get
             {
@@ -473,8 +473,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string name
+        [System.Xml.Serialization.XmlAttributeAttribute("name")]
+        public string Name
         {
             get
             {
@@ -487,8 +487,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int nb_components
+        [System.Xml.Serialization.XmlAttributeAttribute("nb_components")]
+        public int Nb_components
         {
             get
             {
@@ -591,7 +591,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> log2_chroma_w
+        public System.Nullable<int> Log2_chroma_w
         {
             get
             {
@@ -619,7 +619,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> log2_chroma_h
+        public System.Nullable<int> Log2_chroma_h
         {
             get
             {
@@ -647,7 +647,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> bits_per_pixel
+        public System.Nullable<int> Bits_per_pixel
         {
             get
             {
@@ -699,8 +699,8 @@ namespace FFConvert.FFProbe
         private int alphaField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int big_endian
+        [System.Xml.Serialization.XmlAttributeAttribute("big_endian")]
+        public int Big_endian
         {
             get
             {
@@ -713,8 +713,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int palette
+        [System.Xml.Serialization.XmlAttributeAttribute("palette")]
+        public int Palette
         {
             get
             {
@@ -727,8 +727,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int bitstream
+        [System.Xml.Serialization.XmlAttributeAttribute("bitstream")]
+        public int Bitstream
         {
             get
             {
@@ -741,8 +741,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int hwaccel
+        [System.Xml.Serialization.XmlAttributeAttribute("hwaccel")]
+        public int Hwaccel
         {
             get
             {
@@ -755,8 +755,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int planar
+        [System.Xml.Serialization.XmlAttributeAttribute("planar")]
+        public int Planar
         {
             get
             {
@@ -769,8 +769,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int rgb
+        [System.Xml.Serialization.XmlAttributeAttribute("rgb")]
+        public int Rgb
         {
             get
             {
@@ -783,8 +783,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int alpha
+        [System.Xml.Serialization.XmlAttributeAttribute("alpha")]
+        public int Alpha
         {
             get
             {
@@ -811,8 +811,8 @@ namespace FFConvert.FFProbe
         private int bit_depthField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int index
+        [System.Xml.Serialization.XmlAttributeAttribute("index")]
+        public int Index
         {
             get
             {
@@ -825,8 +825,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int bit_depth
+        [System.Xml.Serialization.XmlAttributeAttribute("bit_depth")]
+        public int Bit_depth
         {
             get
             {
@@ -894,7 +894,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -909,7 +909,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public PacketSideDataType[] side_data_list
+        public PacketSideDataType[] Side_data_list
         {
             get
             {
@@ -922,8 +922,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_type
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_type")]
+        public string Codec_type
         {
             get
             {
@@ -936,8 +936,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int stream_index
+        [System.Xml.Serialization.XmlAttributeAttribute("stream_index")]
+        public int Stream_index
         {
             get
             {
@@ -1130,8 +1130,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public long size
+        [System.Xml.Serialization.XmlAttributeAttribute("size")]
+        public long Size
         {
             get
             {
@@ -1174,8 +1174,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string flags
+        [System.Xml.Serialization.XmlAttributeAttribute("flags")]
+        public string Flags
         {
             get
             {
@@ -1188,8 +1188,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string data
+        [System.Xml.Serialization.XmlAttributeAttribute("data")]
+        public string Data
         {
             get
             {
@@ -1202,8 +1202,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string data_hash
+        [System.Xml.Serialization.XmlAttributeAttribute("data_hash")]
+        public string Data_hash
         {
             get
             {
@@ -1216,7 +1216,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pts
+        public System.Nullable<long> Pts
         {
             get
             {
@@ -1244,7 +1244,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> pts_time
+        public System.Nullable<float> Pts_time
         {
             get
             {
@@ -1272,7 +1272,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> dts
+        public System.Nullable<long> Dts
         {
             get
             {
@@ -1300,7 +1300,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> dts_time
+        public System.Nullable<float> Dts_time
         {
             get
             {
@@ -1328,7 +1328,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> duration
+        public System.Nullable<long> Duration
         {
             get
             {
@@ -1356,7 +1356,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> duration_time
+        public System.Nullable<float> Duration_time
         {
             get
             {
@@ -1384,7 +1384,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pos
+        public System.Nullable<long> Pos
         {
             get
             {
@@ -1426,8 +1426,8 @@ namespace FFConvert.FFProbe
         private string valueField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string key
+        [System.Xml.Serialization.XmlAttributeAttribute("key")]
+        public string Key
         {
             get
             {
@@ -1440,8 +1440,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string value
+        [System.Xml.Serialization.XmlAttributeAttribute("value")]
+        public string Value
         {
             get
             {
@@ -1470,8 +1470,8 @@ namespace FFConvert.FFProbe
         private bool side_data_sizeFieldSpecified;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string side_data_type
+        [System.Xml.Serialization.XmlAttributeAttribute("side_data_type")]
+        public string Side_data_type
         {
             get
             {
@@ -1514,7 +1514,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> side_data_size
+        public System.Nullable<int> Side_data_size
         {
             get
             {
@@ -1663,7 +1663,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -1678,7 +1678,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("log", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public LogType[] logs
+        public LogType[] Logs
         {
             get
             {
@@ -1693,7 +1693,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public FrameSideDataType[] side_data_list
+        public FrameSideDataType[] Side_data_list
         {
             get
             {
@@ -1706,8 +1706,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string media_type
+        [System.Xml.Serialization.XmlAttributeAttribute("media_type")]
+        public string Media_type
         {
             get
             {
@@ -1750,8 +1750,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int key_frame
+        [System.Xml.Serialization.XmlAttributeAttribute("key_frame")]
+        public int Key_frame
         {
             get
             {
@@ -2064,8 +2064,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string sample_fmt
+        [System.Xml.Serialization.XmlAttributeAttribute("sample_fmt")]
+        public string Sample_fmt
         {
             get
             {
@@ -2138,8 +2138,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string channel_layout
+        [System.Xml.Serialization.XmlAttributeAttribute("channel_layout")]
+        public string Channel_layout
         {
             get
             {
@@ -2212,8 +2212,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string pix_fmt
+        [System.Xml.Serialization.XmlAttributeAttribute("pix_fmt")]
+        public string Pix_fmt
         {
             get
             {
@@ -2226,8 +2226,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string sample_aspect_ratio
+        [System.Xml.Serialization.XmlAttributeAttribute("sample_aspect_ratio")]
+        public string Sample_aspect_ratio
         {
             get
             {
@@ -2240,8 +2240,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string pict_type
+        [System.Xml.Serialization.XmlAttributeAttribute("pict_type")]
+        public string Pict_type
         {
             get
             {
@@ -2404,8 +2404,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_range
+        [System.Xml.Serialization.XmlAttributeAttribute("color_range")]
+        public string Color_range
         {
             get
             {
@@ -2418,8 +2418,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_space
+        [System.Xml.Serialization.XmlAttributeAttribute("color_space")]
+        public string Color_space
         {
             get
             {
@@ -2432,8 +2432,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_primaries
+        [System.Xml.Serialization.XmlAttributeAttribute("color_primaries")]
+        public string Color_primaries
         {
             get
             {
@@ -2446,8 +2446,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_transfer
+        [System.Xml.Serialization.XmlAttributeAttribute("color_transfer")]
+        public string Color_transfer
         {
             get
             {
@@ -2460,8 +2460,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string chroma_location
+        [System.Xml.Serialization.XmlAttributeAttribute("chroma_location")]
+        public string Chroma_location
         {
             get
             {
@@ -2474,7 +2474,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> stream_index
+        public System.Nullable<int> Stream_index
         {
             get
             {
@@ -2502,7 +2502,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pts
+        public System.Nullable<long> Pts
         {
             get
             {
@@ -2530,7 +2530,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> pts_time
+        public System.Nullable<float> Pts_time
         {
             get
             {
@@ -2558,7 +2558,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pkt_dts
+        public System.Nullable<long> Pkt_dts
         {
             get
             {
@@ -2586,7 +2586,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> pkt_dts_time
+        public System.Nullable<float> Pkt_dts_time
         {
             get
             {
@@ -2614,7 +2614,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> best_effort_timestamp
+        public System.Nullable<long> Best_effort_timestamp
         {
             get
             {
@@ -2642,7 +2642,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> best_effort_timestamp_time
+        public System.Nullable<float> Best_effort_timestamp_time
         {
             get
             {
@@ -2670,7 +2670,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pkt_duration
+        public System.Nullable<long> Pkt_duration
         {
             get
             {
@@ -2698,7 +2698,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> pkt_duration_time
+        public System.Nullable<float> Pkt_duration_time
         {
             get
             {
@@ -2726,7 +2726,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pkt_pos
+        public System.Nullable<long> Pkt_pos
         {
             get
             {
@@ -2754,7 +2754,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> pkt_size
+        public System.Nullable<int> Pkt_size
         {
             get
             {
@@ -2782,7 +2782,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> nb_samples
+        public System.Nullable<long> Nb_samples
         {
             get
             {
@@ -2810,7 +2810,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> channels
+        public System.Nullable<int> Channels
         {
             get
             {
@@ -2838,7 +2838,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> width
+        public System.Nullable<long> Width
         {
             get
             {
@@ -2866,7 +2866,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> height
+        public System.Nullable<long> Height
         {
             get
             {
@@ -2894,7 +2894,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> coded_picture_number
+        public System.Nullable<long> Coded_picture_number
         {
             get
             {
@@ -2922,7 +2922,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> display_picture_number
+        public System.Nullable<long> Display_picture_number
         {
             get
             {
@@ -2950,7 +2950,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> interlaced_frame
+        public System.Nullable<int> Interlaced_frame
         {
             get
             {
@@ -2978,7 +2978,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> top_field_first
+        public System.Nullable<int> Top_field_first
         {
             get
             {
@@ -3006,7 +3006,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> repeat_pict
+        public System.Nullable<int> Repeat_pict
         {
             get
             {
@@ -3062,8 +3062,8 @@ namespace FFConvert.FFProbe
         private string messageField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string context
+        [System.Xml.Serialization.XmlAttributeAttribute("context")]
+        public string Context
         {
             get
             {
@@ -3136,8 +3136,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string parent_context
+        [System.Xml.Serialization.XmlAttributeAttribute("parent_context")]
+        public string Parent_context
         {
             get
             {
@@ -3180,8 +3180,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string message
+        [System.Xml.Serialization.XmlAttributeAttribute("message")]
+        public string Message
         {
             get
             {
@@ -3194,7 +3194,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> level
+        public System.Nullable<int> Level
         {
             get
             {
@@ -3222,7 +3222,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> category
+        public System.Nullable<int> Category
         {
             get
             {
@@ -3250,7 +3250,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> parent_category
+        public System.Nullable<int> Parent_category
         {
             get
             {
@@ -3300,7 +3300,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("timecode", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public FrameSideDataTimecodeType[] timecodes
+        public FrameSideDataTimecodeType[] Timecodes
         {
             get
             {
@@ -3313,8 +3313,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string side_data_type
+        [System.Xml.Serialization.XmlAttributeAttribute("side_data_type")]
+        public string Side_data_type
         {
             get
             {
@@ -3357,8 +3357,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string timecode
+        [System.Xml.Serialization.XmlAttributeAttribute("timecode")]
+        public string Timecode
         {
             get
             {
@@ -3371,7 +3371,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> side_data_size
+        public System.Nullable<int> Side_data_size
         {
             get
             {
@@ -3411,8 +3411,8 @@ namespace FFConvert.FFProbe
         private string valueField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string value
+        [System.Xml.Serialization.XmlAttributeAttribute("value")]
+        public string Value
         {
             get
             {
@@ -3466,8 +3466,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string media_type
+        [System.Xml.Serialization.XmlAttributeAttribute("media_type")]
+        public string Media_type
         {
             get
             {
@@ -3660,7 +3660,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> pts
+        public System.Nullable<long> Pts
         {
             get
             {
@@ -3688,7 +3688,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> pts_time
+        public System.Nullable<float> Pts_time
         {
             get
             {
@@ -3716,7 +3716,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> format
+        public System.Nullable<int> Format
         {
             get
             {
@@ -3744,7 +3744,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> start_display_time
+        public System.Nullable<int> Start_display_time
         {
             get
             {
@@ -3772,7 +3772,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> end_display_time
+        public System.Nullable<int> End_display_time
         {
             get
             {
@@ -3800,7 +3800,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> num_rects
+        public System.Nullable<int> Num_rects
         {
             get
             {
@@ -3853,7 +3853,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -3868,7 +3868,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public StreamType[] streams
+        public StreamType[] Streams
         {
             get
             {
@@ -3881,8 +3881,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int program_id
+        [System.Xml.Serialization.XmlAttributeAttribute("program_id")]
+        public int Program_id
         {
             get
             {
@@ -3895,8 +3895,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int program_num
+        [System.Xml.Serialization.XmlAttributeAttribute("program_num")]
+        public int Program_num
         {
             get
             {
@@ -3909,8 +3909,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int nb_streams
+        [System.Xml.Serialization.XmlAttributeAttribute("nb_streams")]
+        public int Nb_streams
         {
             get
             {
@@ -3923,8 +3923,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int pmt_pid
+        [System.Xml.Serialization.XmlAttributeAttribute("pmt_pid")]
+        public int Pmt_pid
         {
             get
             {
@@ -3937,8 +3937,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int pcr_pid
+        [System.Xml.Serialization.XmlAttributeAttribute("pcr_pid")]
+        public int Pcr_pid
         {
             get
             {
@@ -4107,8 +4107,8 @@ namespace FFConvert.FFProbe
         private bool nb_read_packetsFieldSpecified;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public StreamDispositionType disposition
+        [System.Xml.Serialization.XmlElementAttribute("disposition", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public StreamDispositionType Disposition
         {
             get
             {
@@ -4122,7 +4122,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -4137,7 +4137,7 @@ namespace FFConvert.FFProbe
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public PacketSideDataType[] side_data_list
+        public PacketSideDataType[] Side_data_list
         {
             get
             {
@@ -4150,8 +4150,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int index
+        [System.Xml.Serialization.XmlAttributeAttribute("index")]
+        public int Index
         {
             get
             {
@@ -4164,8 +4164,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_name
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_name")]
+        public string Codec_name
         {
             get
             {
@@ -4178,8 +4178,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_long_name
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_long_name")]
+        public string Codec_long_name
         {
             get
             {
@@ -4192,8 +4192,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string profile
+        [System.Xml.Serialization.XmlAttributeAttribute("profile")]
+        public string Profile
         {
             get
             {
@@ -4206,8 +4206,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_type
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_type")]
+        public string Codec_type
         {
             get
             {
@@ -4220,8 +4220,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_tag
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_tag")]
+        public string Codec_tag
         {
             get
             {
@@ -4234,8 +4234,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string codec_tag_string
+        [System.Xml.Serialization.XmlAttributeAttribute("codec_tag_string")]
+        public string Codec_tag_string
         {
             get
             {
@@ -4248,8 +4248,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string extradata
+        [System.Xml.Serialization.XmlAttributeAttribute("extradata")]
+        public string Extradata
         {
             get
             {
@@ -4292,8 +4292,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string extradata_hash
+        [System.Xml.Serialization.XmlAttributeAttribute("extradata_hash")]
+        public string Extradata_hash
         {
             get
             {
@@ -4516,8 +4516,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string sample_aspect_ratio
+        [System.Xml.Serialization.XmlAttributeAttribute("sample_aspect_ratio")]
+        public string Sample_aspect_ratio
         {
             get
             {
@@ -4530,8 +4530,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string display_aspect_ratio
+        [System.Xml.Serialization.XmlAttributeAttribute("display_aspect_ratio")]
+        public string Display_aspect_ratio
         {
             get
             {
@@ -4544,8 +4544,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string pix_fmt
+        [System.Xml.Serialization.XmlAttributeAttribute("pix_fmt")]
+        public string Pix_fmt
         {
             get
             {
@@ -4588,8 +4588,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_range
+        [System.Xml.Serialization.XmlAttributeAttribute("color_range")]
+        public string Color_range
         {
             get
             {
@@ -4602,8 +4602,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_space
+        [System.Xml.Serialization.XmlAttributeAttribute("color_space")]
+        public string Color_space
         {
             get
             {
@@ -4616,8 +4616,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_transfer
+        [System.Xml.Serialization.XmlAttributeAttribute("color_transfer")]
+        public string Color_transfer
         {
             get
             {
@@ -4630,8 +4630,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string color_primaries
+        [System.Xml.Serialization.XmlAttributeAttribute("color_primaries")]
+        public string Color_primaries
         {
             get
             {
@@ -4644,8 +4644,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string chroma_location
+        [System.Xml.Serialization.XmlAttributeAttribute("chroma_location")]
+        public string Chroma_location
         {
             get
             {
@@ -4658,8 +4658,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string field_order
+        [System.Xml.Serialization.XmlAttributeAttribute("field_order")]
+        public string Field_order
         {
             get
             {
@@ -4702,8 +4702,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string sample_fmt
+        [System.Xml.Serialization.XmlAttributeAttribute("sample_fmt")]
+        public string Sample_fmt
         {
             get
             {
@@ -4776,8 +4776,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string channel_layout
+        [System.Xml.Serialization.XmlAttributeAttribute("channel_layout")]
+        public string Channel_layout
         {
             get
             {
@@ -4820,8 +4820,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id
+        [System.Xml.Serialization.XmlAttributeAttribute("id")]
+        public string Id
         {
             get
             {
@@ -4834,8 +4834,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string r_frame_rate
+        [System.Xml.Serialization.XmlAttributeAttribute("r_frame_rate")]
+        public string R_frame_rate
         {
             get
             {
@@ -4848,8 +4848,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string avg_frame_rate
+        [System.Xml.Serialization.XmlAttributeAttribute("avg_frame_rate")]
+        public string Avg_frame_rate
         {
             get
             {
@@ -4862,8 +4862,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string time_base
+        [System.Xml.Serialization.XmlAttributeAttribute("time_base")]
+        public string Time_base
         {
             get
             {
@@ -5176,7 +5176,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> extradata_size
+        public System.Nullable<int> Extradata_size
         {
             get
             {
@@ -5204,7 +5204,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> width
+        public System.Nullable<int> Width
         {
             get
             {
@@ -5232,7 +5232,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> height
+        public System.Nullable<int> Height
         {
             get
             {
@@ -5260,7 +5260,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> coded_width
+        public System.Nullable<int> Coded_width
         {
             get
             {
@@ -5288,7 +5288,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> coded_height
+        public System.Nullable<int> Coded_height
         {
             get
             {
@@ -5316,7 +5316,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<bool> closed_captions
+        public System.Nullable<bool> Closed_captions
         {
             get
             {
@@ -5344,7 +5344,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<bool> film_grain
+        public System.Nullable<bool> Film_grain
         {
             get
             {
@@ -5372,7 +5372,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> has_b_frames
+        public System.Nullable<int> Has_b_frames
         {
             get
             {
@@ -5400,7 +5400,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> level
+        public System.Nullable<int> Level
         {
             get
             {
@@ -5428,7 +5428,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> refs
+        public System.Nullable<int> Refs
         {
             get
             {
@@ -5456,7 +5456,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> sample_rate
+        public System.Nullable<int> Sample_rate
         {
             get
             {
@@ -5484,7 +5484,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> channels
+        public System.Nullable<int> Channels
         {
             get
             {
@@ -5512,7 +5512,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> bits_per_sample
+        public System.Nullable<int> Bits_per_sample
         {
             get
             {
@@ -5540,7 +5540,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> start_pts
+        public System.Nullable<long> Start_pts
         {
             get
             {
@@ -5568,7 +5568,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> start_time
+        public System.Nullable<float> Start_time
         {
             get
             {
@@ -5596,7 +5596,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> duration_ts
+        public System.Nullable<long> Duration_ts
         {
             get
             {
@@ -5624,7 +5624,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> duration
+        public System.Nullable<float> Duration
         {
             get
             {
@@ -5652,7 +5652,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> bit_rate
+        public System.Nullable<int> Bit_rate
         {
             get
             {
@@ -5680,7 +5680,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> max_bit_rate
+        public System.Nullable<int> Max_bit_rate
         {
             get
             {
@@ -5708,7 +5708,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> bits_per_raw_sample
+        public System.Nullable<int> Bits_per_raw_sample
         {
             get
             {
@@ -5736,7 +5736,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> nb_frames
+        public System.Nullable<int> Nb_frames
         {
             get
             {
@@ -5764,7 +5764,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> nb_read_frames
+        public System.Nullable<int> Nb_read_frames
         {
             get
             {
@@ -5792,7 +5792,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> nb_read_packets
+        public System.Nullable<int> Nb_read_packets
         {
             get
             {
@@ -5864,8 +5864,8 @@ namespace FFConvert.FFProbe
         private int still_imageField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int @default
+        [System.Xml.Serialization.XmlAttributeAttribute("default")]
+        public int Default
         {
             get
             {
@@ -5878,8 +5878,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int dub
+        [System.Xml.Serialization.XmlAttributeAttribute("dub")]
+        public int Dub
         {
             get
             {
@@ -5892,8 +5892,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int original
+        [System.Xml.Serialization.XmlAttributeAttribute("original")]
+        public int Original
         {
             get
             {
@@ -5906,8 +5906,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int comment
+        [System.Xml.Serialization.XmlAttributeAttribute("comment")]
+        public int Comment
         {
             get
             {
@@ -5920,8 +5920,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int lyrics
+        [System.Xml.Serialization.XmlAttributeAttribute("lyrics")]
+        public int Lyrics
         {
             get
             {
@@ -5934,8 +5934,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int karaoke
+        [System.Xml.Serialization.XmlAttributeAttribute("karaoke")]
+        public int Karaoke
         {
             get
             {
@@ -5948,8 +5948,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int forced
+        [System.Xml.Serialization.XmlAttributeAttribute("forced")]
+        public int Forced
         {
             get
             {
@@ -5962,8 +5962,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int hearing_impaired
+        [System.Xml.Serialization.XmlAttributeAttribute("hearing_impaired")]
+        public int Hearing_impaired
         {
             get
             {
@@ -5976,8 +5976,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int visual_impaired
+        [System.Xml.Serialization.XmlAttributeAttribute("visual_impaired")]
+        public int Visual_impaired
         {
             get
             {
@@ -5990,8 +5990,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int clean_effects
+        [System.Xml.Serialization.XmlAttributeAttribute("clean_effects")]
+        public int Clean_effects
         {
             get
             {
@@ -6004,8 +6004,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int attached_pic
+        [System.Xml.Serialization.XmlAttributeAttribute("attached_pic")]
+        public int Attached_pic
         {
             get
             {
@@ -6018,8 +6018,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int timed_thumbnails
+        [System.Xml.Serialization.XmlAttributeAttribute("timed_thumbnails")]
+        public int Timed_thumbnails
         {
             get
             {
@@ -6032,8 +6032,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int captions
+        [System.Xml.Serialization.XmlAttributeAttribute("captions")]
+        public int Captions
         {
             get
             {
@@ -6046,8 +6046,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int descriptions
+        [System.Xml.Serialization.XmlAttributeAttribute("descriptions")]
+        public int Descriptions
         {
             get
             {
@@ -6060,8 +6060,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int metadata
+        [System.Xml.Serialization.XmlAttributeAttribute("metadata")]
+        public int Metadata
         {
             get
             {
@@ -6074,8 +6074,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int dependent
+        [System.Xml.Serialization.XmlAttributeAttribute("dependent")]
+        public int Dependent
         {
             get
             {
@@ -6088,8 +6088,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int still_image
+        [System.Xml.Serialization.XmlAttributeAttribute("still_image")]
+        public int Still_image
         {
             get
             {
@@ -6129,7 +6129,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -6142,8 +6142,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int id
+        [System.Xml.Serialization.XmlAttributeAttribute("id")]
+        public int Id
         {
             get
             {
@@ -6156,8 +6156,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string time_base
+        [System.Xml.Serialization.XmlAttributeAttribute("time_base")]
+        public string Time_base
         {
             get
             {
@@ -6170,8 +6170,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int start
+        [System.Xml.Serialization.XmlAttributeAttribute("start")]
+        public int Start
         {
             get
             {
@@ -6214,8 +6214,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int end
+        [System.Xml.Serialization.XmlAttributeAttribute("end")]
+        public int End
         {
             get
             {
@@ -6228,8 +6228,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public float end_time
+        [System.Xml.Serialization.XmlAttributeAttribute("end_time")]
+        public float End_time
         {
             get
             {
@@ -6242,7 +6242,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> start_time
+        public System.Nullable<float> Start_time
         {
             get
             {
@@ -6313,7 +6313,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public TagType[] tag
+        public TagType[] Tag
         {
             get
             {
@@ -6326,8 +6326,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string filename
+        [System.Xml.Serialization.XmlAttributeAttribute("filename")]
+        public string Filename
         {
             get
             {
@@ -6340,8 +6340,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int nb_streams
+        [System.Xml.Serialization.XmlAttributeAttribute("nb_streams")]
+        public int Nb_streams
         {
             get
             {
@@ -6354,8 +6354,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int nb_programs
+        [System.Xml.Serialization.XmlAttributeAttribute("nb_programs")]
+        public int Nb_programs
         {
             get
             {
@@ -6368,8 +6368,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string format_name
+        [System.Xml.Serialization.XmlAttributeAttribute("format_name")]
+        public string Format_name
         {
             get
             {
@@ -6382,8 +6382,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string format_long_name
+        [System.Xml.Serialization.XmlAttributeAttribute("format_long_name")]
+        public string Format_long_name
         {
             get
             {
@@ -6546,7 +6546,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> start_time
+        public System.Nullable<float> Start_time
         {
             get
             {
@@ -6574,7 +6574,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<float> duration
+        public System.Nullable<float> Duration
         {
             get
             {
@@ -6602,7 +6602,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> size
+        public System.Nullable<long> Size
         {
             get
             {
@@ -6630,7 +6630,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<long> bit_rate
+        public System.Nullable<long> Bit_rate
         {
             get
             {
@@ -6658,7 +6658,7 @@ namespace FFConvert.FFProbe
         }
         
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public System.Nullable<int> probe_score
+        public System.Nullable<int> Probe_score
         {
             get
             {
@@ -6700,8 +6700,8 @@ namespace FFConvert.FFProbe
         private string stringField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int code
+        [System.Xml.Serialization.XmlAttributeAttribute("code")]
+        public int Code
         {
             get
             {
@@ -6714,8 +6714,8 @@ namespace FFConvert.FFProbe
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string @string
+        [System.Xml.Serialization.XmlAttributeAttribute("string")]
+        public string String
         {
             get
             {
@@ -6741,7 +6741,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("packet", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PacketType[] packet
+        public PacketType[] Packet
         {
             get
             {
@@ -6822,7 +6822,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PacketSideDataType[] side_data
+        public PacketSideDataType[] Side_data
         {
             get
             {
@@ -6848,7 +6848,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("log", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LogType[] log
+        public LogType[] Log
         {
             get
             {
@@ -6874,7 +6874,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public FrameSideDataType[] side_data
+        public FrameSideDataType[] Side_data
         {
             get
             {
@@ -6900,7 +6900,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("timecode", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public FrameSideDataTimecodeType[] timecode
+        public FrameSideDataTimecodeType[] Timecode
         {
             get
             {
@@ -6926,7 +6926,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public StreamType[] stream
+        public StreamType[] Stream
         {
             get
             {
@@ -6952,7 +6952,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("program", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ProgramType[] program
+        public ProgramType[] Program
         {
             get
             {
@@ -6978,7 +6978,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("chapter", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ChapterType[] chapter
+        public ChapterType[] Chapter
         {
             get
             {
@@ -7004,7 +7004,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("library_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public LibraryVersionType[] library_version
+        public LibraryVersionType[] Library_version
         {
             get
             {
@@ -7030,7 +7030,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("component", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PixelFormatComponentType[] component
+        public PixelFormatComponentType[] Component
         {
             get
             {
@@ -7056,7 +7056,7 @@ namespace FFConvert.FFProbe
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("pixel_format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PixelFormatType[] pixel_format
+        public PixelFormatType[] Pixel_format
         {
             get
             {

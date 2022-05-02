@@ -150,6 +150,9 @@
   <data name="ErrorMinMaxRange" xml:space="preserve">
     <value>Invalid value. Value must be minimum {0} and maximum {1}</value>
   </data>
+  <data name="ErrorOutputDirNotExist" xml:space="preserve">
+    <value>Output directory doesn't exist: {0}</value>
+  </data>
   <data name="ErrorParamCountMissmatch" xml:space="preserve">
     <value>The selected presets command line parameter count doesn't match the provided count. 
 This is a preset issue.</value>

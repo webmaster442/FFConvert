@@ -2,7 +2,7 @@
   "profiles": {
     "FFConvert": {
       "commandName": "Project",
-      "commandLineArgs": "--install"
+      "commandLineArgs": "e:\\GIT\\FFConvert\\FFConvert.SystemTest\\test.wav m4a e:\\GIT\\FFConvert\\FFConvert.SystemTest\\output"
     }
   }
 }

@@ -61,6 +61,7 @@ try
 
     using StepRunner runner = new(dependencies.Console,
                                   new CheckFFmpegInstallation(),
+                                  new CheckIfTargetDirExists(),
                                   new CollectInputFiles(),
                                   new CollectInputFilesFromFile(),
                                   new PresetValidation(dependencies.Converters, dependencies.Validators),

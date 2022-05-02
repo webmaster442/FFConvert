@@ -19,7 +19,7 @@ internal sealed class ConvertProgress
         ProcessedFile = file;
         double remain = (fullTime - fFMpegOutput.Time.TotalSeconds) / fFMpegOutput.Speed;
         string time = "Unknown";
-        if (!double.IsInfinity(remain))
+        if (!double.IsInfinity(remain) && !double.IsNaN(remain))
         {
             time = TimeSpan.FromSeconds(remain).ToString();
         }

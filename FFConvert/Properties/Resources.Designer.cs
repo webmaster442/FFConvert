@@ -160,6 +160,15 @@ namespace FFConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Output directory doesn&apos;t exist: {0}.
+        /// </summary>
+        internal static string ErrorOutputDirNotExist {
+            get {
+                return ResourceManager.GetString("ErrorOutputDirNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected presets command line parameter count doesn&apos;t match the provided count. 
         ///This is a preset issue..
         /// </summary>

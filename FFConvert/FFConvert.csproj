@@ -25,6 +25,10 @@
   <ItemGroup>
     <None Include="$(Pkg7-Zip_CommandLine)\tools\x64\7za.exe" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FFConvert.FFProbe\FFConvert.FFProbe.csproj" />
+  </ItemGroup>
   
 
   <ItemGroup>

@@ -124,6 +124,15 @@ namespace FFConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General Error. This shouldn&apos;t have happened.
+        /// </summary>
+        internal static string ErrorGeneral {
+            get {
+                return ResourceManager.GetString("ErrorGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FFMpeg install aborted.
         /// </summary>
         internal static string ErrorInstallAbort {

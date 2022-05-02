@@ -138,6 +138,9 @@
   <data name="ErrorFilesNotFound" xml:space="preserve">
     <value>No input files found that match the given filter</value>
   </data>
+  <data name="ErrorGeneral" xml:space="preserve">
+    <value>General Error. This shouldn't have happened</value>
+  </data>
   <data name="ErrorInstallAbort" xml:space="preserve">
     <value>FFMpeg install aborted</value>
   </data>

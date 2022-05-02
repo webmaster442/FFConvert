@@ -1,16 +1,16 @@
 ﻿namespace FFConvert.Tests.Steps;
 
-internal class CommandLineToConsoleTests : StepTestBase<CommandLineToConsole>
+internal class CommandLineToConsoleTests : StepTestBase<CommandLineToFile>
 {
     private Mock<IConsole> _consoleMock;
     private List<string> _lines;
 
-    public override CommandLineToConsole CreateSut()
+    public override CommandLineToFile CreateSut()
     {
         _lines = new List<string>();
         _consoleMock = new Mock<IConsole>(MockBehavior.Strict);
         _consoleMock.Setup(x => x.WriteLine(It.IsAny<string>())).Callback((string line) => _lines.Add(line));
-        return new CommandLineToConsole(_consoleMock.Object);
+        return new CommandLineToFile(_consoleMock.Object);
     }
 
     [TestCase("--sh", false)]

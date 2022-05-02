@@ -34,9 +34,7 @@ internal sealed class Encode : BaseStep, IDisposable
     public override bool CanSkip(State state)
     {
         return
-            state.Arguments.IsSwitchPresent(Constants.SwitchOutputToSh)
-            || state.Arguments.IsSwitchPresent(Constants.SwitchOutputToBat)
-            || state.Arguments.IsSwitchPresent(Constants.SwithOuputToPs);
+            state.Arguments.TryGetSwitchWithValue(Constants.SwitchOutputToSh, out _);
     }
 
     private void OnCancel(object? sender, EventArgs e)

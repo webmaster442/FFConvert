@@ -11,11 +11,11 @@ using FFConvert.Properties;
 
 namespace FFConvert.Steps;
 
-internal class CommandLineToConsole : BaseStep
+internal class CommandLineToFile : BaseStep
 {
     private readonly IConsole _console;
 
-    public CommandLineToConsole(IConsole console)
+    public CommandLineToFile(IConsole console)
     {
         _console = console;
     }
@@ -23,36 +23,39 @@ internal class CommandLineToConsole : BaseStep
     public override bool CanSkip(State state)
     {
         return
-            !state.Arguments.IsSwitchPresent(Constants.SwitchOutputToSh)
-            && !state.Arguments.IsSwitchPresent(Constants.SwitchOutputToBat)
-            && !state.Arguments.IsSwitchPresent(Constants.SwithOuputToPs);
+            !state.Arguments.TryGetSwitchWithValue(Constants.SwitchOutputToSh, out _);
     }
 
     public override bool TryExecute(State state)
     {
-
         if (!state.Configuration.TryGetFFmpeg(out string ffmpegPath))
         {
             AddIssue(Resources.ErrorFFmpegNotFound, state.Configuration.FFMpegDir);
             return false;
         }
 
-        WriteHeader(state.Arguments);
-
-        foreach (var commandLine in state.CreatedCommandLines)
+        if (!state.Arguments.TryGetSwitchWithValue(Constants.SwitchOutputToSh, out string file))
         {
-            string line = $"{ffmpegPath} {commandLine.CommandLine}";
-            _console.WriteLine(line);
+            AddIssue(Resources.ErrorGeneral);
+            return false;
         }
 
-        return true;
-    }
-
-    private void WriteHeader(Arguments arguments)
-    {
-        if (arguments.IsSwitchPresent(Constants.SwitchOutputToSh))
+        try
         {
-            _console.WriteLine("#!/bin/bash");
+            using (var writer = File.AppendText(file))
+            {
+                foreach (var commandLine in state.CreatedCommandLines)
+                {
+                    string line = $"{ffmpegPath} {commandLine.CommandLine}";
+                    writer.WriteLine(line);
+                }
+            }
         }
+        catch (IOException ex)
+        {
+            AddIssue(ex.Message);
+        }
+
+        return AreNoIssues();
     }
 }

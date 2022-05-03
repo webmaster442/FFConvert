@@ -9,7 +9,6 @@ internal class CommandLineToConsoleTests : StepTestBase<CommandLineToFile>
     {
         _lines = new List<string>();
         _consoleMock = new Mock<IConsole>(MockBehavior.Strict);
-        _consoleMock.Setup(x => x.WriteLine(It.IsAny<string>())).Callback((string line) => _lines.Add(line));
         return new CommandLineToFile(_consoleMock.Object);
     }
 
@@ -39,22 +38,9 @@ internal class CommandLineToConsoleTests : StepTestBase<CommandLineToFile>
     }
 
     [Test]
-    public void EnsureThat_TryExecute_AddsHeader_IfSh()
-    {
-        State state = CreateState(new Arguments(new string[] { "file", "preset", "out", "--sh" }));
-
-        bool result = Sut.TryExecute(state);
-
-        Assert.IsTrue(result);
-        AssertHasNoIssues();
-
-        Assert.AreEqual("#!/bin/bash", _lines[0]);
-    }
-
-    [Test]
     public void nsureThat_TryExecute_WritesCmd_ToOutput()
     {
-        State state = CreateState(new Arguments(new string[] { "file", "preset", "out", "--sh" }));
+        State state = CreateState(new Arguments(new string[] { "file", "preset", "out", "--sh", "test.txt" }));
         state.CreatedCommandLines.Add(new FFMpegCommand
         {
             InputFile = "in",
@@ -67,8 +53,6 @@ internal class CommandLineToConsoleTests : StepTestBase<CommandLineToFile>
         Assert.IsTrue(result);
         AssertHasNoIssues();
 
-        Assert.AreEqual(2, _lines.Count);
-        Assert.IsTrue(_lines[1].Contains("ffmpeg"));
-        Assert.IsTrue(_lines[1].Contains("test1"));
+        FileAssert.Exists("test.txt");
     }
 }

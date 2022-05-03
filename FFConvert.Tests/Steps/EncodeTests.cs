@@ -28,9 +28,7 @@ internal class EncodeTests : StepTestBase<Encode>
         return new Encode(_ffmpegRunnerMock.Object, _consoleMock.Object, _progressReportMock.Object);
     }
 
-    [TestCase("--sh", true)]
-    [TestCase("--ps", true)]
-    [TestCase("--bat", true)]
+    [TestCase("--sh foo.txt", true)]
     [TestCase("", false)]
     [TestCase(null, false)]
     [TestCase("foo", false)]

@@ -1,43 +1,41 @@
 namespace FFConvert.FFProbe
 {
-    using System;
-    using System.Collections.Generic;
-    
-    
+
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("ffprobe", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
-    [System.Xml.Serialization.XmlRootAttribute("ffprobe", Namespace="http://www.ffmpeg.org/schema/ffprobe", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute("ffprobe", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlRootAttribute("ffprobe", Namespace = "http://www.ffmpeg.org/schema/ffprobe", IsNullable = false)]
     public partial class FfprobeType
     {
-        
+
         private ProgramVersionType program_versionField;
-        
+
         private LibraryVersionType[] library_versionsField;
-        
+
         private PixelFormatType[] pixel_formatsField;
-        
+
         private PacketType[] packetsField;
-        
+
         private object[] framesField;
-        
+
         private object[] packets_and_framesField;
-        
+
         private ProgramType[] programsField;
-        
+
         private StreamType[] streamsField;
-        
+
         private ChapterType[] chaptersField;
-        
+
         private FormatType formatField;
-        
+
         private ErrorType errorField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("program_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("program_version", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public ProgramVersionType Program_version
         {
             get
@@ -49,10 +47,10 @@ namespace FFConvert.FFProbe
                 this.program_versionField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("library_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("library_version", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public LibraryVersionType[] Library_versions
         {
             get
@@ -64,10 +62,10 @@ namespace FFConvert.FFProbe
                 this.library_versionsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("pixel_format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("pixel_format", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public PixelFormatType[] Pixel_formats
         {
             get
@@ -79,10 +77,10 @@ namespace FFConvert.FFProbe
                 this.pixel_formatsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("packet", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("packet", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public PacketType[] Packets
         {
             get
@@ -94,11 +92,11 @@ namespace FFConvert.FFProbe
                 this.packetsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public object[] Frames
         {
             get
@@ -110,12 +108,12 @@ namespace FFConvert.FFProbe
                 this.framesField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("packet", typeof(PacketType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("frame", typeof(FrameType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("packet", typeof(PacketType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("subtitle", typeof(SubtitleType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public object[] Packets_and_frames
         {
             get
@@ -127,10 +125,10 @@ namespace FFConvert.FFProbe
                 this.packets_and_framesField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("program", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("program", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public ProgramType[] Programs
         {
             get
@@ -142,10 +140,10 @@ namespace FFConvert.FFProbe
                 this.programsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public StreamType[] Streams
         {
             get
@@ -157,10 +155,10 @@ namespace FFConvert.FFProbe
                 this.streamsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("chapter", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("chapter", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public ChapterType[] Chapters
         {
             get
@@ -172,9 +170,9 @@ namespace FFConvert.FFProbe
                 this.chaptersField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("format", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public FormatType Format
         {
             get
@@ -186,9 +184,9 @@ namespace FFConvert.FFProbe
                 this.formatField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("error", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("error", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public ErrorType Error
         {
             get
@@ -201,28 +199,28 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("programVersionType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("programVersionType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ProgramVersionType
     {
-        
+
         private string versionField;
-        
+
         private string copyrightField;
-        
+
         private string build_dateField;
-        
+
         private string build_timeField;
-        
+
         private string compiler_identField;
-        
+
         private string configurationField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("version")]
         public string Version
@@ -236,7 +234,7 @@ namespace FFConvert.FFProbe
                 this.versionField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("copyright")]
         public string Copyright
@@ -250,7 +248,7 @@ namespace FFConvert.FFProbe
                 this.copyrightField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("build_date")]
         public string Build_date
@@ -264,7 +262,7 @@ namespace FFConvert.FFProbe
                 this.build_dateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("build_time")]
         public string Build_time
@@ -278,7 +276,7 @@ namespace FFConvert.FFProbe
                 this.build_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("compiler_ident")]
         public string Compiler_ident
@@ -292,7 +290,7 @@ namespace FFConvert.FFProbe
                 this.compiler_identField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("configuration")]
         public string Configuration
@@ -307,28 +305,28 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("libraryVersionType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("libraryVersionType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class LibraryVersionType
     {
-        
+
         private string nameField;
-        
+
         private int majorField;
-        
+
         private int minorField;
-        
+
         private int microField;
-        
+
         private int versionField;
-        
+
         private string identField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("name")]
         public string Name
@@ -342,7 +340,7 @@ namespace FFConvert.FFProbe
                 this.nameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("major")]
         public int Major
@@ -356,7 +354,7 @@ namespace FFConvert.FFProbe
                 this.majorField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("minor")]
         public int Minor
@@ -370,7 +368,7 @@ namespace FFConvert.FFProbe
                 this.minorField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("micro")]
         public int Micro
@@ -384,7 +382,7 @@ namespace FFConvert.FFProbe
                 this.microField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("version")]
         public int Version
@@ -398,7 +396,7 @@ namespace FFConvert.FFProbe
                 this.versionField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("ident")]
         public string Ident
@@ -413,38 +411,38 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PixelFormatType
     {
-        
+
         private PixelFormatFlagsType flagsField;
-        
+
         private PixelFormatComponentType[] componentsField;
-        
+
         private string nameField;
-        
+
         private int nb_componentsField;
-        
+
         private int log2_chroma_wField;
-        
+
         private bool log2_chroma_wFieldSpecified;
-        
+
         private int log2_chroma_hField;
-        
+
         private bool log2_chroma_hFieldSpecified;
-        
+
         private int bits_per_pixelField;
-        
+
         private bool bits_per_pixelFieldSpecified;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("flags", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("flags", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PixelFormatFlagsType Flags
         {
             get
@@ -456,10 +454,10 @@ namespace FFConvert.FFProbe
                 this.flagsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("component", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("component", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public PixelFormatComponentType[] Components
         {
             get
@@ -471,7 +469,7 @@ namespace FFConvert.FFProbe
                 this.componentsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("name")]
         public string Name
@@ -485,7 +483,7 @@ namespace FFConvert.FFProbe
                 this.nameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("nb_components")]
         public int Nb_components
@@ -499,9 +497,9 @@ namespace FFConvert.FFProbe
                 this.nb_componentsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="log2_chroma_w")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "log2_chroma_w")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _log2_chroma_w
         {
@@ -514,7 +512,7 @@ namespace FFConvert.FFProbe
                 this.log2_chroma_wField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -529,9 +527,9 @@ namespace FFConvert.FFProbe
                 this.log2_chroma_wFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="log2_chroma_h")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "log2_chroma_h")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _log2_chroma_h
         {
@@ -544,7 +542,7 @@ namespace FFConvert.FFProbe
                 this.log2_chroma_hField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -559,9 +557,9 @@ namespace FFConvert.FFProbe
                 this.log2_chroma_hFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="bits_per_pixel")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "bits_per_pixel")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _bits_per_pixel
         {
@@ -574,7 +572,7 @@ namespace FFConvert.FFProbe
                 this.bits_per_pixelField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -589,7 +587,7 @@ namespace FFConvert.FFProbe
                 this.bits_per_pixelFieldSpecified = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Log2_chroma_w
         {
@@ -617,7 +615,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Log2_chroma_h
         {
@@ -645,7 +643,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Bits_per_pixel
         {
@@ -674,30 +672,30 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatFlagsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatFlagsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PixelFormatFlagsType
     {
-        
+
         private int big_endianField;
-        
+
         private int paletteField;
-        
+
         private int bitstreamField;
-        
+
         private int hwaccelField;
-        
+
         private int planarField;
-        
+
         private int rgbField;
-        
+
         private int alphaField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("big_endian")]
         public int Big_endian
@@ -711,7 +709,7 @@ namespace FFConvert.FFProbe
                 this.big_endianField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("palette")]
         public int Palette
@@ -725,7 +723,7 @@ namespace FFConvert.FFProbe
                 this.paletteField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("bitstream")]
         public int Bitstream
@@ -739,7 +737,7 @@ namespace FFConvert.FFProbe
                 this.bitstreamField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("hwaccel")]
         public int Hwaccel
@@ -753,7 +751,7 @@ namespace FFConvert.FFProbe
                 this.hwaccelField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("planar")]
         public int Planar
@@ -767,7 +765,7 @@ namespace FFConvert.FFProbe
                 this.planarField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("rgb")]
         public int Rgb
@@ -781,7 +779,7 @@ namespace FFConvert.FFProbe
                 this.rgbField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("alpha")]
         public int Alpha
@@ -796,20 +794,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatComponentType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatComponentType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PixelFormatComponentType
     {
-        
+
         private int indexField;
-        
+
         private int bit_depthField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("index")]
         public int Index
@@ -823,7 +821,7 @@ namespace FFConvert.FFProbe
                 this.indexField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("bit_depth")]
         public int Bit_depth
@@ -838,62 +836,62 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("packetType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("packetType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PacketType
     {
-        
+
         private TagType[] tagField;
-        
+
         private PacketSideDataType[] side_data_listField;
-        
+
         private string codec_typeField;
-        
+
         private int stream_indexField;
-        
+
         private long ptsField;
-        
+
         private bool ptsFieldSpecified;
-        
+
         private float pts_timeField;
-        
+
         private bool pts_timeFieldSpecified;
-        
+
         private long dtsField;
-        
+
         private bool dtsFieldSpecified;
-        
+
         private float dts_timeField;
-        
+
         private bool dts_timeFieldSpecified;
-        
+
         private long durationField;
-        
+
         private bool durationFieldSpecified;
-        
+
         private float duration_timeField;
-        
+
         private bool duration_timeFieldSpecified;
-        
+
         private long sizeField;
-        
+
         private long posField;
-        
+
         private bool posFieldSpecified;
-        
+
         private string flagsField;
-        
+
         private string dataField;
-        
+
         private string data_hashField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -905,10 +903,10 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public PacketSideDataType[] Side_data_list
         {
             get
@@ -920,7 +918,7 @@ namespace FFConvert.FFProbe
                 this.side_data_listField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_type")]
         public string Codec_type
@@ -934,7 +932,7 @@ namespace FFConvert.FFProbe
                 this.codec_typeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("stream_index")]
         public int Stream_index
@@ -948,9 +946,9 @@ namespace FFConvert.FFProbe
                 this.stream_indexField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pts
         {
@@ -963,7 +961,7 @@ namespace FFConvert.FFProbe
                 this.ptsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -978,9 +976,9 @@ namespace FFConvert.FFProbe
                 this.ptsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _pts_time
         {
@@ -993,7 +991,7 @@ namespace FFConvert.FFProbe
                 this.pts_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1008,9 +1006,9 @@ namespace FFConvert.FFProbe
                 this.pts_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="dts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "dts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _dts
         {
@@ -1023,7 +1021,7 @@ namespace FFConvert.FFProbe
                 this.dtsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1038,9 +1036,9 @@ namespace FFConvert.FFProbe
                 this.dtsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="dts_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "dts_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _dts_time
         {
@@ -1053,7 +1051,7 @@ namespace FFConvert.FFProbe
                 this.dts_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1068,9 +1066,9 @@ namespace FFConvert.FFProbe
                 this.dts_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="duration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "duration")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _duration
         {
@@ -1083,7 +1081,7 @@ namespace FFConvert.FFProbe
                 this.durationField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1098,9 +1096,9 @@ namespace FFConvert.FFProbe
                 this.durationFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="duration_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "duration_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _duration_time
         {
@@ -1113,7 +1111,7 @@ namespace FFConvert.FFProbe
                 this.duration_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1128,7 +1126,7 @@ namespace FFConvert.FFProbe
                 this.duration_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("size")]
         public long Size
@@ -1142,9 +1140,9 @@ namespace FFConvert.FFProbe
                 this.sizeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pos")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pos")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pos
         {
@@ -1157,7 +1155,7 @@ namespace FFConvert.FFProbe
                 this.posField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1172,7 +1170,7 @@ namespace FFConvert.FFProbe
                 this.posFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("flags")]
         public string Flags
@@ -1186,7 +1184,7 @@ namespace FFConvert.FFProbe
                 this.flagsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("data")]
         public string Data
@@ -1200,7 +1198,7 @@ namespace FFConvert.FFProbe
                 this.dataField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("data_hash")]
         public string Data_hash
@@ -1214,7 +1212,7 @@ namespace FFConvert.FFProbe
                 this.data_hashField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pts
         {
@@ -1242,7 +1240,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Pts_time
         {
@@ -1270,7 +1268,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Dts
         {
@@ -1298,7 +1296,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Dts_time
         {
@@ -1326,7 +1324,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Duration
         {
@@ -1354,7 +1352,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Duration_time
         {
@@ -1382,7 +1380,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pos
         {
@@ -1411,20 +1409,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("tagType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("tagType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class TagType
     {
-        
+
         private string keyField;
-        
+
         private string valueField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("key")]
         public string Key
@@ -1438,7 +1436,7 @@ namespace FFConvert.FFProbe
                 this.keyField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("value")]
         public string Value
@@ -1453,22 +1451,22 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("packetSideDataType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("packetSideDataType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PacketSideDataType
     {
-        
+
         private string side_data_typeField;
-        
+
         private int side_data_sizeField;
-        
+
         private bool side_data_sizeFieldSpecified;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("side_data_type")]
         public string Side_data_type
@@ -1482,9 +1480,9 @@ namespace FFConvert.FFProbe
                 this.side_data_typeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="side_data_size")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "side_data_size")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _side_data_size
         {
@@ -1497,7 +1495,7 @@ namespace FFConvert.FFProbe
                 this.side_data_sizeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1512,7 +1510,7 @@ namespace FFConvert.FFProbe
                 this.side_data_sizeFieldSpecified = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Side_data_size
         {
@@ -1541,128 +1539,128 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("frameType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("frameType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FrameType
     {
-        
+
         private TagType[] tagField;
-        
+
         private LogType[] logsField;
-        
+
         private FrameSideDataType[] side_data_listField;
-        
+
         private string media_typeField;
-        
+
         private int stream_indexField;
-        
+
         private bool stream_indexFieldSpecified;
-        
+
         private int key_frameField;
-        
+
         private long ptsField;
-        
+
         private bool ptsFieldSpecified;
-        
+
         private float pts_timeField;
-        
+
         private bool pts_timeFieldSpecified;
-        
+
         private long pkt_dtsField;
-        
+
         private bool pkt_dtsFieldSpecified;
-        
+
         private float pkt_dts_timeField;
-        
+
         private bool pkt_dts_timeFieldSpecified;
-        
+
         private long best_effort_timestampField;
-        
+
         private bool best_effort_timestampFieldSpecified;
-        
+
         private float best_effort_timestamp_timeField;
-        
+
         private bool best_effort_timestamp_timeFieldSpecified;
-        
+
         private long pkt_durationField;
-        
+
         private bool pkt_durationFieldSpecified;
-        
+
         private float pkt_duration_timeField;
-        
+
         private bool pkt_duration_timeFieldSpecified;
-        
+
         private long pkt_posField;
-        
+
         private bool pkt_posFieldSpecified;
-        
+
         private int pkt_sizeField;
-        
+
         private bool pkt_sizeFieldSpecified;
-        
+
         private string sample_fmtField;
-        
+
         private long nb_samplesField;
-        
+
         private bool nb_samplesFieldSpecified;
-        
+
         private int channelsField;
-        
+
         private bool channelsFieldSpecified;
-        
+
         private string channel_layoutField;
-        
+
         private long widthField;
-        
+
         private bool widthFieldSpecified;
-        
+
         private long heightField;
-        
+
         private bool heightFieldSpecified;
-        
+
         private string pix_fmtField;
-        
+
         private string sample_aspect_ratioField;
-        
+
         private string pict_typeField;
-        
+
         private long coded_picture_numberField;
-        
+
         private bool coded_picture_numberFieldSpecified;
-        
+
         private long display_picture_numberField;
-        
+
         private bool display_picture_numberFieldSpecified;
-        
+
         private int interlaced_frameField;
-        
+
         private bool interlaced_frameFieldSpecified;
-        
+
         private int top_field_firstField;
-        
+
         private bool top_field_firstFieldSpecified;
-        
+
         private int repeat_pictField;
-        
+
         private bool repeat_pictFieldSpecified;
-        
+
         private string color_rangeField;
-        
+
         private string color_spaceField;
-        
+
         private string color_primariesField;
-        
+
         private string color_transferField;
-        
+
         private string chroma_locationField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -1674,10 +1672,10 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("log", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("log", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public LogType[] Logs
         {
             get
@@ -1689,10 +1687,10 @@ namespace FFConvert.FFProbe
                 this.logsField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public FrameSideDataType[] Side_data_list
         {
             get
@@ -1704,7 +1702,7 @@ namespace FFConvert.FFProbe
                 this.side_data_listField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("media_type")]
         public string Media_type
@@ -1718,9 +1716,9 @@ namespace FFConvert.FFProbe
                 this.media_typeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="stream_index")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "stream_index")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _stream_index
         {
@@ -1733,7 +1731,7 @@ namespace FFConvert.FFProbe
                 this.stream_indexField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1748,7 +1746,7 @@ namespace FFConvert.FFProbe
                 this.stream_indexFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("key_frame")]
         public int Key_frame
@@ -1762,9 +1760,9 @@ namespace FFConvert.FFProbe
                 this.key_frameField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pts
         {
@@ -1777,7 +1775,7 @@ namespace FFConvert.FFProbe
                 this.ptsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1792,9 +1790,9 @@ namespace FFConvert.FFProbe
                 this.ptsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _pts_time
         {
@@ -1807,7 +1805,7 @@ namespace FFConvert.FFProbe
                 this.pts_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1822,9 +1820,9 @@ namespace FFConvert.FFProbe
                 this.pts_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_dts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_dts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pkt_dts
         {
@@ -1837,7 +1835,7 @@ namespace FFConvert.FFProbe
                 this.pkt_dtsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1852,9 +1850,9 @@ namespace FFConvert.FFProbe
                 this.pkt_dtsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_dts_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_dts_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _pkt_dts_time
         {
@@ -1867,7 +1865,7 @@ namespace FFConvert.FFProbe
                 this.pkt_dts_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1882,9 +1880,9 @@ namespace FFConvert.FFProbe
                 this.pkt_dts_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="best_effort_timestamp")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "best_effort_timestamp")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _best_effort_timestamp
         {
@@ -1897,7 +1895,7 @@ namespace FFConvert.FFProbe
                 this.best_effort_timestampField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1912,9 +1910,9 @@ namespace FFConvert.FFProbe
                 this.best_effort_timestampFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="best_effort_timestamp_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "best_effort_timestamp_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _best_effort_timestamp_time
         {
@@ -1927,7 +1925,7 @@ namespace FFConvert.FFProbe
                 this.best_effort_timestamp_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1942,9 +1940,9 @@ namespace FFConvert.FFProbe
                 this.best_effort_timestamp_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_duration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_duration")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pkt_duration
         {
@@ -1957,7 +1955,7 @@ namespace FFConvert.FFProbe
                 this.pkt_durationField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -1972,9 +1970,9 @@ namespace FFConvert.FFProbe
                 this.pkt_durationFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_duration_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_duration_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _pkt_duration_time
         {
@@ -1987,7 +1985,7 @@ namespace FFConvert.FFProbe
                 this.pkt_duration_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2002,9 +2000,9 @@ namespace FFConvert.FFProbe
                 this.pkt_duration_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_pos")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_pos")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pkt_pos
         {
@@ -2017,7 +2015,7 @@ namespace FFConvert.FFProbe
                 this.pkt_posField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2032,9 +2030,9 @@ namespace FFConvert.FFProbe
                 this.pkt_posFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pkt_size")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pkt_size")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _pkt_size
         {
@@ -2047,7 +2045,7 @@ namespace FFConvert.FFProbe
                 this.pkt_sizeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2062,7 +2060,7 @@ namespace FFConvert.FFProbe
                 this.pkt_sizeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("sample_fmt")]
         public string Sample_fmt
@@ -2076,9 +2074,9 @@ namespace FFConvert.FFProbe
                 this.sample_fmtField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="nb_samples")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "nb_samples")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _nb_samples
         {
@@ -2091,7 +2089,7 @@ namespace FFConvert.FFProbe
                 this.nb_samplesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2106,9 +2104,9 @@ namespace FFConvert.FFProbe
                 this.nb_samplesFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="channels")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "channels")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _channels
         {
@@ -2121,7 +2119,7 @@ namespace FFConvert.FFProbe
                 this.channelsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2136,7 +2134,7 @@ namespace FFConvert.FFProbe
                 this.channelsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("channel_layout")]
         public string Channel_layout
@@ -2150,9 +2148,9 @@ namespace FFConvert.FFProbe
                 this.channel_layoutField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="width")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "width")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _width
         {
@@ -2165,7 +2163,7 @@ namespace FFConvert.FFProbe
                 this.widthField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2180,9 +2178,9 @@ namespace FFConvert.FFProbe
                 this.widthFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="height")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "height")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _height
         {
@@ -2195,7 +2193,7 @@ namespace FFConvert.FFProbe
                 this.heightField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2210,7 +2208,7 @@ namespace FFConvert.FFProbe
                 this.heightFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("pix_fmt")]
         public string Pix_fmt
@@ -2224,7 +2222,7 @@ namespace FFConvert.FFProbe
                 this.pix_fmtField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("sample_aspect_ratio")]
         public string Sample_aspect_ratio
@@ -2238,7 +2236,7 @@ namespace FFConvert.FFProbe
                 this.sample_aspect_ratioField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("pict_type")]
         public string Pict_type
@@ -2252,9 +2250,9 @@ namespace FFConvert.FFProbe
                 this.pict_typeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="coded_picture_number")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "coded_picture_number")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _coded_picture_number
         {
@@ -2267,7 +2265,7 @@ namespace FFConvert.FFProbe
                 this.coded_picture_numberField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2282,9 +2280,9 @@ namespace FFConvert.FFProbe
                 this.coded_picture_numberFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="display_picture_number")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "display_picture_number")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _display_picture_number
         {
@@ -2297,7 +2295,7 @@ namespace FFConvert.FFProbe
                 this.display_picture_numberField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2312,9 +2310,9 @@ namespace FFConvert.FFProbe
                 this.display_picture_numberFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="interlaced_frame")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "interlaced_frame")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _interlaced_frame
         {
@@ -2327,7 +2325,7 @@ namespace FFConvert.FFProbe
                 this.interlaced_frameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2342,9 +2340,9 @@ namespace FFConvert.FFProbe
                 this.interlaced_frameFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="top_field_first")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "top_field_first")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _top_field_first
         {
@@ -2357,7 +2355,7 @@ namespace FFConvert.FFProbe
                 this.top_field_firstField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2372,9 +2370,9 @@ namespace FFConvert.FFProbe
                 this.top_field_firstFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="repeat_pict")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "repeat_pict")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _repeat_pict
         {
@@ -2387,7 +2385,7 @@ namespace FFConvert.FFProbe
                 this.repeat_pictField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -2402,7 +2400,7 @@ namespace FFConvert.FFProbe
                 this.repeat_pictFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_range")]
         public string Color_range
@@ -2416,7 +2414,7 @@ namespace FFConvert.FFProbe
                 this.color_rangeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_space")]
         public string Color_space
@@ -2430,7 +2428,7 @@ namespace FFConvert.FFProbe
                 this.color_spaceField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_primaries")]
         public string Color_primaries
@@ -2444,7 +2442,7 @@ namespace FFConvert.FFProbe
                 this.color_primariesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_transfer")]
         public string Color_transfer
@@ -2458,7 +2456,7 @@ namespace FFConvert.FFProbe
                 this.color_transferField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("chroma_location")]
         public string Chroma_location
@@ -2472,7 +2470,7 @@ namespace FFConvert.FFProbe
                 this.chroma_locationField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Stream_index
         {
@@ -2500,7 +2498,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pts
         {
@@ -2528,7 +2526,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Pts_time
         {
@@ -2556,7 +2554,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pkt_dts
         {
@@ -2584,7 +2582,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Pkt_dts_time
         {
@@ -2612,7 +2610,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Best_effort_timestamp
         {
@@ -2640,7 +2638,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Best_effort_timestamp_time
         {
@@ -2668,7 +2666,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pkt_duration
         {
@@ -2696,7 +2694,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Pkt_duration_time
         {
@@ -2724,7 +2722,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pkt_pos
         {
@@ -2752,7 +2750,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Pkt_size
         {
@@ -2780,7 +2778,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Nb_samples
         {
@@ -2808,7 +2806,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Channels
         {
@@ -2836,7 +2834,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Width
         {
@@ -2864,7 +2862,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Height
         {
@@ -2892,7 +2890,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Coded_picture_number
         {
@@ -2920,7 +2918,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Display_picture_number
         {
@@ -2948,7 +2946,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Interlaced_frame
         {
@@ -2976,7 +2974,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Top_field_first
         {
@@ -3004,7 +3002,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Repeat_pict
         {
@@ -3033,34 +3031,34 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("logType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("logType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class LogType
     {
-        
+
         private string contextField;
-        
+
         private int levelField;
-        
+
         private bool levelFieldSpecified;
-        
+
         private int categoryField;
-        
+
         private bool categoryFieldSpecified;
-        
+
         private string parent_contextField;
-        
+
         private int parent_categoryField;
-        
+
         private bool parent_categoryFieldSpecified;
-        
+
         private string messageField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("context")]
         public string Context
@@ -3074,9 +3072,9 @@ namespace FFConvert.FFProbe
                 this.contextField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="level")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "level")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _level
         {
@@ -3089,7 +3087,7 @@ namespace FFConvert.FFProbe
                 this.levelField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3104,9 +3102,9 @@ namespace FFConvert.FFProbe
                 this.levelFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="category")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "category")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _category
         {
@@ -3119,7 +3117,7 @@ namespace FFConvert.FFProbe
                 this.categoryField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3134,7 +3132,7 @@ namespace FFConvert.FFProbe
                 this.categoryFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("parent_context")]
         public string Parent_context
@@ -3148,9 +3146,9 @@ namespace FFConvert.FFProbe
                 this.parent_contextField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="parent_category")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "parent_category")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _parent_category
         {
@@ -3163,7 +3161,7 @@ namespace FFConvert.FFProbe
                 this.parent_categoryField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3178,7 +3176,7 @@ namespace FFConvert.FFProbe
                 this.parent_categoryFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("message")]
         public string Message
@@ -3192,7 +3190,7 @@ namespace FFConvert.FFProbe
                 this.messageField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Level
         {
@@ -3220,7 +3218,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Category
         {
@@ -3248,7 +3246,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Parent_category
         {
@@ -3277,29 +3275,29 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FrameSideDataType
     {
-        
+
         private FrameSideDataTimecodeType[] timecodesField;
-        
+
         private string side_data_typeField;
-        
+
         private int side_data_sizeField;
-        
+
         private bool side_data_sizeFieldSpecified;
-        
+
         private string timecodeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("timecode", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("timecode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public FrameSideDataTimecodeType[] Timecodes
         {
             get
@@ -3311,7 +3309,7 @@ namespace FFConvert.FFProbe
                 this.timecodesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("side_data_type")]
         public string Side_data_type
@@ -3325,9 +3323,9 @@ namespace FFConvert.FFProbe
                 this.side_data_typeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="side_data_size")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "side_data_size")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _side_data_size
         {
@@ -3340,7 +3338,7 @@ namespace FFConvert.FFProbe
                 this.side_data_sizeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3355,7 +3353,7 @@ namespace FFConvert.FFProbe
                 this.side_data_sizeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("timecode")]
         public string Timecode
@@ -3369,7 +3367,7 @@ namespace FFConvert.FFProbe
                 this.timecodeField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Side_data_size
         {
@@ -3398,18 +3396,18 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataTimecodeType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataTimecodeType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FrameSideDataTimecodeType
     {
-        
+
         private string valueField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("value")]
         public string Value
@@ -3424,47 +3422,47 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("subtitleType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("subtitleType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class SubtitleType
     {
-        
+
         private string media_typeField;
-        
+
         private long ptsField;
-        
+
         private bool ptsFieldSpecified;
-        
+
         private float pts_timeField;
-        
+
         private bool pts_timeFieldSpecified;
-        
+
         private int formatField;
-        
+
         private bool formatFieldSpecified;
-        
+
         private int start_display_timeField;
-        
+
         private bool start_display_timeFieldSpecified;
-        
+
         private int end_display_timeField;
-        
+
         private bool end_display_timeFieldSpecified;
-        
+
         private int num_rectsField;
-        
+
         private bool num_rectsFieldSpecified;
-        
+
         public SubtitleType()
         {
             this.media_typeField = "subtitle";
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("media_type")]
         public string Media_type
@@ -3478,9 +3476,9 @@ namespace FFConvert.FFProbe
                 this.media_typeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _pts
         {
@@ -3493,7 +3491,7 @@ namespace FFConvert.FFProbe
                 this.ptsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3508,9 +3506,9 @@ namespace FFConvert.FFProbe
                 this.ptsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="pts_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "pts_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _pts_time
         {
@@ -3523,7 +3521,7 @@ namespace FFConvert.FFProbe
                 this.pts_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3538,9 +3536,9 @@ namespace FFConvert.FFProbe
                 this.pts_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="format")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "format")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _format
         {
@@ -3553,7 +3551,7 @@ namespace FFConvert.FFProbe
                 this.formatField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3568,9 +3566,9 @@ namespace FFConvert.FFProbe
                 this.formatFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="start_display_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "start_display_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _start_display_time
         {
@@ -3583,7 +3581,7 @@ namespace FFConvert.FFProbe
                 this.start_display_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3598,9 +3596,9 @@ namespace FFConvert.FFProbe
                 this.start_display_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="end_display_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "end_display_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _end_display_time
         {
@@ -3613,7 +3611,7 @@ namespace FFConvert.FFProbe
                 this.end_display_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3628,9 +3626,9 @@ namespace FFConvert.FFProbe
                 this.end_display_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="num_rects")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "num_rects")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _num_rects
         {
@@ -3643,7 +3641,7 @@ namespace FFConvert.FFProbe
                 this.num_rectsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -3658,7 +3656,7 @@ namespace FFConvert.FFProbe
                 this.num_rectsFieldSpecified = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Pts
         {
@@ -3686,7 +3684,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Pts_time
         {
@@ -3714,7 +3712,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Format
         {
@@ -3742,7 +3740,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Start_display_time
         {
@@ -3770,7 +3768,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> End_display_time
         {
@@ -3798,7 +3796,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Num_rects
         {
@@ -3827,32 +3825,32 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("programType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("programType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ProgramType
     {
-        
+
         private TagType[] tagField;
-        
+
         private StreamType[] streamsField;
-        
+
         private int program_idField;
-        
+
         private int program_numField;
-        
+
         private int nb_streamsField;
-        
+
         private int pmt_pidField;
-        
+
         private int pcr_pidField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -3864,10 +3862,10 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("stream", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public StreamType[] Streams
         {
             get
@@ -3879,7 +3877,7 @@ namespace FFConvert.FFProbe
                 this.streamsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("program_id")]
         public int Program_id
@@ -3893,7 +3891,7 @@ namespace FFConvert.FFProbe
                 this.program_idField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("program_num")]
         public int Program_num
@@ -3907,7 +3905,7 @@ namespace FFConvert.FFProbe
                 this.program_numField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("nb_streams")]
         public int Nb_streams
@@ -3921,7 +3919,7 @@ namespace FFConvert.FFProbe
                 this.nb_streamsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("pmt_pid")]
         public int Pmt_pid
@@ -3935,7 +3933,7 @@ namespace FFConvert.FFProbe
                 this.pmt_pidField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("pcr_pid")]
         public int Pcr_pid
@@ -3950,164 +3948,164 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("streamType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("streamType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class StreamType
     {
-        
+
         private StreamDispositionType dispositionField;
-        
+
         private TagType[] tagField;
-        
+
         private PacketSideDataType[] side_data_listField;
-        
+
         private int indexField;
-        
+
         private string codec_nameField;
-        
+
         private string codec_long_nameField;
-        
+
         private string profileField;
-        
+
         private string codec_typeField;
-        
+
         private string codec_tagField;
-        
+
         private string codec_tag_stringField;
-        
+
         private string extradataField;
-        
+
         private int extradata_sizeField;
-        
+
         private bool extradata_sizeFieldSpecified;
-        
+
         private string extradata_hashField;
-        
+
         private int widthField;
-        
+
         private bool widthFieldSpecified;
-        
+
         private int heightField;
-        
+
         private bool heightFieldSpecified;
-        
+
         private int coded_widthField;
-        
+
         private bool coded_widthFieldSpecified;
-        
+
         private int coded_heightField;
-        
+
         private bool coded_heightFieldSpecified;
-        
+
         private bool closed_captionsField;
-        
+
         private bool closed_captionsFieldSpecified;
-        
+
         private bool film_grainField;
-        
+
         private bool film_grainFieldSpecified;
-        
+
         private int has_b_framesField;
-        
+
         private bool has_b_framesFieldSpecified;
-        
+
         private string sample_aspect_ratioField;
-        
+
         private string display_aspect_ratioField;
-        
+
         private string pix_fmtField;
-        
+
         private int levelField;
-        
+
         private bool levelFieldSpecified;
-        
+
         private string color_rangeField;
-        
+
         private string color_spaceField;
-        
+
         private string color_transferField;
-        
+
         private string color_primariesField;
-        
+
         private string chroma_locationField;
-        
+
         private string field_orderField;
-        
+
         private int refsField;
-        
+
         private bool refsFieldSpecified;
-        
+
         private string sample_fmtField;
-        
+
         private int sample_rateField;
-        
+
         private bool sample_rateFieldSpecified;
-        
+
         private int channelsField;
-        
+
         private bool channelsFieldSpecified;
-        
+
         private string channel_layoutField;
-        
+
         private int bits_per_sampleField;
-        
+
         private bool bits_per_sampleFieldSpecified;
-        
+
         private string idField;
-        
+
         private string r_frame_rateField;
-        
+
         private string avg_frame_rateField;
-        
+
         private string time_baseField;
-        
+
         private long start_ptsField;
-        
+
         private bool start_ptsFieldSpecified;
-        
+
         private float start_timeField;
-        
+
         private bool start_timeFieldSpecified;
-        
+
         private long duration_tsField;
-        
+
         private bool duration_tsFieldSpecified;
-        
+
         private float durationField;
-        
+
         private bool durationFieldSpecified;
-        
+
         private int bit_rateField;
-        
+
         private bool bit_rateFieldSpecified;
-        
+
         private int max_bit_rateField;
-        
+
         private bool max_bit_rateFieldSpecified;
-        
+
         private int bits_per_raw_sampleField;
-        
+
         private bool bits_per_raw_sampleFieldSpecified;
-        
+
         private int nb_framesField;
-        
+
         private bool nb_framesFieldSpecified;
-        
+
         private int nb_read_framesField;
-        
+
         private bool nb_read_framesFieldSpecified;
-        
+
         private int nb_read_packetsField;
-        
+
         private bool nb_read_packetsFieldSpecified;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("disposition", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("disposition", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public StreamDispositionType Disposition
         {
             get
@@ -4119,9 +4117,9 @@ namespace FFConvert.FFProbe
                 this.dispositionField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -4133,10 +4131,10 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("side_data", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
         public PacketSideDataType[] Side_data_list
         {
             get
@@ -4148,7 +4146,7 @@ namespace FFConvert.FFProbe
                 this.side_data_listField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("index")]
         public int Index
@@ -4162,7 +4160,7 @@ namespace FFConvert.FFProbe
                 this.indexField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_name")]
         public string Codec_name
@@ -4176,7 +4174,7 @@ namespace FFConvert.FFProbe
                 this.codec_nameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_long_name")]
         public string Codec_long_name
@@ -4190,7 +4188,7 @@ namespace FFConvert.FFProbe
                 this.codec_long_nameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("profile")]
         public string Profile
@@ -4204,7 +4202,7 @@ namespace FFConvert.FFProbe
                 this.profileField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_type")]
         public string Codec_type
@@ -4218,7 +4216,7 @@ namespace FFConvert.FFProbe
                 this.codec_typeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_tag")]
         public string Codec_tag
@@ -4232,7 +4230,7 @@ namespace FFConvert.FFProbe
                 this.codec_tagField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("codec_tag_string")]
         public string Codec_tag_string
@@ -4246,7 +4244,7 @@ namespace FFConvert.FFProbe
                 this.codec_tag_stringField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("extradata")]
         public string Extradata
@@ -4260,9 +4258,9 @@ namespace FFConvert.FFProbe
                 this.extradataField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="extradata_size")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extradata_size")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _extradata_size
         {
@@ -4275,7 +4273,7 @@ namespace FFConvert.FFProbe
                 this.extradata_sizeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4290,7 +4288,7 @@ namespace FFConvert.FFProbe
                 this.extradata_sizeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("extradata_hash")]
         public string Extradata_hash
@@ -4304,9 +4302,9 @@ namespace FFConvert.FFProbe
                 this.extradata_hashField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="width")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "width")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _width
         {
@@ -4319,7 +4317,7 @@ namespace FFConvert.FFProbe
                 this.widthField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4334,9 +4332,9 @@ namespace FFConvert.FFProbe
                 this.widthFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="height")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "height")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _height
         {
@@ -4349,7 +4347,7 @@ namespace FFConvert.FFProbe
                 this.heightField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4364,9 +4362,9 @@ namespace FFConvert.FFProbe
                 this.heightFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="coded_width")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "coded_width")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _coded_width
         {
@@ -4379,7 +4377,7 @@ namespace FFConvert.FFProbe
                 this.coded_widthField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4394,9 +4392,9 @@ namespace FFConvert.FFProbe
                 this.coded_widthFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="coded_height")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "coded_height")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _coded_height
         {
@@ -4409,7 +4407,7 @@ namespace FFConvert.FFProbe
                 this.coded_heightField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4424,9 +4422,9 @@ namespace FFConvert.FFProbe
                 this.coded_heightFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="closed_captions")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "closed_captions")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public bool _closed_captions
         {
@@ -4439,7 +4437,7 @@ namespace FFConvert.FFProbe
                 this.closed_captionsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4454,9 +4452,9 @@ namespace FFConvert.FFProbe
                 this.closed_captionsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="film_grain")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "film_grain")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public bool _film_grain
         {
@@ -4469,7 +4467,7 @@ namespace FFConvert.FFProbe
                 this.film_grainField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4484,9 +4482,9 @@ namespace FFConvert.FFProbe
                 this.film_grainFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="has_b_frames")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "has_b_frames")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _has_b_frames
         {
@@ -4499,7 +4497,7 @@ namespace FFConvert.FFProbe
                 this.has_b_framesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4514,7 +4512,7 @@ namespace FFConvert.FFProbe
                 this.has_b_framesFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("sample_aspect_ratio")]
         public string Sample_aspect_ratio
@@ -4528,7 +4526,7 @@ namespace FFConvert.FFProbe
                 this.sample_aspect_ratioField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("display_aspect_ratio")]
         public string Display_aspect_ratio
@@ -4542,7 +4540,7 @@ namespace FFConvert.FFProbe
                 this.display_aspect_ratioField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("pix_fmt")]
         public string Pix_fmt
@@ -4556,9 +4554,9 @@ namespace FFConvert.FFProbe
                 this.pix_fmtField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="level")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "level")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _level
         {
@@ -4571,7 +4569,7 @@ namespace FFConvert.FFProbe
                 this.levelField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4586,7 +4584,7 @@ namespace FFConvert.FFProbe
                 this.levelFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_range")]
         public string Color_range
@@ -4600,7 +4598,7 @@ namespace FFConvert.FFProbe
                 this.color_rangeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_space")]
         public string Color_space
@@ -4614,7 +4612,7 @@ namespace FFConvert.FFProbe
                 this.color_spaceField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_transfer")]
         public string Color_transfer
@@ -4628,7 +4626,7 @@ namespace FFConvert.FFProbe
                 this.color_transferField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("color_primaries")]
         public string Color_primaries
@@ -4642,7 +4640,7 @@ namespace FFConvert.FFProbe
                 this.color_primariesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("chroma_location")]
         public string Chroma_location
@@ -4656,7 +4654,7 @@ namespace FFConvert.FFProbe
                 this.chroma_locationField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("field_order")]
         public string Field_order
@@ -4670,9 +4668,9 @@ namespace FFConvert.FFProbe
                 this.field_orderField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="refs")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "refs")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _refs
         {
@@ -4685,7 +4683,7 @@ namespace FFConvert.FFProbe
                 this.refsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4700,7 +4698,7 @@ namespace FFConvert.FFProbe
                 this.refsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("sample_fmt")]
         public string Sample_fmt
@@ -4714,9 +4712,9 @@ namespace FFConvert.FFProbe
                 this.sample_fmtField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sample_rate")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sample_rate")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _sample_rate
         {
@@ -4729,7 +4727,7 @@ namespace FFConvert.FFProbe
                 this.sample_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4744,9 +4742,9 @@ namespace FFConvert.FFProbe
                 this.sample_rateFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="channels")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "channels")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _channels
         {
@@ -4759,7 +4757,7 @@ namespace FFConvert.FFProbe
                 this.channelsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4774,7 +4772,7 @@ namespace FFConvert.FFProbe
                 this.channelsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("channel_layout")]
         public string Channel_layout
@@ -4788,9 +4786,9 @@ namespace FFConvert.FFProbe
                 this.channel_layoutField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="bits_per_sample")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "bits_per_sample")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _bits_per_sample
         {
@@ -4803,7 +4801,7 @@ namespace FFConvert.FFProbe
                 this.bits_per_sampleField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4818,7 +4816,7 @@ namespace FFConvert.FFProbe
                 this.bits_per_sampleFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("id")]
         public string Id
@@ -4832,7 +4830,7 @@ namespace FFConvert.FFProbe
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("r_frame_rate")]
         public string R_frame_rate
@@ -4846,7 +4844,7 @@ namespace FFConvert.FFProbe
                 this.r_frame_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("avg_frame_rate")]
         public string Avg_frame_rate
@@ -4860,7 +4858,7 @@ namespace FFConvert.FFProbe
                 this.avg_frame_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("time_base")]
         public string Time_base
@@ -4874,9 +4872,9 @@ namespace FFConvert.FFProbe
                 this.time_baseField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="start_pts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "start_pts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _start_pts
         {
@@ -4889,7 +4887,7 @@ namespace FFConvert.FFProbe
                 this.start_ptsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4904,9 +4902,9 @@ namespace FFConvert.FFProbe
                 this.start_ptsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="start_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "start_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _start_time
         {
@@ -4919,7 +4917,7 @@ namespace FFConvert.FFProbe
                 this.start_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4934,9 +4932,9 @@ namespace FFConvert.FFProbe
                 this.start_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="duration_ts")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "duration_ts")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _duration_ts
         {
@@ -4949,7 +4947,7 @@ namespace FFConvert.FFProbe
                 this.duration_tsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4964,9 +4962,9 @@ namespace FFConvert.FFProbe
                 this.duration_tsFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="duration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "duration")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _duration
         {
@@ -4979,7 +4977,7 @@ namespace FFConvert.FFProbe
                 this.durationField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -4994,9 +4992,9 @@ namespace FFConvert.FFProbe
                 this.durationFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="bit_rate")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "bit_rate")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _bit_rate
         {
@@ -5009,7 +5007,7 @@ namespace FFConvert.FFProbe
                 this.bit_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5024,9 +5022,9 @@ namespace FFConvert.FFProbe
                 this.bit_rateFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="max_bit_rate")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "max_bit_rate")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _max_bit_rate
         {
@@ -5039,7 +5037,7 @@ namespace FFConvert.FFProbe
                 this.max_bit_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5054,9 +5052,9 @@ namespace FFConvert.FFProbe
                 this.max_bit_rateFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="bits_per_raw_sample")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "bits_per_raw_sample")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _bits_per_raw_sample
         {
@@ -5069,7 +5067,7 @@ namespace FFConvert.FFProbe
                 this.bits_per_raw_sampleField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5084,9 +5082,9 @@ namespace FFConvert.FFProbe
                 this.bits_per_raw_sampleFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="nb_frames")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "nb_frames")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _nb_frames
         {
@@ -5099,7 +5097,7 @@ namespace FFConvert.FFProbe
                 this.nb_framesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5114,9 +5112,9 @@ namespace FFConvert.FFProbe
                 this.nb_framesFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="nb_read_frames")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "nb_read_frames")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _nb_read_frames
         {
@@ -5129,7 +5127,7 @@ namespace FFConvert.FFProbe
                 this.nb_read_framesField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5144,9 +5142,9 @@ namespace FFConvert.FFProbe
                 this.nb_read_framesFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="nb_read_packets")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "nb_read_packets")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _nb_read_packets
         {
@@ -5159,7 +5157,7 @@ namespace FFConvert.FFProbe
                 this.nb_read_packetsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -5174,7 +5172,7 @@ namespace FFConvert.FFProbe
                 this.nb_read_packetsFieldSpecified = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Extradata_size
         {
@@ -5202,7 +5200,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Width
         {
@@ -5230,7 +5228,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Height
         {
@@ -5258,7 +5256,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Coded_width
         {
@@ -5286,7 +5284,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Coded_height
         {
@@ -5314,7 +5312,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<bool> Closed_captions
         {
@@ -5342,7 +5340,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<bool> Film_grain
         {
@@ -5370,7 +5368,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Has_b_frames
         {
@@ -5398,7 +5396,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Level
         {
@@ -5426,7 +5424,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Refs
         {
@@ -5454,7 +5452,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Sample_rate
         {
@@ -5482,7 +5480,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Channels
         {
@@ -5510,7 +5508,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Bits_per_sample
         {
@@ -5538,7 +5536,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Start_pts
         {
@@ -5566,7 +5564,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Start_time
         {
@@ -5594,7 +5592,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Duration_ts
         {
@@ -5622,7 +5620,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Duration
         {
@@ -5650,7 +5648,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Bit_rate
         {
@@ -5678,7 +5676,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Max_bit_rate
         {
@@ -5706,7 +5704,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Bits_per_raw_sample
         {
@@ -5734,7 +5732,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Nb_frames
         {
@@ -5762,7 +5760,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Nb_read_frames
         {
@@ -5790,7 +5788,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Nb_read_packets
         {
@@ -5819,50 +5817,50 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("streamDispositionType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("streamDispositionType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class StreamDispositionType
     {
-        
+
         private int defaultField;
-        
+
         private int dubField;
-        
+
         private int originalField;
-        
+
         private int commentField;
-        
+
         private int lyricsField;
-        
+
         private int karaokeField;
-        
+
         private int forcedField;
-        
+
         private int hearing_impairedField;
-        
+
         private int visual_impairedField;
-        
+
         private int clean_effectsField;
-        
+
         private int attached_picField;
-        
+
         private int timed_thumbnailsField;
-        
+
         private int captionsField;
-        
+
         private int descriptionsField;
-        
+
         private int metadataField;
-        
+
         private int dependentField;
-        
+
         private int still_imageField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("default")]
         public int Default
@@ -5876,7 +5874,7 @@ namespace FFConvert.FFProbe
                 this.defaultField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("dub")]
         public int Dub
@@ -5890,7 +5888,7 @@ namespace FFConvert.FFProbe
                 this.dubField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("original")]
         public int Original
@@ -5904,7 +5902,7 @@ namespace FFConvert.FFProbe
                 this.originalField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("comment")]
         public int Comment
@@ -5918,7 +5916,7 @@ namespace FFConvert.FFProbe
                 this.commentField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("lyrics")]
         public int Lyrics
@@ -5932,7 +5930,7 @@ namespace FFConvert.FFProbe
                 this.lyricsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("karaoke")]
         public int Karaoke
@@ -5946,7 +5944,7 @@ namespace FFConvert.FFProbe
                 this.karaokeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("forced")]
         public int Forced
@@ -5960,7 +5958,7 @@ namespace FFConvert.FFProbe
                 this.forcedField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("hearing_impaired")]
         public int Hearing_impaired
@@ -5974,7 +5972,7 @@ namespace FFConvert.FFProbe
                 this.hearing_impairedField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("visual_impaired")]
         public int Visual_impaired
@@ -5988,7 +5986,7 @@ namespace FFConvert.FFProbe
                 this.visual_impairedField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("clean_effects")]
         public int Clean_effects
@@ -6002,7 +6000,7 @@ namespace FFConvert.FFProbe
                 this.clean_effectsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("attached_pic")]
         public int Attached_pic
@@ -6016,7 +6014,7 @@ namespace FFConvert.FFProbe
                 this.attached_picField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("timed_thumbnails")]
         public int Timed_thumbnails
@@ -6030,7 +6028,7 @@ namespace FFConvert.FFProbe
                 this.timed_thumbnailsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("captions")]
         public int Captions
@@ -6044,7 +6042,7 @@ namespace FFConvert.FFProbe
                 this.captionsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("descriptions")]
         public int Descriptions
@@ -6058,7 +6056,7 @@ namespace FFConvert.FFProbe
                 this.descriptionsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("metadata")]
         public int Metadata
@@ -6072,7 +6070,7 @@ namespace FFConvert.FFProbe
                 this.metadataField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("dependent")]
         public int Dependent
@@ -6086,7 +6084,7 @@ namespace FFConvert.FFProbe
                 this.dependentField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("still_image")]
         public int Still_image
@@ -6101,34 +6099,34 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("chapterType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("chapterType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ChapterType
     {
-        
+
         private TagType[] tagField;
-        
+
         private int idField;
-        
+
         private string time_baseField;
-        
+
         private int startField;
-        
+
         private float start_timeField;
-        
+
         private bool start_timeFieldSpecified;
-        
+
         private int endField;
-        
+
         private float end_timeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -6140,7 +6138,7 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("id")]
         public int Id
@@ -6154,7 +6152,7 @@ namespace FFConvert.FFProbe
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("time_base")]
         public string Time_base
@@ -6168,7 +6166,7 @@ namespace FFConvert.FFProbe
                 this.time_baseField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("start")]
         public int Start
@@ -6182,9 +6180,9 @@ namespace FFConvert.FFProbe
                 this.startField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="start_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "start_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _start_time
         {
@@ -6197,7 +6195,7 @@ namespace FFConvert.FFProbe
                 this.start_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6212,7 +6210,7 @@ namespace FFConvert.FFProbe
                 this.start_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("end")]
         public int End
@@ -6226,7 +6224,7 @@ namespace FFConvert.FFProbe
                 this.endField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("end_time")]
         public float End_time
@@ -6240,7 +6238,7 @@ namespace FFConvert.FFProbe
                 this.end_timeField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Start_time
         {
@@ -6269,50 +6267,50 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("formatType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("formatType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FormatType
     {
-        
+
         private TagType[] tagField;
-        
+
         private string filenameField;
-        
+
         private int nb_streamsField;
-        
+
         private int nb_programsField;
-        
+
         private string format_nameField;
-        
+
         private string format_long_nameField;
-        
+
         private float start_timeField;
-        
+
         private bool start_timeFieldSpecified;
-        
+
         private float durationField;
-        
+
         private bool durationFieldSpecified;
-        
+
         private long sizeField;
-        
+
         private bool sizeFieldSpecified;
-        
+
         private long bit_rateField;
-        
+
         private bool bit_rateFieldSpecified;
-        
+
         private int probe_scoreField;
-        
+
         private bool probe_scoreFieldSpecified;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("tag", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("tag", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public TagType[] Tag
         {
             get
@@ -6324,7 +6322,7 @@ namespace FFConvert.FFProbe
                 this.tagField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("filename")]
         public string Filename
@@ -6338,7 +6336,7 @@ namespace FFConvert.FFProbe
                 this.filenameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("nb_streams")]
         public int Nb_streams
@@ -6352,7 +6350,7 @@ namespace FFConvert.FFProbe
                 this.nb_streamsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("nb_programs")]
         public int Nb_programs
@@ -6366,7 +6364,7 @@ namespace FFConvert.FFProbe
                 this.nb_programsField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("format_name")]
         public string Format_name
@@ -6380,7 +6378,7 @@ namespace FFConvert.FFProbe
                 this.format_nameField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("format_long_name")]
         public string Format_long_name
@@ -6394,9 +6392,9 @@ namespace FFConvert.FFProbe
                 this.format_long_nameField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="start_time")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "start_time")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _start_time
         {
@@ -6409,7 +6407,7 @@ namespace FFConvert.FFProbe
                 this.start_timeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6424,9 +6422,9 @@ namespace FFConvert.FFProbe
                 this.start_timeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="duration")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "duration")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public float _duration
         {
@@ -6439,7 +6437,7 @@ namespace FFConvert.FFProbe
                 this.durationField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6454,9 +6452,9 @@ namespace FFConvert.FFProbe
                 this.durationFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="size")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "size")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _size
         {
@@ -6469,7 +6467,7 @@ namespace FFConvert.FFProbe
                 this.sizeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6484,9 +6482,9 @@ namespace FFConvert.FFProbe
                 this.sizeFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="bit_rate")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "bit_rate")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public long _bit_rate
         {
@@ -6499,7 +6497,7 @@ namespace FFConvert.FFProbe
                 this.bit_rateField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6514,9 +6512,9 @@ namespace FFConvert.FFProbe
                 this.bit_rateFieldSpecified = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="probe_score")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "probe_score")]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public int _probe_score
         {
@@ -6529,7 +6527,7 @@ namespace FFConvert.FFProbe
                 this.probe_scoreField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -6544,7 +6542,7 @@ namespace FFConvert.FFProbe
                 this.probe_scoreFieldSpecified = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Start_time
         {
@@ -6572,7 +6570,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<float> Duration
         {
@@ -6600,7 +6598,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Size
         {
@@ -6628,7 +6626,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<long> Bit_rate
         {
@@ -6656,7 +6654,7 @@ namespace FFConvert.FFProbe
                 }
             }
         }
-        
+
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public System.Nullable<int> Probe_score
         {
@@ -6685,20 +6683,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("errorType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("errorType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ErrorType
     {
-        
+
         private int codeField;
-        
+
         private string stringField;
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("code")]
         public int Code
@@ -6712,7 +6710,7 @@ namespace FFConvert.FFProbe
                 this.codeField = value;
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("string")]
         public string String
@@ -6727,20 +6725,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("packetsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("packetsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PacketsType
     {
-        
+
         private PacketType[] packetField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("packet", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("packet", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PacketType[] Packet
         {
             get
@@ -6753,21 +6751,21 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("framesType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("framesType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FramesType
     {
-        
+
         private object[] itemsField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("frame", typeof(FrameType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("subtitle", typeof(SubtitleType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public object[] Items
         {
             get
@@ -6780,22 +6778,22 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("packetsAndFramesType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("packetsAndFramesType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PacketsAndFramesType
     {
-        
+
         private object[] itemsField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("frame", typeof(FrameType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("packet", typeof(PacketType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("subtitle", typeof(SubtitleType), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("frame", typeof(FrameType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("packet", typeof(PacketType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("subtitle", typeof(SubtitleType), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public object[] Items
         {
             get
@@ -6808,20 +6806,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("packetSideDataListType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("packetSideDataListType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PacketSideDataListType
     {
-        
+
         private PacketSideDataType[] side_dataField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("side_data", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PacketSideDataType[] Side_data
         {
             get
@@ -6834,20 +6832,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("logsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("logsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class LogsType
     {
-        
+
         private LogType[] logField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("log", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("log", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LogType[] Log
         {
             get
@@ -6860,20 +6858,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataListType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataListType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FrameSideDataListType
     {
-        
+
         private FrameSideDataType[] side_dataField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("side_data", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("side_data", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public FrameSideDataType[] Side_data
         {
             get
@@ -6886,20 +6884,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataTimecodeList", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("frameSideDataTimecodeList", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class FrameSideDataTimecodeList
     {
-        
+
         private FrameSideDataTimecodeType[] timecodeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("timecode", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("timecode", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public FrameSideDataTimecodeType[] Timecode
         {
             get
@@ -6912,20 +6910,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("streamsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("streamsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class StreamsType
     {
-        
+
         private StreamType[] streamField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("stream", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("stream", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public StreamType[] Stream
         {
             get
@@ -6938,20 +6936,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("programsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("programsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ProgramsType
     {
-        
+
         private ProgramType[] programField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("program", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("program", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public ProgramType[] Program
         {
             get
@@ -6964,20 +6962,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("chaptersType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("chaptersType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class ChaptersType
     {
-        
+
         private ChapterType[] chapterField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("chapter", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("chapter", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public ChapterType[] Chapter
         {
             get
@@ -6990,20 +6988,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("libraryVersionsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("libraryVersionsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class LibraryVersionsType
     {
-        
+
         private LibraryVersionType[] library_versionField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("library_version", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("library_version", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public LibraryVersionType[] Library_version
         {
             get
@@ -7016,20 +7014,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatComponentsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatComponentsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PixelFormatComponentsType
     {
-        
+
         private PixelFormatComponentType[] componentField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("component", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("component", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PixelFormatComponentType[] Component
         {
             get
@@ -7042,20 +7040,20 @@ namespace FFConvert.FFProbe
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Xsd2", "1.0.0.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatsType", Namespace="http://www.ffmpeg.org/schema/ffprobe")]
+    [System.Xml.Serialization.XmlTypeAttribute("pixelFormatsType", Namespace = "http://www.ffmpeg.org/schema/ffprobe")]
     public partial class PixelFormatsType
     {
-        
+
         private PixelFormatType[] pixel_formatField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("pixel_format", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("pixel_format", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PixelFormatType[] Pixel_format
         {
             get

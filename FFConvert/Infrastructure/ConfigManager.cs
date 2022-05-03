@@ -18,7 +18,7 @@ internal class ConfigManager
 
     public ConfigManager()
     {
-         _configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
+        _configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
         _serializer = new XmlSerializer(typeof(ProgramConfiguration));
     }
 

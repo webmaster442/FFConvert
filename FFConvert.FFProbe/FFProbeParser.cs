@@ -12,7 +12,7 @@ public static class FFProbeParser
     public static FfprobeType Parse(string input)
     {
         XmlSerializer serializer = new(typeof(FfprobeType), "http://www.ffmpeg.org/schema/ffprobe");
-        using(var reader = new StringReader(input))
+        using (var reader = new StringReader(input))
         {
             return (FfprobeType)serializer.Deserialize(reader);
         }

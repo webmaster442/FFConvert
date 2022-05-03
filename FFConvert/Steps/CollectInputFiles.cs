@@ -13,7 +13,7 @@ internal class CollectInputFiles : BaseStep
 {
     public override bool CanSkip(State state)
     {
-        return !state.Arguments.InputFileContainsWildCard() 
+        return !state.Arguments.InputFileContainsWildCard()
             && state.Arguments.IsSwitchPresent(Constants.SwitchInputList);
     }
 

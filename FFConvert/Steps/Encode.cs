@@ -64,7 +64,7 @@ internal sealed class Encode : BaseStep, IDisposable
             foreach (var commandLine in commands)
             {
                 token.ThrowIfCancellationRequested();
-                   
+
                 if (File.Exists(commandLine.OutputFile))
                 {
                     _console.WriteLine($"Skipping {commandLine.OutputFile}");
@@ -73,7 +73,7 @@ internal sealed class Encode : BaseStep, IDisposable
 
                 _console.WriteLine($"Probing: {commandLine.InputFile}...");
 
-                var probe  = await _fFMpegRunner.Probe(commandLine, token);
+                var probe = await _fFMpegRunner.Probe(commandLine, token);
                 _currentFileTime = FFProbeParser.GetDuration(probe);
 
                 _console.WriteLine($"Encoding: {commandLine.InputFile}...");

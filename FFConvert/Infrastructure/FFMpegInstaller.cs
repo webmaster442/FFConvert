@@ -5,6 +5,7 @@
 
 using System.Diagnostics;
 
+using FFConvert.Domain;
 using FFConvert.Interfaces;
 using FFConvert.Properties;
 
@@ -37,6 +38,9 @@ internal sealed class FFMpegInstaller : IDisposable
             _console.WriteLine("Extracting...");
             await Extract(targetFile, AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe", token);
             await Extract(targetFile, AppDomain.CurrentDomain.BaseDirectory, "ffprobe.exe", token);
+
+            _console.WriteLine("Configuring...");
+            SetConfig(AppDomain.CurrentDomain.BaseDirectory);
 
         }
         catch (OperationCanceledException)
@@ -71,6 +75,15 @@ internal sealed class FFMpegInstaller : IDisposable
         process.StartInfo.CreateNoWindow = true;
         process.Start();
         await process.WaitForExitAsync(token);
+    }
+
+    private static void SetConfig(string baseDirectory)
+    {
+        var manager = new ConfigManager();
+        manager.Save(new ProgramConfiguration
+        {
+            FFMpegDir = baseDirectory,
+        });
     }
 
     public void Dispose()

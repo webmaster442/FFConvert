@@ -3,10 +3,6 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-
 using FFConvert.Domain;
 using FFConvert.Infrastructure;
 using FFConvert.Interfaces;
@@ -25,32 +21,29 @@ internal sealed class DependencyProvider
 
     public bool ConfigHasBeenCreated { get; private set; }
 
-    private ProgramConfiguration GetConfiguration()
-    {
-        string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
-        XmlSerializer serializer = new XmlSerializer(typeof(ProgramConfiguration));
-        if (!File.Exists(configFile))
-        {
-            using XmlTextWriter writer = new(configFile, encoding: Encoding.UTF8);
-            writer.Formatting = Formatting.Indented;
-            writer.Indentation = 4;
-            serializer.Serialize(writer, new ProgramConfiguration());
-            ConfigHasBeenCreated = true;
-            return new ProgramConfiguration();
-        }
-
-        using var configRead = File.OpenRead(configFile);
-        var result = (ProgramConfiguration?)serializer.Deserialize(configRead);
-        return result!;
-    }
-
     public DependencyProvider()
     {
-        Configuration = GetConfiguration();
+        Configuration = LoadConfig();
         Console = new ProgramConsole();
         Converters = new ImplementationsOf<IConverter>();
         Validators = new ImplementationsOf<IValidator>();
         ProgressReporter = new ProgressReporter(Console);
         FFMpegRunner = new FFMpegRunner(Configuration);
+    }
+
+    private ProgramConfiguration LoadConfig()
+    {
+        var manager = new ConfigManager();
+        if (manager.ConfigExists)
+        {
+            return manager.Load();
+        }
+        else
+        {
+            var @default = new ProgramConfiguration();
+            manager.Save(@default);
+            ConfigHasBeenCreated = true;
+            return @default;
+        }
     }
 }

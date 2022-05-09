@@ -236,9 +236,9 @@ namespace FFConvert.Properties {
         ///   Looks up a localized string similar to FFConvert - an FfMpeg command line converter
         ///
         ///  Usage: ffconvert [inputfiles] [preset] [outdir]
-        ///  
+        ///
         ///  Available presets:
-        ///  
+        ///
         ///  {0}.
         /// </summary>
         internal static string GenericHelp {

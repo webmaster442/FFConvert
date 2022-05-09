@@ -179,9 +179,9 @@ This is a preset issue.</value>
     <value>FFConvert - an FfMpeg command line converter
 
   Usage: ffconvert [inputfiles] [preset] [outdir]
-  
+
   Available presets:
-  
+
   {0}</value>
   </data>
   <data name="PresetHelpHeader" xml:space="preserve">

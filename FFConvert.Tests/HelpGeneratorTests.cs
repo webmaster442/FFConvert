@@ -12,8 +12,8 @@ internal class HelpGeneratorTests
     public void Setup()
     {
         genericHelp = $"FFConvert - an FfMpeg command line converter{lb}{lb}"
-                    + $"  Usage: ffconvert [inputfiles] [preset] [outdir]{lb}"
-                    + $"  Available presets: Test";
+                    + $"  Usage: ffconvert [inputfiles] [preset] [outdir]{lb}{lb}"
+                    + $"  Available presets:{lb}{lb}  Test";
 
         _sut = new HelpGenerator(new[]
         {
@@ -62,7 +62,7 @@ internal class HelpGeneratorTests
 
         string expected = $"Preset Name:       Test{lb}"
             + $"Result extension:  .foo{lb}"
-            + $"Description:       Test preset{lb}"
+            + $"Description:{lb}     Test preset{lb}"
             + $"{lb}"
             + $"Parameters:{lb}"
             + $"{lb}"

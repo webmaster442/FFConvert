@@ -61,7 +61,7 @@ This code is licensed under MIT license (see LICENSE for details)
     <ParametersToAsk/>
   </Preset>
   <Preset ActivatorName="mp3" TargetExtension=".mp3">
-    <Description>Convert a file to mp3 audio</Description>
+    <Description>Convert a file to mp3 audio. Valid bitrates in kbps: 8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320</Description>
     <CommandLine>-i %input% -vn -c:a mp3 -b:a %bitrate% %output%</CommandLine>
     <ParametersToAsk>
       <PresetParameter
@@ -73,8 +73,44 @@ This code is licensed under MIT license (see LICENSE for details)
     </ParametersToAsk>
   </Preset>
   <Preset ActivatorName="m4a" TargetExtension=".m4a">
-    <Description>Convert a file to mp4 audio</Description>
+    <Description>Convert a file to mp4 audio. Valid bitrates in kbps: 8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320</Description>
     <CommandLine>-i %input% -vn -c:a aac -b:a %bitrate% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%bitrate%"
+        ParameterDescription="Audio bitrate in kbps:"
+        Validator="ListValidator"
+        Converter="KbpsConverter"
+        ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="ac3" TargetExtension=".ac3">
+    <Description>Convert a file to Dolby Digital AC3. Valid bitrates in kbps: 32,40,48,56,64,80,96,112,128,160,192,224,256,320,384,448,512,576,640</Description>
+    <CommandLine>-i %input% -vn -c:a ac3 -b:a %bitrate% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%bitrate%"
+        ParameterDescription="Audio bitrate in kbps:"
+        Validator="ListValidator"
+        Converter="KbpsConverter"
+        ValidatorParameters="valid=32,40,48,56,64,80,96,112,128,160,192,224,256,320,384,448,512,576,640"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="dts" TargetExtension=".dts">
+    <Description>Convert a file to DTS. (Uses experimental encoder)</Description>
+    <CommandLine>-i %input% -vn -strict -2 -c:a dts -b:a %bitrate% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%bitrate%"
+        ParameterDescription="Audio bitrate in kbps (can be 1536 or 768) :"
+        Validator="ListValidator"
+        Converter="KbpsConverter"
+        ValidatorParameters="valid=1536,768"/>
+    </ParametersToAsk>
+  </Preset>
+  <Preset ActivatorName="wma" TargetExtension=".wma">
+    <Description>Convert a file to Windows media audio. Valid bitrates in kbps: 8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320</Description>
+    <CommandLine>-i %input% -vn -c:a wmav2 -b:a %bitrate% %output%</CommandLine>
     <ParametersToAsk>
       <PresetParameter
         ParameterName="%bitrate%"

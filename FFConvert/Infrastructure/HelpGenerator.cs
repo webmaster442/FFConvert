@@ -22,7 +22,7 @@ internal sealed class HelpGenerator
     public string GetGenericHelp()
     {
         StringBuilder buffer = new();
-        string presetNames = string.Join(' ', _presets.Select(x => x.ActivatorName));
+        string presetNames = string.Join(' ', _presets.Select(x => x.ActivatorName).OrderBy(x => x));
         buffer.AppendFormat(Resources.GenericHelp, presetNames);
         return buffer.ToString();
     }

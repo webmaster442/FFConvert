@@ -46,7 +46,8 @@ try
 
     HelpGenerator helpGenerator = new(presets);
 
-    if (arguments.IsGenericHelpRequested())
+    if (arguments.IsGenericHelpRequested() 
+        || !arguments.IsSyntaxValid())
     {
         string msg = helpGenerator.GetGenericHelp();
         console.WriteLine(msg);

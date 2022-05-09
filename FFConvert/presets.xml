@@ -8,7 +8,7 @@ This code is licensed under MIT license (see LICENSE for details)
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="my://presets">
   <!--Audio formats-->
-  <Preset ActivatorName="cd" TargetExtension=".wav">
+  <Preset ActivatorName="cdaudio" TargetExtension=".wav">
     <Description>Convert a file to CD compatible audio</Description>
     <CommandLine>-i %input% -vn -ar 44100 -ac 2 -c:a pcm_s16le %output%</CommandLine>
     <ParametersToAsk/>

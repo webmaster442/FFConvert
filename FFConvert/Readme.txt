@@ -11,14 +11,8 @@ Usage: ffconvert [inputfiles] [preset] [outdir] [optons]
 
 Available options:
 
---bat
-    Instead of running encode, write command line in bach format to console
-
---ps
-    Instead of running encode, write command line in Power shell format to console
-
---sh
-    Instead of running encode, write command line in bash format to console
+--sh [file]
+    Instead of running encode, write generated command line to specified file
 
 This program to properly function requires a build of ffmpeg. An ffmpeg build can
 be obtained from: https://ffmpeg.org/download.html

@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\ReleaseNotes.txt" Link="ReleaseNotes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <InternalsVisibleTo Include="FFConvert.Tests" />
     <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>

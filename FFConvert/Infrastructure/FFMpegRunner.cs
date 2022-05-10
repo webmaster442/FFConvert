@@ -53,8 +53,6 @@ internal class FFMpegRunner : IFFMpegRunner
 
         return FFProbeParser.Parse(xml);
 
-        //return JsonSerializer.Deserialize<FFProbeResult>(json) ?? new FFProbeResult();
-
     }
 
     public async Task Run(FFMpegCommand command, CancellationToken cancellationToken)
@@ -63,6 +61,12 @@ internal class FFMpegRunner : IFFMpegRunner
             throw new InvalidOperationException("Invalid config");
 
         using Process process = new();
+
+        cancellationToken.Register(() =>
+        {
+            if (!process.HasExited) process.Kill();
+        });
+
         process.StartInfo = new ProcessStartInfo
         {
             UseShellExecute = false,

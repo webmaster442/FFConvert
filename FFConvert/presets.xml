@@ -17,10 +17,10 @@ This code is licensed under MIT license (see LICENSE for details)
     <Description>Convert a file to uncompressed WAV audio</Description>
     <CommandLine>-i %input% -vn %samplerate% %channels% -c:a pcm_s16le %output%</CommandLine>
     <ParametersToAsk>
-      <PresetParameter 
+      <PresetParameter
         ParameterName="%samplerate%"
         ParameterDescription="Sample rate (empty = no change)"
-        IsOptional="true" 
+        IsOptional="true"
         OptionalContent="-ar %samplerate%"
         Validator="IntValidator"
         ValidatorParameters="min=8000;max=192000"/>
@@ -72,6 +72,17 @@ This code is licensed under MIT license (see LICENSE for details)
         ValidatorParameters="valid=8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320"/>
     </ParametersToAsk>
   </Preset>
+  <Preset ActivatorName="mp3-vbr" TargetExtension=".mp3">
+    <Description>Convert a file to mp3 audio with variable bitrate encoding.</Description>
+    <CommandLine>-i %input% -vn -c:a mp3 -q:a %quality% %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%quality%"
+        ParameterDescription="Audio quality (0-9, lower is better):"
+        Validator="IntValidator"
+        ValidatorParameters="min=1;max=9"/>
+    </ParametersToAsk>
+  </Preset>
   <Preset ActivatorName="m4a" TargetExtension=".m4a">
     <Description>Convert a file to mp4 audio. Valid bitrates in kbps: 8,16,24,32,40,48,64,80,96,112,128,160,192,224,256,320</Description>
     <CommandLine>-i %input% -vn -c:a aac -b:a %bitrate% %output%</CommandLine>
@@ -102,7 +113,7 @@ This code is licensed under MIT license (see LICENSE for details)
     <ParametersToAsk>
       <PresetParameter
         ParameterName="%bitrate%"
-        ParameterDescription="Audio bitrate in kbps (can be 1536 or 768) :"
+        ParameterDescription="Audio bitrate in kbps (can be 1536 or 768):"
         Validator="ListValidator"
         Converter="KbpsConverter"
         ValidatorParameters="valid=1536,768"/>
@@ -130,6 +141,17 @@ This code is licensed under MIT license (see LICENSE for details)
     <Description>Convert video to DVD compatible (PAL) format</Description>
     <CommandLine>-i %input% -target pal-dvd %output%</CommandLine>
     <ParametersToAsk/>
+  </Preset>
+  <Preset ActivatorName="webm" TargetExtension=".webm">
+    <Description>Convert video to Web compatible Webm format with VP9 encoding</Description>
+    <CommandLine>-i %input% -c:v libvpx-vp9 -crf %quality% -b:v 0 %output%</CommandLine>
+    <ParametersToAsk>
+      <PresetParameter
+        ParameterName="%quality%"
+        ParameterDescription="Video Quality (min=0, max=63, lower is better):"
+        Validator="IntValidator"
+        ValidatorParameters="min=0;max=63"/>
+    </ParametersToAsk>
   </Preset>
   <Preset ActivatorName="dvd-ntsc" TargetExtension=".mpeg">
     <Description>Convert video to DVD compatible (NTSC) format</Description>

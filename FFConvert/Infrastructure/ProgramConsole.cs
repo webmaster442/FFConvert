@@ -56,4 +56,9 @@ internal class ProgramConsole : IConsole
     {
         Console.SetCursorPosition(left, top);
     }
+
+    public void Clear()
+    {
+        Console.Clear();
+    }
 }

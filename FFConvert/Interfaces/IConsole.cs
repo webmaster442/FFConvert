@@ -16,4 +16,6 @@ internal interface IConsole
     void Write(string line);
     void Error(params string[] errors);
     event EventHandler? CancelEvent;
+
+    void Clear();
 }

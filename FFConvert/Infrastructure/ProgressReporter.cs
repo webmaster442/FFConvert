@@ -24,6 +24,7 @@ namespace FFConvert.Infrastructure
         public void Hide()
         {
             _console.Write("\x1b[?1049l");
+            _console.Clear();
         }
 
         public void Report(ConvertProgress value)
@@ -55,6 +56,7 @@ namespace FFConvert.Infrastructure
         public void Show()
         {
             _console.Write("\x1b[?1049h");
+            _console.Clear();
         }
     }
 }

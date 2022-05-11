@@ -21,7 +21,7 @@ internal sealed class ConvertProgress
         string time = "Unknown";
         if (!double.IsInfinity(remain) && !double.IsNaN(remain))
         {
-            time = TimeSpan.FromSeconds(remain).ToString();
+            time = TimeSpan.FromSeconds(remain).ToString(@"hh\:mm\:ss");
         }
         StatusMsg = string.Format(Resources.StatusReportTemplate, fFMpegOutput.Speed, time);
     }

@@ -143,8 +143,8 @@ This code is licensed under MIT license (see LICENSE for details)
     <ParametersToAsk/>
   </Preset>
   <Preset ActivatorName="webm" TargetExtension=".webm">
-    <Description>Convert video to Web compatible Webm format with VP9 encoding</Description>
-    <CommandLine>-i %input% -c:v libvpx-vp9 -crf %quality% -b:v 0 %output%</CommandLine>
+    <Description>Convert video to Web compatible Webm format with VP8 encoding</Description>
+    <CommandLine>-i %input% -c:v libvpx -quality good -speed 2 -crf %quality% -b:v 0 %output%</CommandLine>
     <ParametersToAsk>
       <PresetParameter
         ParameterName="%quality%"

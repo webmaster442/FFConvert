@@ -15,6 +15,7 @@ internal class ProgressReporterTests
         _currentLine = "";
         _consoleMock = new Mock<IConsole>(MockBehavior.Strict);
         _consoleMock.Setup(x => x.WriteLine(It.IsAny<string>())).Callback<string>(x => _lines.Add(x));
+        _consoleMock.Setup(x => x.Clear()).Callback(() => _lines.Clear());
         _consoleMock.Setup(x => x.Write(It.IsAny<string>())).Callback<string>(x =>
         {
             _currentLine += x;

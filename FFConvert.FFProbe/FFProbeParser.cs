@@ -22,13 +22,17 @@ public static class FFProbeParser
     {
         var format = input?.Format;
 
+        double startTime = 0;
+
         if (format == null
-            || !format.Duration.HasValue
-            || !format.Start_time.HasValue)
+            || !format.Duration.HasValue)
         {
             return 0;
         }
 
-        return format.Duration.Value - format.Start_time.Value;
+        if (format.Start_time.HasValue)
+            startTime = format.Start_time.Value;
+
+        return format.Duration.Value - startTime;
     }
 }

@@ -45,7 +45,7 @@ internal class FFMpegRunner : IFFMpegRunner
             RedirectStandardError = true,
             CreateNoWindow = true,
             FileName = _ffprobeExe,
-            Arguments = $"-v quiet -show_format -print_format xml=fully_qualified=1 {command.InputFile}"
+            Arguments = $"-v quiet -show_format -print_format xml=fully_qualified=1 \"{command.InputFile}\""
         };
         process.Start();
         string xml = await process.StandardOutput.ReadToEndAsync();

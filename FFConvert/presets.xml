@@ -158,7 +158,7 @@ This code is licensed under MIT license (see LICENSE for details)
     <CommandLine>-i %input% -target ntsc-dvd %output%</CommandLine>
     <ParametersToAsk/>
   </Preset>
-  <Preset ActivatorName="cut" TargetExtension="%sourceext%">
+  <Preset ActivatorName="cut" TargetExtension="%sourceext%" ParametersCallbackName="CutPresetCallback">
     <Description>Cut out a part of the source media without recode</Description>
     <CommandLine>-i %input% -ss %starttime% %endtime% -c:a copy -c:v copy %output%</CommandLine>
     <ParametersToAsk>

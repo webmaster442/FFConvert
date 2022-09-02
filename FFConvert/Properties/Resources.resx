@@ -123,6 +123,9 @@
   <data name="ErrorAborted" xml:space="preserve">
     <value>Conversion aborted</value>
   </data>
+  <data name="ErrorCallbackDoesntExist" xml:space="preserve">
+    <value>Provided calback name  {0} in the preset doesn't exist</value>
+  </data>
   <data name="ErrorCoudNotLoadPresets" xml:space="preserve">
     <value>Coudn't read the Presets.xml file. Probably it's not a valid xml</value>
   </data>

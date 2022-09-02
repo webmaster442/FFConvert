@@ -20,12 +20,16 @@ public sealed class Preset
 
     public List<PresetParameter> ParametersToAsk { get; set; }
 
+    [XmlAttribute]
+    public string ParametersCallbackName { get; set; } 
+
     public Preset()
     {
         ActivatorName = string.Empty;
         Description = string.Empty;
         CommandLine = string.Empty;
         TargetExtension = string.Empty;
+        ParametersCallbackName = string.Empty;
         ParametersToAsk = new List<PresetParameter>();
     }
 }

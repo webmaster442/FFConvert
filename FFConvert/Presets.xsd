@@ -39,6 +39,7 @@ This code is licensed under MIT license (see LICENSE for details)
             </xsd:sequence>
             <xsd:attribute name="ActivatorName" type="xsd:string" use="required" />
             <xsd:attribute name="TargetExtension" type="xsd:string" use="required" />
+            <xsd:attribute name="ParametersCallbackName" type="xsd:string" use="optional"/>
           </xsd:complexType>
         </xsd:element>
       </xsd:sequence>

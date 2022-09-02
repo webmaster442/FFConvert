@@ -3,6 +3,8 @@
 // This code is licensed under MIT license (see LICENSE for details)
 // ----------------------------------------------------------------------------
 
+using System.Reflection;
+
 using FFConvert.Domain;
 
 namespace FFConvert.DomainServices;
@@ -71,4 +73,25 @@ internal static class PresetExtensions
             return false;
         }
     }
+
+    public static PresetParameter? GetParameterByName(this IEnumerable<PresetParameter> parameters, string name)
+    {
+        return parameters.FirstOrDefault(x => x.ParameterName == name);
+    }
+
+    public static T? ParseParameterValue<T>(this PresetParameter presetParameter)
+    {
+        if (string.IsNullOrEmpty(presetParameter.Value))
+            return default;
+
+        var parse = typeof(T).GetMethod("Parse", BindingFlags.Static, new Type[] { typeof(string) } );
+
+        if (parse == null)
+            return default;
+
+        object? result = parse.Invoke(null, new object[] { presetParameter.Value });
+
+        return (T?)result;
+    }
+
 }

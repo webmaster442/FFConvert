@@ -79,6 +79,15 @@ namespace FFConvert.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provided calback name  {0} in the preset doesn&apos;t exist.
+        /// </summary>
+        internal static string ErrorCallbackDoesntExist {
+            get {
+                return ResourceManager.GetString("ErrorCallbackDoesntExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coudn&apos;t read the Presets.xml file. Probably it&apos;s not a valid xml.
         /// </summary>
         internal static string ErrorCoudNotLoadPresets {

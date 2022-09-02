@@ -67,12 +67,12 @@ try
                                   new CollectInputFilesFromFile(),
                                   new PresetValidation(dependencies.Converters, dependencies.Validators),
                                   new GetPresetArguments(dependencies.Converters, dependencies.Validators, dependencies.Console),
-                                  new RunCallbacks(),
+                                  new RunCallbacks(dependencies.CallbackProvider),
                                   new CreateCommandLines(),
                                   new Encode(dependencies.FFMpegRunner, dependencies.Console, dependencies.ProgressReporter),
                                   new CommandLineToFile(dependencies.Console));
 
-    State state = new State(presets, dependencies.Configuration, arguments);
+    State state = new(presets, dependencies.Configuration, arguments);
 
     runner.Run(state);
 }

@@ -17,6 +17,8 @@ internal sealed class DependencyProvider
     public IProgressReport ProgressReporter { get; }
     public IFFMpegRunner FFMpegRunner { get; }
 
+    public ICallbackProvider CallbackProvider { get; }
+
     public ProgramConfiguration Configuration { get; }
 
     public bool ConfigHasBeenCreated { get; private set; }
@@ -29,6 +31,7 @@ internal sealed class DependencyProvider
         Validators = new ImplementationsOf<IValidator>();
         ProgressReporter = new ProgressReporter(Console);
         FFMpegRunner = new FFMpegRunner(Configuration);
+        CallbackProvider = new CallbackProvider();
     }
 
     private ProgramConfiguration LoadConfig()
